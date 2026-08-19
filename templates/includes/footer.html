@@ -1,0 +1,739 @@
+{% load static %}
+
+<style>
+
+/* =========================================================
+   TUTERVERSE FOOTER
+   BRAND COLOR: #5361df
+========================================================= */
+
+.tutorverse-footer {
+    background: #5361df;
+    color: #ffffff;
+    padding-top: 70px;
+}
+
+
+/* =========================================================
+   MAIN FOOTER
+========================================================= */
+
+.tutorverse-footer-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px 55px;
+}
+
+.tutorverse-footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 55px;
+}
+
+
+/* =========================================================
+   BRAND / LOGO
+========================================================= */
+
+.tutorverse-footer-brand {
+    max-width: 330px;
+}
+
+
+/*
+   LOGO SPACE
+   Replace tutorverse-logo.png with your actual logo filename
+*/
+
+.tutorverse-logo-box {
+    width: 190px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.tutorverse-logo-box img {
+    max-width: 190px;
+    max-height: 70px;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.tutorverse-footer-description {
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   SOCIAL MEDIA
+========================================================= */
+
+.tutorverse-socials {
+    display: flex;
+    gap: 10px;
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+.tutorverse-socials li {
+    margin: 0;
+    padding: 0;
+}
+
+.tutorverse-socials a {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: all .25s ease;
+}
+
+.tutorverse-socials a:hover {
+    background: #ffffff;
+    color: #5361df;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   FOOTER HEADINGS
+========================================================= */
+
+.tutorverse-footer-column h4 {
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    margin: 0 0 22px;
+
+    position: relative;
+}
+
+.tutorverse-footer-column h4::after {
+    content: "";
+
+    display: block;
+
+    width: 30px;
+    height: 2px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    margin-top: 9px;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   FOOTER LINKS
+========================================================= */
+
+.tutorverse-footer-links {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+}
+
+.tutorverse-footer-links li {
+    margin-bottom: 12px;
+    padding: 0;
+}
+
+.tutorverse-footer-links li a {
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    transition: all .2s ease;
+}
+
+.tutorverse-footer-links li a:hover {
+    color: #ffffff;
+
+    padding-left: 5px;
+}
+
+
+/* =========================================================
+   CONTACT INFORMATION
+========================================================= */
+
+.tutorverse-contact-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 17px;
+}
+
+
+.tutorverse-contact-icon {
+    width: 36px;
+    height: 36px;
+
+    min-width: 36px;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+
+    transition: .25s ease;
+}
+
+.tutorverse-contact-item:hover .tutorverse-contact-icon {
+    background: #ffffff;
+    color: #5361df;
+}
+
+
+.tutorverse-contact-item p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.tutorverse-contact-item a {
+    color: rgba(255, 255, 255, 0.78);
+
+    text-decoration: none;
+
+    transition: .2s ease;
+}
+
+.tutorverse-contact-item a:hover {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.tutorverse-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+    padding: 22px 25px;
+}
+
+
+.tutorverse-footer-bottom-inner {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.tutorverse-footer-bottom p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.70);
+
+    font-size: 13px;
+}
+
+
+.tutorverse-footer-bottom p span {
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+
+.tutorverse-footer-bottom-links {
+    display: flex;
+
+    gap: 20px;
+}
+
+
+.tutorverse-footer-bottom-links a {
+    color: rgba(255, 255, 255, 0.70);
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    transition: .2s ease;
+}
+
+
+.tutorverse-footer-bottom-links a:hover {
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .tutorverse-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 45px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .tutorverse-footer {
+        padding-top: 50px;
+    }
+
+    .tutorverse-footer-grid {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .tutorverse-footer-brand {
+        max-width: 100%;
+    }
+
+    .tutorverse-footer-bottom-inner {
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .tutorverse-footer-bottom-links {
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+}
+
+</style>
+
+
+<!-- =========================================================
+     START TUTERVERSE FOOTER
+========================================================= -->
+
+<footer class="tutorverse-footer">
+
+
+    <div class="tutorverse-footer-main">
+
+        <div class="tutorverse-footer-grid">
+
+
+            <!-- =================================================
+                 TUTERVERSE BRAND
+            ================================================== -->
+
+            <div class="tutorverse-footer-brand">
+
+
+                <!-- LOGO IMAGE SPACE -->
+
+                <div class="tutorverse-logo-box">
+
+                    <a href="{% url 'home' %}">
+
+                        <img
+                            src="{% static 'assets/img/tutorverse-logo.png' %}"
+                            alt="Tutorverse"
+                        >
+
+                    </a>
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="tutorverse-footer-description">
+
+                    Tutorverse connects students with trusted tutors,
+                    making quality education more accessible through
+                    flexible online and offline learning.
+
+                </p>
+
+
+                <!-- SOCIAL MEDIA -->
+
+                <ul class="tutorverse-socials">
+
+
+                    <!-- X -->
+
+                    <li>
+
+                        <a
+                            href="https://x.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="X"
+                        >
+
+                            <i class="fa-brands fa-x-twitter"></i>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- FACEBOOK -->
+
+                    <li>
+
+                        <a
+                            href="https://facebook.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Facebook"
+                        >
+
+                            <i class="fa-brands fa-facebook-f"></i>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- INSTAGRAM -->
+
+                    <li>
+
+                        <a
+                            href="https://instagram.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="Instagram"
+                        >
+
+                            <i class="fa-brands fa-instagram"></i>
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- LINKEDIN -->
+
+                    <li>
+
+                        <a
+                            href="https://www.linkedin.com/"
+                            target="_blank"
+                            rel="noopener"
+                            aria-label="LinkedIn"
+                        >
+
+                            <i class="fa-brands fa-linkedin-in"></i>
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PLATFORM
+            ================================================== -->
+
+            <div class="tutorverse-footer-column">
+
+                <h4>Platform</h4>
+
+
+                <ul class="tutorverse-footer-links">
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'course_list' %}">
+                            Find Courses
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'course_list' %}">
+                            Find a Tutor
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'contact' %}">
+                            Contact Us
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 GET STARTED
+            ================================================== -->
+
+            <div class="tutorverse-footer-column">
+
+                <h4>Get Started</h4>
+
+
+                <ul class="tutorverse-footer-links">
+
+                    <li>
+                        <a href="{% url 'course_list' %}">
+                            Browse Courses
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'teacher_profile_setup' %}">
+                            Become a Teacher
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'teacher_dashboard' %}">
+                            Teacher Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'student_dashboard' %}">
+                            Student Dashboard
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONTACT
+            ================================================== -->
+
+            <div class="tutorverse-footer-column">
+
+                <h4>Contact Us</h4>
+
+
+                <!-- LOCATION -->
+
+                <div class="tutorverse-contact-item">
+
+                    <div class="tutorverse-contact-icon">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                    </div>
+
+                    <p>
+                        Lagos, Nigeria
+                    </p>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="tutorverse-contact-item">
+
+                    <div class="tutorverse-contact-icon">
+
+                        <i class="fa-solid fa-phone"></i>
+
+                    </div>
+
+                    <p>
+
+                        <a href="tel:+2348000000000">
+
+                            +234 800 000 0000
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+                <!-- WHATSAPP -->
+
+                <div class="tutorverse-contact-item">
+
+                    <div class="tutorverse-contact-icon">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                    </div>
+
+                    <p>
+
+                        <a
+                            href="https://wa.me/2348000000000"
+                            target="_blank"
+                            rel="noopener"
+                        >
+
+                            Chat on WhatsApp
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="tutorverse-contact-item">
+
+                    <div class="tutorverse-contact-icon">
+
+                        <i class="fa-solid fa-envelope"></i>
+
+                    </div>
+
+                    <p>
+
+                        <a href="mailto:support@tutorverse.com">
+
+                            support@tutorverse.com
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         COPYRIGHT
+    ========================================================= -->
+
+    <div class="tutorverse-footer-bottom">
+
+        <div class="tutorverse-footer-bottom-inner">
+
+
+            <p>
+
+                © 2026
+
+                <span>Tutorverse</span>.
+
+                All rights reserved.
+
+            </p>
+
+
+            <div class="tutorverse-footer-bottom-links">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a href="{% url 'contact' %}">
+                    Contact
+                </a>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</footer>
+
+<!-- END TUTERVERSE FOOTER -->

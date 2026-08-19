@@ -1,0 +1,558 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section-padding student-dashboard">
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="dashboard-header">
+
+            <div>
+                <h2>Student Dashboard</h2>
+
+                <p>
+                    Welcome back, {{ request.user.get_full_name|default:request.user.username }}.
+                    Manage your learning journey from here.
+                </p>
+            </div>
+
+            <a href="{% url 'browse_teachers' %}" class="btn_one">
+                <i class="fa fa-search"></i>
+                Find a Tutor
+            </a>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+        <div class="row mb-5">
+
+            <!-- TOTAL BOOKINGS -->
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="dashboard-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+
+                    <div>
+                        <h3>{{ bookings.count }}</h3>
+                        <p>Total Lessons</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PENDING -->
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="dashboard-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+
+                    <div>
+                        <h3>{{ pending_bookings.count }}</h3>
+                        <p>Pending Lessons</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACCEPTED -->
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="dashboard-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa fa-check-circle"></i>
+                    </div>
+
+                    <div>
+                        <h3>{{ accepted_bookings.count }}</h3>
+                        <p>Accepted Lessons</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+        <div class="dashboard-section">
+
+            <h3 class="dashboard-section-title">
+                Quick Actions
+            </h3>
+
+            <div class="row">
+
+                <!-- FIND TUTOR -->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <div class="dashboard-action-card">
+
+                        <div class="action-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+
+                        <h4>Find a Tutor</h4>
+
+                        <p>
+                            Browse verified tutors and find the right
+                            teacher for your learning needs.
+                        </p>
+
+                        <a href="{% url 'browse_teachers' %}">
+                            Browse Tutors →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- COURSES -->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <div class="dashboard-action-card">
+
+                        <div class="action-icon">
+                            <i class="fa fa-book"></i>
+                        </div>
+
+                        <h4>Explore Courses</h4>
+
+                        <p>
+                            Discover courses created by experienced
+                            TutorVerse teachers.
+                        </p>
+
+                        <a href="{% url 'course_list' %}">
+                            Browse Courses →
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MESSAGES -->
+                <div class="col-lg-4 col-md-6 mb-4">
+
+                    <div class="dashboard-action-card">
+
+                        <div class="action-icon">
+                            <i class="fa fa-comments"></i>
+                        </div>
+
+                        <h4>Messages</h4>
+
+                        <p>
+                            Communicate directly with your tutors
+                            before or after your lessons.
+                        </p>
+
+                        <a href="{% url 'inbox' %}">
+                            View Messages →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOOKINGS -->
+        <div class="dashboard-section">
+
+            <div class="section-heading-row">
+
+                <div>
+                    <h3 class="dashboard-section-title">
+                        My Lessons
+                    </h3>
+
+                    <p>
+                        Your recent tutor bookings.
+                    </p>
+                </div>
+
+                <a href="{% url 'browse_teachers' %}" class="btn_one">
+                    Book a Lesson
+                </a>
+
+            </div>
+
+
+            {% if bookings %}
+
+                {% for booking in bookings %}
+
+                    <div class="booking-card">
+
+                        <div class="booking-info">
+
+                            <div class="booking-icon">
+                                <i class="fa fa-graduation-cap"></i>
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    {{ booking.subject }}
+                                </h4>
+
+                                <p>
+                                    Tutor:
+                                    {{ booking.teacher.user.get_full_name|default:booking.teacher.user.username }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="booking-details">
+
+                            <div>
+                                <small>Date</small>
+                                <strong>
+                                    {{ booking.lesson_date }}
+                                </strong>
+                            </div>
+
+                            <div>
+                                <small>Time</small>
+                                <strong>
+                                    {{ booking.lesson_time }}
+                                </strong>
+                            </div>
+
+                            <div>
+
+                                <small>Status</small>
+
+                                <strong>
+
+                                    {{ booking.get_status_display }}
+
+                                </strong>
+
+                            </div>
+
+                            <a
+                                href="{% url 'booking_detail' booking.id %}"
+                                class="btn_one"
+                            >
+                                View
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-dashboard">
+
+                    <div class="empty-icon">
+                        <i class="fa fa-calendar-o"></i>
+                    </div>
+
+                    <h4>No lessons yet</h4>
+
+                    <p>
+                        You haven't booked a lesson yet.
+                        Find a tutor and start learning.
+                    </p>
+
+                    <a
+                        href="{% url 'browse_teachers' %}"
+                        class="btn_one"
+                    >
+                        Find a Tutor
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =========================
+   STUDENT DASHBOARD
+========================= */
+
+.student-dashboard {
+    background: #f8f9ff;
+    min-height: 700px;
+}
+
+
+/* HEADER */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 45px;
+}
+
+.dashboard-header h2 {
+    font-size: 36px;
+    color: #10145c;
+    margin-bottom: 8px;
+}
+
+.dashboard-header p {
+    color: #777;
+    margin: 0;
+}
+
+
+/* STATISTICS */
+
+.dashboard-stat-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+.stat-icon,
+.action-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 10px;
+    background: #eef0ff;
+    color: #5362e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.dashboard-stat-card h3 {
+    font-size: 30px;
+    margin: 0;
+    color: #10145c;
+}
+
+.dashboard-stat-card p {
+    margin: 3px 0 0;
+    color: #777;
+}
+
+
+/* SECTION */
+
+.dashboard-section {
+    margin-bottom: 50px;
+}
+
+.dashboard-section-title {
+    color: #10145c;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.section-heading-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+
+/* ACTION CARDS */
+
+.dashboard-action-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    height: 100%;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.dashboard-action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.dashboard-action-card h4 {
+    margin-top: 20px;
+    color: #10145c;
+}
+
+.dashboard-action-card p {
+    color: #777;
+    line-height: 1.7;
+}
+
+.dashboard-action-card a {
+    color: #5362e9;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* BOOKINGS */
+
+.booking-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 22px 25px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+}
+
+.booking-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.booking-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: #eef0ff;
+    color: #5362e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booking-info h4 {
+    margin: 0 0 5px;
+    color: #10145c;
+}
+
+.booking-info p {
+    margin: 0;
+    color: #777;
+}
+
+.booking-details {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.booking-details div {
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-details small {
+    color: #999;
+    margin-bottom: 4px;
+}
+
+.booking-details strong {
+    color: #333;
+}
+
+
+/* EMPTY */
+
+.empty-dashboard {
+    background: #ffffff;
+    border-radius: 12px;
+    text-align: center;
+    padding: 60px 30px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+}
+
+.empty-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #eef0ff;
+    color: #5362e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 25px;
+}
+
+.empty-dashboard h4 {
+    color: #10145c;
+}
+
+.empty-dashboard p {
+    color: #777;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-header h2 {
+        font-size: 30px;
+    }
+
+    .section-heading-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .booking-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .booking-details {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 18px;
+    }
+
+}
+
+</style>
+
+{% endblock %}

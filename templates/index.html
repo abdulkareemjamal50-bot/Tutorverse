@@ -1,0 +1,716 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	
+	
+
+
+		
+	<!-- START HOME -->
+<section class="home_bg hb_height" style="background-image: url('{% static "assets/img/bg/study.png" %}'); background-size:cover; background-position: center center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 col-xs-12">
+                <div class="hero-text ht_top">
+                    <h1><span>TutorVerse</span> Learn Without Limits. Teach Without Boundaries.</h1>
+
+                    <p>
+                        TutorVerse connects students with qualified tutors through interactive online learning.
+                        Discover expert-led courses, personalized tutoring, and a supportive learning community
+                        designed to help you achieve your academic and career goals.
+                    </p>
+                </div>
+
+               <div class="home_sb">
+    <form action="{% url 'browse_teachers' %}" method="GET" class="banner_subs">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control home_si"
+            placeholder="Search for courses, tutors or subjects..."
+            required
+        >
+
+        <button type="submit" class="subscribe__btn">
+            Search <i class="fa fa-search"></i>
+        </button>
+
+    </form>
+</div>
+            </div><!-- END COL -->
+
+            <div class="col-lg-6 col-sm-12 col-xs-12">
+                <div class="hero-text-img">
+                    {% comment %} <img src="{% static 'assets/img/home-img2.png' %}" class="img-fluid" alt="TutorVerse Hero Image"> {% endcomment %}
+
+                    <div class="home_ps">
+                        <span class="ti-user"></span>
+                        <h2>15,000+</h2>
+                        <p>Active Learners</p>
+                    </div>
+                </div>
+            </div><!-- END COL -->
+
+        </div><!-- END ROW -->
+    </div><!-- END CONTAINER -->
+</section>
+<!-- END HOME -->			
+
+		<!-- START COUNTER -->
+		<section class="count_area counter_feature">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-sm-6 col-xs-12">
+						<div class="single-counter">
+							<span class="ti-folder sc_one"></span>
+							<h2 class="counter-num">134</h2>
+							<p>Our Online Course</p>
+						</div>							
+					</div>
+					<div class="col-lg-3 col-sm-6 col-xs-12">
+						<div class="single-counter">
+							<span class="ti-medall-alt sc_two"></span>
+							<h2 class="counter-num">299</h2>
+							<p>Academic Programs</p>
+						</div>
+					</div><!-- END COL -->
+					<div class="col-lg-3 col-sm-6 col-xs-12">
+						<div class="single-counter">
+							<span class="ti-id-badge sc_three"></span>
+							<h2 class="counter-num">684</h2>
+							<p>Certified Students</p>
+						</div>
+					</div><!-- END COL -->
+					<div class="col-lg-3 col-sm-6 col-xs-12">
+						<div class="single-counter">
+							<span class="ti-user sc_four"></span>
+							<h2 class="counter-num">941</h2>
+							<p>Enrolled Students</p>
+						</div>
+					</div><!-- END COL -->						
+				</div><!--- END ROW -->
+			</div><!--- END CONTAINER -->		
+		</section>
+		<!-- END COUNTER --><!-- START COUNTER -->
+<section class="count_area counter_feature">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="single-counter">
+                    <span class="ti-book sc_one"></span>
+                    <h2 class="counter-num">250+</h2>
+                    <p>Courses Available</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="single-counter">
+                    <span class="ti-blackboard sc_two"></span>
+                    <h2 class="counter-num">120+</h2>
+                    <p>Expert Tutors</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="single-counter">
+                    <span class="ti-user sc_three"></span>
+                    <h2 class="counter-num">15,000+</h2>
+                    <p>Active Students</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+                <div class="single-counter">
+                    <span class="ti-medall-alt sc_four"></span>
+                    <h2 class="counter-num">95%</h2>
+                    <p>Student Satisfaction</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- END COUNTER -->
+
+<!-- START WHY CHOOSE US -->
+<section class="top_cat__area section-padding" style="background-image: url(assets/img/bg/shape-1.png); background-size:cover; background-position: center center;">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>Why Choose TutorVerse?</h2>
+            <p>
+                TutorVerse makes learning simple, engaging, and accessible by connecting students with experienced tutors and high-quality courses tailored to their learning goals.
+            </p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                <div class="single_tp">
+                    <span class="sc_one">01</span>
+                    <h3>Expert <br> Tutors</h3>
+                    <p>
+                        Learn from experienced educators and industry professionals who are passionate about helping students succeed.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+                <div class="single_tp">
+                    <span class="sc_two">02</span>
+                    <h3>Interactive <br> Learning</h3>
+                    <p>
+                        Participate in engaging lessons, quizzes, and discussions designed to make learning enjoyable and effective.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+                <div class="single_tp">
+                    <span class="sc_three">03</span>
+                    <h3>Flexible <br> Learning</h3>
+                    <p>
+                        Learn at your own pace from anywhere, whether you're using a laptop, tablet, or mobile device.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.5s">
+                <div class="single_tp">
+                    <span class="sc_four">04</span>
+                    <h3>Career <br> Growth</h3>
+                    <p>
+                        Build practical skills, earn certificates, and gain the confidence needed to advance your academic and professional journey.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- END WHY CHOOSE US -->			
+		
+<!-- START ABOUT US -->
+<section class="ab_area section-padding">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
+                <div class="ab_img">
+                    <img src="{% static 'assets/img/about1.png' %}" class="img-fluid" alt="TutorVerse Learning">
+                </div>
+            </div><!-- END COL -->
+
+            <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+                <div class="ab_content">
+                    <h2>Empowering Students Through Personalized Learning</h2>
+
+                    <p>
+                        TutorVerse connects students with qualified tutors for one-on-one and group learning sessions. Whether you're preparing for exams, improving your skills, or learning something new, finding the right tutor has never been easier.
+                    </p>
+
+                    <p>
+                        Our platform provides flexible scheduling, secure online learning, and a growing community of passionate educators dedicated to helping students achieve academic success.
+                    </p>
+
+                    <ul>
+                        <li><span class="ti-check"></span> Find experienced tutors across multiple subjects</li>
+                        <li><span class="ti-check"></span> Book online or in-person tutoring sessions easily</li>
+                        <li><span class="ti-check"></span> Learn at your own pace with personalized guidance</li>
+                    </ul>
+
+                    <a class="btn_one" href="course.html">
+                        Explore Tutors <i class="ti-arrow-top-right"></i>
+                    </a>
+                </div>
+            </div><!-- END COL -->
+
+        </div><!-- END ROW -->
+    </div><!-- END CONTAINER -->
+</section>
+<!-- END ABOUT US -->	
+	
+<!-- START CATEGORY -->
+<section class="top_cat__area section-padding" style="background-image: url(assets/img/bg/section-2.jpg); background-size:cover; background-position:center center;">
+   <div class="section-title text-center">
+
+    <h2>Explore Popular Learning Categories</h2>
+
+    <p>
+        Choose from a wide range of subjects taught by experienced tutors.
+        Whether you're preparing for exams, learning a new skill, or advancing
+        your career, TutorVerse has a tutor for you.
+    </p>
+
+</div>
+
+
+<div class="row">
+
+    <div
+        class="col-lg-12 col-sm-12 col-xs-12 wow fadeInUp"
+        data-wow-duration="1s"
+        data-wow-delay="0.1s"
+        data-wow-offset="0"
+    >
+
+        <div class="cat_list">
+
+            <ul>
+
+                {% for category in categories %}
+
+                    <li>
+
+                        <a href="{% url 'browse_teachers' %}?category={{ category.id }}">
+
+                            {% if category.name == "Mathematics" %}
+                                <img src="{% static 'assets/img/e1.png' %}" alt="">
+                            
+                            {% elif category.name == "Science" %}
+                                <img src="{% static 'assets/img/e2.png' %}" alt="">
+                            
+                            {% elif category.name == "Technology" %}
+                                <img src="{% static 'assets/img/e3.png' %}" alt="">
+                            
+                            {% elif category.name == "Arts" %}
+                                <img src="{% static 'assets/img/e5.png' %}" alt="">
+                            
+                            {% elif category.name == "Commercial" %}
+                                <img src="{% static 'assets/img/e8.png' %}" alt="">
+                            
+                            {% else %}
+                                <img src="{% static 'assets/img/e2.png' %}" alt="">
+                            {% endif %}
+
+                            {{ category.name }}
+
+                        </a>
+
+                    </li>
+
+                {% empty %}
+
+                    <li>
+                        No categories available yet.
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+</section>
+<!-- END CATEGORY -->				
+
+<!-- START COURSE -->
+<section class="home_course section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-6 col-xs-12">
+                <div class="section-title">
+                    <h2>Explore Our <b>Featured</b> <br />Courses</h2>
+                </div>
+            </div><!--- END COL -->
+
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="cour_btn">
+                    <a href="course.html" class="btn_one">Browse All Courses <i class="ti-arrow-top-right"></i></a>
+                </div>
+            </div><!--- END COL -->
+        </div><!--- END ROW -->
+
+        <div class="row">
+
+            <!-- Course 1 -->
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="single_course">
+                    <div class="single_c_img">
+                        <img src="{% static 'assets/img/course/1.png' %}" class="img-fluid" alt="course-image" />
+                        <span>Programming</span>
+                    </div>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <h4><a href="course.html">Python Programming for Beginners</a></h4>
+                    <p><span class="ti-book"></span> 18 Lessons</p>
+                    <p><span class="ti-alarm-clock"></span> 12 Hours</p>
+                    <div class="price">₦25,000</div>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="single_course">
+                    <div class="single_c_img">
+                        <img src="{% static 'assets/img/course/2.png' %}" class="img-fluid" alt="course-image" />
+                        <span>Web Development</span>
+                    </div>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <h4><a href="course.html">Complete HTML, CSS & JavaScript</a></h4>
+                    <p><span class="ti-book"></span> 26 Lessons</p>
+                    <p><span class="ti-alarm-clock"></span> 20 Hours</p>
+                    <div class="price">₦30,000</div>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="single_course">
+                    <div class="single_c_img">
+                        <img src="{% static 'assets/img/course/3.png' %}" class="img-fluid" alt="course-image" />
+                        <span>UI/UX Design</span>
+                    </div>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <h4><a href="course.html">UI/UX Design with Figma</a></h4>
+                    <p><span class="ti-book"></span> 15 Lessons</p>
+                    <p><span class="ti-alarm-clock"></span> 10 Hours</p>
+                    <div class="price">₦22,000</div>
+                </div>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="single_course">
+                    <div class="single_c_img">
+                        <img src="{% static 'assets/img/course/4.png' %}" class="img-fluid" alt="course-image" />
+                        <span>Data Science</span>
+                    </div>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <h4><a href="course.html">Data Analysis with Python</a></h4>
+                    <p><span class="ti-book"></span> 20 Lessons</p>
+                    <p><span class="ti-alarm-clock"></span> 16 Hours</p>
+                    <div class="price">₦35,000</div>
+                </div>
+            </div>
+
+            <!-- Course 5 -->
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="single_course">
+                    <div class="single_c_img">
+                        <img src="{% static 'assets/img/course/5.png' %}" class="img-fluid" alt="course-image" />
+                        <span>Cybersecurity</span>
+                    </div>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <h4><a href="course.html">Ethical Hacking Essentials</a></h4>
+                    <p><span class="ti-book"></span> 24 Lessons</p>
+                    <p><span class="ti-alarm-clock"></span> 18 Hours</p>
+                    <div class="price">₦40,000</div>
+                </div>
+            </div>
+
+            <!-- Course 6 -->
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="single_course">
+                    <div class="single_c_img">
+                        <img src="{% static 'assets/img/course/6.png' %}" class="img-fluid" alt="course-image" />
+                        <span>Digital Marketing</span>
+                    </div>
+                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+                    <h4><a href="course.html">Digital Marketing Masterclass</a></h4>
+                    <p><span class="ti-book"></span> 17 Lessons</p>
+                    <p><span class="ti-alarm-clock"></span> 14 Hours</p>
+                    <div class="price">Free</div>
+                </div>
+            </div>
+
+        </div><!--- END ROW -->
+    </div><!--- END CONTAINER -->
+</section>
+<!-- END COURSE -->
+ 
+
+		
+		<!-- START VIDEO -->
+		<section class="vid_area section-padding">
+			<div class="container">																
+				<div class="row">
+					<div class="col-lg-12 vp_top wow fadeInUDown" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
+						<div class="video-area" style="background-image: url('{% static "assets/img/bg/video.jpg" %}');  background-size:cover; background-position: center center;">
+							<a href="https://www.youtube.com/watch?v=RXv_uIN6e-Y" class="magnific_popup video-button"><i class="fa fa-play"></i></a>
+						</div>
+					</div><!--- END COL -->	
+				</div><!--- END ROW -->
+			</div><!--- END CONTAINER -->
+		</section>
+		<!-- END VIDEO -->			
+		
+		<!-- START TEAM -->
+		<section class="team_area section-padding">
+			<div class="container">									
+				<div class="section-title text-center">
+					<h2>Meet our Instructors</h2>
+					<p>We offer a brand new approach to the most basic learning paradigms. Choose from a wide range of learning options and gain new skills! Our school is know.</p>
+				</div>						
+				<div class="row">													
+					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+						<div class="our-team">
+							<div class="team-content">
+								<a href="#"><img src="{% static 'assets/img/team/team1.jpg' %}" alt=""></a>
+								<ul class="social-links">
+									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
+									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+								</ul>
+							</div>
+							<div class="team-prof">
+								<h3>Bilkis Vabi</h3>
+								<span>Web designer</span>
+							</div>
+							<div class="sth_det2">
+								<span class="ti-file"> <u>04 Course</u></span>
+								<span class="ti-user"> <u>27 Student</u></span>
+							</div>									
+						</div>
+					</div><!--- END COL -->										
+					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+						<div class="our-team">
+							<div class="team-content">
+								<a href="#"><img src="{% static 'assets/img/team/team2.jpg' %}" alt=""></a>
+								<ul class="social-links">
+									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
+									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+								</ul>
+							</div>
+							<div class="team-prof">
+								<h3>Mood Wasim</h3>
+								<span>TemplateMonster company</span>
+							</div>
+							<div class="sth_det2">
+								<span class="ti-file"> <u>06 Course</u></span>
+								<span class="ti-user"> <u>41 Student</u></span>
+							</div>							
+						</div>
+					</div><!--- END COL -->										
+					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+						<div class="our-team">
+							<div class="team-content">
+								<a href="#"><img src="{% static 'assets/img/team/team3.jpg' %}" alt=""></a>
+								<ul class="social-links">
+									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
+									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+								</ul>
+							</div>
+							<div class="team-prof">
+								<h3>Shyinn tim</h3>
+								<span>Codecanyou</span>
+							</div>
+							<div class="sth_det2">
+								<span class="ti-file"> <u>13 Course</u></span>
+								<span class="ti-user"> <u>31 Student</u></span>
+							</div>
+						</div>
+					</div><!--- END COL -->										
+					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+						<div class="our-team">
+							<div class="team-content">
+								<a href="#"><img src="{% static 'assets/img/team/team4.jpg' %}" alt=""></a>
+								<ul class="social-links">
+									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
+									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+								</ul>
+							</div>
+							<div class="team-prof">
+								<h3>Shorif shorifa</h3>
+								<span>Tsc chottor</span>
+							</div>
+							<div class="sth_det2">
+								<span class="ti-file"> <u>07 Course</u></span>
+								<span class="ti-user"> <u>24 Student</u></span>
+							</div>
+						</div>
+					</div><!--- END COL -->							  
+				</div><!--- END ROW -->
+			</div><!--- END CONTAINER -->
+		</section>
+		<!-- END TEAM -->	
+
+	<!-- START PROMO -->
+	<section class="ab_area section-padding">
+		<div class="container">									
+			<div class="row">													
+				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+					<div class="ab_content">
+						<h2>Why Choose Us For Your Online Education Courses</h2>
+						<p>We offer a brand new approach to the most basic learning paradigms. Choose from a wide range of learning options and gain new skills! Our school is know.</p>
+						<p>We offer a brand new approach to the most basic learning paradigms. Choose from a wide range of learning options and gain new skills! Our school is know.</p>
+						<ul>
+							<li><span class="ti-check"></span> Get access to <b>12,000+</b> of our top courses</li>
+							<li><span class="ti-check"></span> Popular topic to learn now in our online courses for student</li>
+							<li><span class="ti-check"></span> Find the right instructor for you</li>
+						</ul>
+						<a class="btn_one" href="course.html">View All Courses <i class="ti-arrow-top-right"></i></a>
+					</div>
+				</div><!--- END COL -->	
+				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
+					<div class="ab_img">
+						<img src="{% static 'assets/img/about3.png' %}" class="img-fluid" alt="image">
+						<div class="home_ps2">
+							<span class="ti-book"></span>
+							<h2>3300+</h2>
+							<p>Online Course</p>
+						</div>
+					</div>
+				</div><!--- END COL -->					
+			</div><!--- END ROW -->
+		</div><!--- END CONTAINER -->
+	</section>
+	<!-- END PROMO -->			
+
+		<!-- START TESTIMONIALS -->
+		<section class="testi_area section-padding">
+			<div class="container">
+				<div class="section-title">
+					<h2>What Student’s Say To Do <br />Their Online Course</h2>
+				</div>						
+				<div class="row">
+					<div class="col-lg-6 col-sm-12 col-xs-12">
+						<div class="ab_img">
+							<img src="{% static 'assets/img/review.png' %}" class="img-fluid" alt="image">
+						</div>					
+					</div><!-- END COL -->						
+					<div class="col-lg-6 col-sm-12 col-xs-12">
+						<div id="testimonial-slider" class="owl-carousel">
+							<div class="testimonial">
+								<img src="{% static 'assets/img/quote.png' %}" alt="" />
+								<div class="testimonial_content">													
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
+								</div>
+								<div class="testi_pic_title">
+									<img src="{% static 'assets/img/testimonial/1.png' %}" alt="">
+									<h4>Ajmain Adil</h4>
+									<p>Groton Inc</p>
+								</div>
+							</div><!-- END TESTIMONIAL -->
+							<div class="testimonial">
+							<img src="{% static 'assets/img/quote.png' %}" alt="" />
+								<div class="testimonial_content">													
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
+								</div>
+								<div class="testi_pic_title">
+									<img src="{% static 'assets/img/testimonial/2.png' %}" alt="">
+									<h4>Sharukh Khan</h4>
+									<p>Red Chili Inc</p>
+								</div>
+							</div><!-- END TESTIMONIAL -->
+							<div class="testimonial">
+								<img src="{% static 'assets/img/quote.png' %}" alt="" />
+								<div class="testimonial_content">													
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
+								</div>
+								<div class="testi_pic_title">
+									<img src="{% static 'assets/img/testimonial/3.png' %}" alt="">
+									<h4>Anushka sharma</h4>
+									<p>Naika Company</p>
+								</div>
+							</div><!-- END TESTIMONIAL -->
+							<div class="testimonial">
+								<img src="{% static 'assets/img/quote.png' %}" alt="" />
+								<div class="testimonial_content">													
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
+								</div>
+								<div class="testi_pic_title">
+									<img src="{% static 'assets/img/testimonial/4.png' %}" alt="">
+									<h4>Ajmain Adil</h4>
+									<p>Groton Inc</p>
+								</div>
+							</div><!-- END TESTIMONIAL -->
+							<div class="testimonial">
+								<img src="{% static 'assets/img/quote.png' %}" alt="" />
+								<div class="testimonial_content">													
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<i class="ti-star"></i>
+									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
+								</div>
+								<div class="testi_pic_title">
+									<img src="{% static 'assets/img/testimonial/5.png' %}" alt="">
+									<h4>Ajmain Adil</h4>
+									<p>Groton Inc</p>
+								</div>
+							</div><!-- END TESTIMONIAL -->
+						</div><!-- END TESTIMONIAL SLIDER -->
+					</div><!-- END COL -->		
+				</div><!--- END ROW -->
+			</div><!--- END CONTAINER -->		
+		</section>
+		<!-- END TESTINUNIALS -->
+
+		<!-- START BLOG -->
+		<section id="blog" class="blog_area section-padding">
+			<div class="container">
+				<div class="section-title text-center">
+					<h2>Latest Blog & news</h2>
+					<p>We offer a brand new approach to the most basic learning paradigms. Choose from a wide range of learning options and gain new skills! Our school is know.</p>
+				</div>	
+				<div class="row">		
+					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+						<div class="single_blog">
+							<img src="{% static 'assets/img/blog/1.jpg' %}" class="img-fluid" alt="image" />
+							<div class="content_box">
+								<span>May 10, 2024 | <a href="blog.html">Education</a></span>
+								<h2><a href="blog.html">Professional Mobile Painting and Sculpting</a></h2>
+								<a class="btn_one" href="blog.html">Read More <i class="ti-arrow-top-right"></i></a>
+							</div>
+						</div>
+					</div><!-- END COL-->				
+					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+						<div class="single_blog">
+							<img src="{% static 'assets/img/blog/2.jpg' %}" class="img-fluid" alt="image" />
+							<div class="content_box">
+								<span>May 16, 2024 | <a href="blog.html">Education</a></span>
+								<h2><a href="blog.html">Professional Ceramic Moulding for Beginner</a></h2>
+								<a class="btn_one" href="blog.html">Read More <i class="ti-arrow-top-right"></i></a>							
+							</div>
+						</div>
+					</div><!-- END COL-->
+					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
+						<div class="single_blog">
+							<img src="{% static 'assets/img/blog/3.jpg' %}" class="img-fluid" alt="image" />
+							<div class="content_box">
+								<span>May 18, 2024 | <a href="blog.html">Programing</a></span>
+								<h2><a href="blog.html">Education Is About Create Leaders For Tomorrow </a></h2>
+								<a class="btn_one" href="blog.html">Read More <i class="ti-arrow-top-right"></i></a>
+							</div>
+						</div>
+					</div><!-- END COL-->						
+				</div><!-- / END ROW -->
+			</div><!-- END CONTAINER  -->
+		</section>	
+		<!-- END BLOG -->	
+		
+		
+
+		
+	
+    {% endblock %}

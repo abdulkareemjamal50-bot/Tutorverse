@@ -1,0 +1,591 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* ================================
+       TUTOR PROFILE PAGE
+    ================================= */
+
+    .tutor-profile-page {
+        background: #f6f8fb;
+        min-height: 100vh;
+        padding: 70px 0;
+    }
+
+    .tutor-profile-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Breadcrumb */
+
+    .tutor-breadcrumb {
+        margin-bottom: 30px;
+        font-size: 14px;
+        color: #7a8494;
+    }
+
+    .tutor-breadcrumb a {
+        color: #2f6fed;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    /* Main Card */
+
+    .tutor-main-card {
+        background: #ffffff;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 10px 35px rgba(20, 40, 80, 0.08);
+    }
+
+    /* Top Section */
+
+    .tutor-header {
+        padding: 45px;
+        display: flex;
+        align-items: center;
+        gap: 35px;
+        border-bottom: 1px solid #edf0f5;
+    }
+
+    /* Profile Image */
+
+    .tutor-image-wrapper {
+        flex-shrink: 0;
+    }
+
+    .tutor-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #f0f4ff;
+    }
+
+    .tutor-placeholder {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: #eef3ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 55px;
+        color: #2f6fed;
+        border: 5px solid #f0f4ff;
+    }
+
+    /* Tutor Information */
+
+    .tutor-info {
+        flex: 1;
+    }
+
+    .tutor-name-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+    }
+
+    .tutor-name {
+        font-size: 32px;
+        font-weight: 700;
+        color: #182230;
+        margin: 0;
+    }
+
+    .verified-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #2f6fed;
+        color: white;
+        font-size: 12px;
+    }
+
+    .tutor-role {
+        font-size: 16px;
+        color: #667085;
+        margin-bottom: 18px;
+    }
+
+    .tutor-location {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: #667085;
+        font-size: 14px;
+    }
+
+    .tutor-location i {
+        color: #2f6fed;
+    }
+
+    /* Availability */
+
+    .availability {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 15px;
+        padding: 7px 12px;
+        border-radius: 30px;
+        background: #eaf8f0;
+        color: #1f9254;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .availability-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #27ae60;
+    }
+
+    /* Content */
+
+    .tutor-content {
+        padding: 45px;
+    }
+
+    .section-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #182230;
+        margin-bottom: 18px;
+    }
+
+    .tutor-bio {
+        color: #667085;
+        font-size: 15px;
+        line-height: 1.8;
+        margin-bottom: 40px;
+    }
+
+    /* Information Grid */
+
+    .tutor-details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+        margin-bottom: 40px;
+    }
+
+    .detail-box {
+        background: #f8fafc;
+        border: 1px solid #edf0f5;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+    .detail-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .5px;
+        color: #98a2b3;
+        margin-bottom: 7px;
+    }
+
+    .detail-value {
+        font-size: 15px;
+        font-weight: 600;
+        color: #182230;
+    }
+
+    .detail-value i {
+        color: #2f6fed;
+        margin-right: 7px;
+    }
+
+    /* Subjects */
+
+    .subjects {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 40px;
+    }
+
+    .subject-tag {
+        padding: 9px 15px;
+        background: #eef3ff;
+        color: #2f6fed;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    /* Actions */
+
+    .tutor-actions {
+        display: flex;
+        gap: 15px;
+        padding-top: 30px;
+        border-top: 1px solid #edf0f5;
+    }
+
+    .tutor-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 14px 24px;
+        border-radius: 9px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: all .25s ease;
+    }
+
+    .primary-btn {
+        background: #2f6fed;
+        color: white;
+    }
+
+    .primary-btn:hover {
+        background: #245bd0;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    .secondary-btn {
+        background: white;
+        color: #2f6fed;
+        border: 1px solid #d7e0f5;
+    }
+
+    .secondary-btn:hover {
+        background: #f4f7ff;
+        color: #2f6fed;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 768px) {
+
+        .tutor-profile-page {
+            padding: 40px 0;
+        }
+
+        .tutor-header {
+            padding: 30px 25px;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .tutor-name-row {
+            justify-content: center;
+        }
+
+        .tutor-location {
+            justify-content: center;
+        }
+
+        .tutor-content {
+            padding: 30px 25px;
+        }
+
+        .tutor-details-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .tutor-actions {
+            flex-direction: column;
+        }
+
+        .tutor-btn {
+            width: 100%;
+        }
+    }
+</style>
+
+
+<section class="tutor-profile-page">
+
+    <div class="tutor-profile-container">
+
+        <!-- Breadcrumb -->
+
+        <div class="tutor-breadcrumb">
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <span> / </span>
+
+            <a href="{% url 'course_list' %}">
+                Courses
+            </a>
+
+            <span> / Tutor Profile</span>
+
+        </div>
+
+
+        <!-- Main Profile Card -->
+
+        <div class="tutor-main-card">
+
+
+            <!-- =============================
+                 PROFILE HEADER
+            ============================== -->
+
+            <div class="tutor-header">
+
+                <div class="tutor-image-wrapper">
+
+                    {% if teacher.profile_picture %}
+
+                        <img
+                            src="{{ teacher.profile_picture.url }}"
+                            alt="{{ teacher.user.get_full_name }}"
+                            class="tutor-image"
+                        >
+
+                    {% else %}
+
+                        <div class="tutor-placeholder">
+                            <i class="fa fa-user"></i>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="tutor-info">
+
+                    <div class="tutor-name-row">
+
+                        <h1 class="tutor-name">
+
+                            {{ teacher.user.get_full_name|default:teacher.user.username }}
+
+                        </h1>
+
+
+                        {% if teacher.verified %}
+
+                            <span
+                                class="verified-badge"
+                                title="Verified Tutor"
+                            >
+                                <i class="fa fa-check"></i>
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <p class="tutor-role">
+
+                        Mathematics Tutor
+
+                    </p>
+
+
+                    <div class="tutor-location">
+
+                        <i class="fa fa-map-marker"></i>
+
+                        {{ teacher.city }}, {{ teacher.state }}
+
+                    </div>
+
+
+                    {% if teacher.is_available %}
+
+                        <div class="availability">
+
+                            <span class="availability-dot"></span>
+
+                            Available for lessons
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- =============================
+                 PROFILE CONTENT
+            ============================== -->
+
+            <div class="tutor-content">
+
+
+                <!-- About -->
+
+                <h2 class="section-title">
+                    About the Tutor
+                </h2>
+
+                <p class="tutor-bio">
+
+                    {{ teacher.bio }}
+
+                </p>
+
+
+                <!-- Details -->
+
+                <h2 class="section-title">
+                    Tutor Information
+                </h2>
+
+
+                <div class="tutor-details-grid">
+
+
+                    <div class="detail-box">
+
+                        <div class="detail-label">
+                            Qualification
+                        </div>
+
+                        <div class="detail-value">
+
+                            <i class="fa fa-graduation-cap"></i>
+
+                            {{ teacher.qualification }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <div class="detail-label">
+                            Experience
+                        </div>
+
+                        <div class="detail-value">
+
+                            <i class="fa fa-briefcase"></i>
+
+                            {{ teacher.experience }} years
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <div class="detail-label">
+                            Lesson Mode
+                        </div>
+
+                        <div class="detail-value">
+
+                            <i class="fa fa-laptop"></i>
+
+                            {{ teacher.get_lesson_mode_display }}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <div class="detail-label">
+                            Hourly Rate
+                        </div>
+
+                        <div class="detail-value">
+
+                            <i class="fa fa-money"></i>
+
+                            ₦{{ teacher.hourly_rate }}
+
+                            <span style="font-weight: 400; color: #98a2b3;">
+                                / hour
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Subjects -->
+
+                {% if teacher.subjects.all %}
+
+                    <h2 class="section-title">
+                        Subjects Taught
+                    </h2>
+
+                    <div class="subjects">
+
+                        {% for subject in teacher.subjects.all %}
+
+                            <span class="subject-tag">
+
+                                {{ subject.name }}
+
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Actions -->
+
+                <div class="tutor-actions">
+
+
+                    <a
+                        href="{% url 'conversation' teacher.user.id %}"
+                        class="tutor-btn primary-btn"
+                    >
+
+                        <i class="fa fa-comments"></i>
+
+                        Message Tutor
+
+                    </a>
+
+
+                   <a 
+    href="{% url 'create_booking' teacher.id %}" 
+    class="tutor-btn secondary-btn"
+>
+    <i class="fa fa-calendar"></i>
+    Book a Lesson
+</a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- START SECTION TOP -->
+<section class="section-top">
+
+    <div class="container">
+
+        <div class="col-lg-10 offset-lg-1 text-center">
+
+            <div class="section-top-title">
+
+                <h1>Book a Lesson</h1>
+
+                <ul>
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        / Book a Lesson
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END SECTION TOP -->
+
+
+<!-- START BOOKING -->
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <h2>Book Your Lesson</h2>
+
+            <p>
+                Schedule a lesson with
+                <strong>
+                    {{ teacher.user.get_full_name|default:teacher.user.username }}
+                </strong>
+            </p>
+
+        </div>
+
+
+        <div class="row justify-content-center">
+
+            <!-- TEACHER SUMMARY -->
+            <div class="col-lg-4 col-md-5 mb-4">
+
+                <div class="card p-4 text-center">
+
+                    {% if teacher.profile_picture %}
+
+                        <img
+                            src="{{ teacher.profile_picture.url }}"
+                            alt="{{ teacher.user.get_full_name }}"
+                            class="img-fluid rounded mb-3"
+                            style="height: 220px; width: 100%; object-fit: cover;"
+                        >
+
+                    {% else %}
+
+                        <img
+                            src="{% static 'assets/img/team/team1.jpg' %}"
+                            alt="Teacher"
+                            class="img-fluid rounded mb-3"
+                            style="height: 220px; width: 100%; object-fit: cover;"
+                        >
+
+                    {% endif %}
+
+
+                    <h3>
+                        {{ teacher.user.get_full_name|default:teacher.user.username }}
+                    </h3>
+
+                    <p>
+                        {{ teacher.qualification }}
+                    </p>
+
+
+                    {% if teacher.verified %}
+
+                        <span class="text-success">
+                            ✓ Verified Tutor
+                        </span>
+
+                    {% endif %}
+
+
+                    <hr>
+
+
+                    <p>
+                        📍
+                        {{ teacher.city }}, {{ teacher.state }}
+                    </p>
+
+                    <p>
+                        💰
+                        ₦{{ teacher.hourly_rate }} / hour
+                    </p>
+
+                    <p>
+                        💻
+                        {{ teacher.get_lesson_mode_display }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOOKING FORM -->
+            <div class="col-lg-7 col-md-7">
+
+                <div class="contact_form card p-4">
+
+                    <h3 class="mb-4">
+                        Lesson Details
+                    </h3>
+
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+
+                        {% if form.non_field_errors %}
+
+                            <div class="alert alert-danger">
+
+                                {{ form.non_field_errors }}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        {% for field in form %}
+
+                            <div class="mb-3">
+
+                                <label
+                                    for="{{ field.id_for_label }}"
+                                    class="form-label"
+                                >
+
+                                    {{ field.label }}
+
+                                </label>
+
+
+                                {{ field }}
+
+
+                                {% if field.help_text %}
+
+                                    <small class="text-muted">
+
+                                        {{ field.help_text }}
+
+                                    </small>
+
+                                {% endif %}
+
+
+                                {% if field.errors %}
+
+                                    <div class="text-danger">
+
+                                        {{ field.errors }}
+
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+                        {% endfor %}
+
+
+                        <div class="text-center mt-4">
+
+                            <button
+                                type="submit"
+                                class="btn_one"
+                            >
+                                Confirm Booking
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END BOOKING -->
+
+
+{% endblock %}

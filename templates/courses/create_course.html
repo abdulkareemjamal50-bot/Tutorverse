@@ -1,0 +1,1109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<section class="course-create-header">
+    <div class="container">
+        <div class="course-header-content">
+            <div>
+                <span class="header-badge">
+                    <i class="fa fa-book"></i> TutorVerse Courses
+                </span>
+
+                <h1>Create a New Course</h1>
+
+                <p>
+                    Share your knowledge and create a structured learning
+                    experience for your students.
+                </p>
+            </div>
+
+            <a href="{% url 'teacher_dashboard' %}" class="back-dashboard">
+                <i class="fa fa-arrow-left"></i>
+                Back to Dashboard
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- CREATE COURSE -->
+<section class="course-create-section">
+
+    <div class="container">
+
+        <div class="course-create-wrapper">
+
+            <!-- LEFT INFORMATION -->
+            <div class="course-create-info">
+
+                <div class="info-icon">
+                    <i class="fa fa-graduation-cap"></i>
+                </div>
+
+                <h2>Build Your Course</h2>
+
+                <p>
+                    Give students everything they need to understand what
+                    your course offers before they enroll.
+                </p>
+
+                <div class="course-tips">
+
+                    <div class="course-tip">
+                        <div class="tip-icon">
+                            <i class="fa fa-check"></i>
+                        </div>
+
+                        <div>
+                            <h4>Use a clear title</h4>
+                            <p>
+                                Make your course title simple and easy to
+                                understand.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="course-tip">
+                        <div class="tip-icon">
+                            <i class="fa fa-align-left"></i>
+                        </div>
+
+                        <div>
+                            <h4>Describe your course</h4>
+                            <p>
+                                Explain what students will learn and what
+                                they should expect.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="course-tip">
+                        <div class="tip-icon">
+                            <i class="fa fa-image"></i>
+                        </div>
+
+                        <div>
+                            <h4>Add a course image</h4>
+                            <p>
+                                Use an attractive image that represents
+                                your subject.
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="course-tip">
+                        <div class="tip-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+
+                        <div>
+                            <h4>Think about your students</h4>
+                            <p>
+                                Create a course that matches their level
+                                and learning goals.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FORM -->
+            <div class="course-form-card">
+
+                <div class="form-heading">
+
+                    <h3>Course Information</h3>
+
+                    <p>
+                        Fill in the details below to publish your course.
+                    </p>
+
+                </div>
+
+
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+
+                    {% if form.errors %}
+
+                        <div class="form-error">
+
+                            <i class="fa fa-exclamation-circle"></i>
+
+                            Please correct the errors below and try again.
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- CATEGORY + SUBJECT -->
+
+                    <div class="form-row">
+
+                        <div class="form-field">
+
+                            <label for="{{ form.category.id_for_label }}">
+                                Category
+                                <span>*</span>
+                            </label>
+
+                            {{ form.category }}
+
+                            <small>
+                                Choose the main learning category.
+                            </small>
+
+                            {% if form.category.errors %}
+                                <div class="field-error">
+                                    {{ form.category.errors }}
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="{{ form.subject.id_for_label }}">
+                                Subject
+                                <span>*</span>
+                            </label>
+
+                            {{ form.subject }}
+
+                            <small>
+                                Select the subject this course teaches.
+                            </small>
+
+                            {% if form.subject.errors %}
+                                <div class="field-error">
+                                    {{ form.subject.errors }}
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TITLE -->
+
+                    <div class="form-field">
+
+                        <label for="{{ form.title.id_for_label }}">
+                            Course Title
+                            <span>*</span>
+                        </label>
+
+                        {{ form.title }}
+
+                        <small>
+                            Example: Complete Mathematics for Secondary School
+                        </small>
+
+                        {% if form.title.errors %}
+                            <div class="field-error">
+                                {{ form.title.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-field">
+
+                        <label for="{{ form.description.id_for_label }}">
+                            Course Description
+                            <span>*</span>
+                        </label>
+
+                        {{ form.description }}
+
+                        <small>
+                            Tell students what they will learn in this course.
+                        </small>
+
+                        {% if form.description.errors %}
+                            <div class="field-error">
+                                {{ form.description.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- LEVEL + PRICE -->
+
+                    <div class="form-row">
+
+                        <div class="form-field">
+
+                            <label for="{{ form.education_level.id_for_label }}">
+                                Education Level
+                                <span>*</span>
+                            </label>
+
+                            {{ form.education_level }}
+
+                            <small>
+                                Select the appropriate student level.
+                            </small>
+
+                            {% if form.education_level.errors %}
+                                <div class="field-error">
+                                    {{ form.education_level.errors }}
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="{{ form.price.id_for_label }}">
+                                Course Price
+                                <span>*</span>
+                            </label>
+
+                            <div class="price-input">
+
+                                <span>₦</span>
+
+                                {{ form.price }}
+
+                            </div>
+
+                            <small>
+                                Set the price students will pay.
+                            </small>
+
+                            {% if form.price.errors %}
+                                <div class="field-error">
+                                    {{ form.price.errors }}
+                                </div>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DURATION -->
+
+                    <div class="form-field">
+
+                        <label for="{{ form.duration.id_for_label }}">
+                            Course Duration
+                        </label>
+
+                        {{ form.duration }}
+
+                        <small>
+                            Example: 4 weeks, 3 months, or 12 lessons.
+                        </small>
+
+                        {% if form.duration.errors %}
+                            <div class="field-error">
+                                {{ form.duration.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- IMAGE -->
+
+                    <div class="form-field">
+
+                        <label for="{{ form.course_image.id_for_label }}">
+                            Course Cover Image
+                        </label>
+
+                        <div class="image-upload-box">
+
+                            <i class="fa fa-cloud-upload"></i>
+
+                            <h4>Upload Course Image</h4>
+
+                            <p>
+                                Choose an image that represents your course.
+                            </p>
+
+                            {{ form.course_image }}
+
+                        </div>
+
+                        {% if form.course_image.errors %}
+                            <div class="field-error">
+                                {{ form.course_image.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- AVAILABILITY -->
+
+                    <div class="availability-box">
+
+                        <div class="availability-icon">
+                            <i class="fa fa-eye"></i>
+                        </div>
+
+                        <div class="availability-text">
+
+                            <strong>Make course available</strong>
+
+                            <p>
+                                Students will be able to see and access
+                                this course.
+                            </p>
+
+                        </div>
+
+                        <div class="availability-check">
+
+                            {{ form.is_available }}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="form-actions">
+
+                        <a
+                            href="{% url 'teacher_dashboard' %}"
+                            class="cancel-btn"
+                        >
+                            Cancel
+                        </a>
+
+
+                        <button
+                            type="submit"
+                            class="create-course-btn"
+                        >
+                            <i class="fa fa-plus"></i>
+                            Create Course
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* ==============================
+   HEADER
+============================== */
+
+.course-create-header {
+    background: linear-gradient(
+        135deg,
+        #f5f6ff 0%,
+        #ffffff 100%
+    );
+
+    padding: 65px 0 55px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.course-header-content {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+.header-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 14px;
+
+    background: #eef0ff;
+
+    color: #5362e9;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 15px;
+}
+
+
+.course-header-content h1 {
+    font-size: 42px;
+
+    color: #10145c;
+
+    margin-bottom: 12px;
+
+    font-weight: 700;
+}
+
+
+.course-header-content p {
+    max-width: 650px;
+
+    color: #707070;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    margin: 0;
+}
+
+
+.back-dashboard {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #5362e9;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+}
+
+
+/* ==============================
+   MAIN SECTION
+============================== */
+
+.course-create-section {
+    padding: 70px 0 100px;
+
+    background: #f8f9fc;
+}
+
+
+.course-create-wrapper {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 0.8fr 1.5fr;
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+
+/* ==============================
+   LEFT INFO
+============================== */
+
+.course-create-info {
+    background: #5362e9;
+
+    border-radius: 16px;
+
+    padding: 40px 35px;
+
+    color: white;
+
+    position: sticky;
+
+    top: 30px;
+}
+
+
+.info-icon {
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(255,255,255,0.15);
+
+    border-radius: 12px;
+
+    font-size: 25px;
+
+    margin-bottom: 25px;
+}
+
+
+.course-create-info h2 {
+    color: white;
+
+    font-size: 27px;
+
+    margin-bottom: 15px;
+}
+
+
+.course-create-info > p {
+    color: rgba(255,255,255,0.85);
+
+    line-height: 1.7;
+
+    margin-bottom: 35px;
+}
+
+
+.course-tip {
+    display: flex;
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+}
+
+
+.tip-icon {
+    min-width: 35px;
+
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.15);
+}
+
+
+.course-tip h4 {
+    color: white;
+
+    font-size: 15px;
+
+    margin-bottom: 4px;
+}
+
+
+.course-tip p {
+    color: rgba(255,255,255,0.75);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin: 0;
+}
+
+
+/* ==============================
+   FORM CARD
+============================== */
+
+.course-form-card {
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 40px;
+
+    box-shadow: 0 8px 35px rgba(0,0,0,0.06);
+}
+
+
+.form-heading {
+    padding-bottom: 25px;
+
+    margin-bottom: 30px;
+
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+.form-heading h3 {
+    color: #10145c;
+
+    font-size: 24px;
+
+    margin-bottom: 7px;
+}
+
+
+.form-heading p {
+    color: #777;
+
+    margin: 0;
+
+    font-size: 14px;
+}
+
+
+/* ==============================
+   FORM
+============================== */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+
+.form-field {
+    margin-bottom: 23px;
+}
+
+
+.form-field label {
+    display: block;
+
+    color: #222;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+.form-field label span {
+    color: #e74c3c;
+}
+
+
+.form-field input:not([type="checkbox"]),
+.form-field select,
+.form-field textarea {
+    width: 100%;
+
+    border: 1px solid #dedede;
+
+    border-radius: 8px;
+
+    padding: 12px 14px;
+
+    font-size: 14px;
+
+    color: #333;
+
+    background: #fff;
+
+    transition: all 0.25s ease;
+}
+
+
+.form-field input:not([type="checkbox"]),
+.form-field select {
+    height: 48px;
+}
+
+
+.form-field textarea {
+    min-height: 130px;
+
+    resize: vertical;
+}
+
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: #5362e9;
+
+    outline: none;
+
+    box-shadow: 0 0 0 3px rgba(83,98,233,0.08);
+}
+
+
+.form-field small {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #999;
+
+    font-size: 12px;
+}
+
+
+/* ==============================
+   PRICE
+============================== */
+
+.price-input {
+    position: relative;
+}
+
+
+.price-input > span {
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-weight: 600;
+
+    color: #5362e9;
+
+    z-index: 2;
+}
+
+
+.price-input input {
+    padding-left: 32px !important;
+}
+
+
+/* ==============================
+   IMAGE UPLOAD
+============================== */
+
+.image-upload-box {
+    border: 2px dashed #dcdff5;
+
+    border-radius: 12px;
+
+    padding: 28px;
+
+    text-align: center;
+
+    background: #fafaff;
+
+    transition: 0.3s;
+}
+
+
+.image-upload-box:hover {
+    border-color: #5362e9;
+
+    background: #f8f8ff;
+}
+
+
+.image-upload-box > i {
+    font-size: 30px;
+
+    color: #5362e9;
+
+    margin-bottom: 10px;
+}
+
+
+.image-upload-box h4 {
+    font-size: 16px;
+
+    color: #222;
+
+    margin-bottom: 5px;
+}
+
+
+.image-upload-box p {
+    color: #999;
+
+    font-size: 13px;
+
+    margin-bottom: 15px;
+}
+
+
+.image-upload-box input[type="file"] {
+    display: block;
+
+    margin: auto;
+
+    max-width: 100%;
+}
+
+
+/* ==============================
+   AVAILABILITY
+============================== */
+
+.availability-box {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    background: #f7f8ff;
+
+    border: 1px solid #e4e6fb;
+
+    border-radius: 10px;
+
+    margin-bottom: 30px;
+}
+
+
+.availability-icon {
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #5362e9;
+
+    color: white;
+}
+
+
+.availability-text {
+    flex: 1;
+}
+
+
+.availability-text strong {
+    display: block;
+
+    color: #222;
+
+    font-size: 14px;
+}
+
+
+.availability-text p {
+    margin: 3px 0 0;
+
+    color: #888;
+
+    font-size: 12px;
+}
+
+
+.availability-check input {
+    width: 20px;
+
+    height: 20px;
+
+    accent-color: #5362e9;
+}
+
+
+/* ==============================
+   ERRORS
+============================== */
+
+.form-error {
+    background: #fff0f0;
+
+    border: 1px solid #ffd5d5;
+
+    color: #c0392b;
+
+    padding: 13px 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 25px;
+
+    font-size: 14px;
+}
+
+
+.field-error {
+    color: #c0392b;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    padding-top: 10px;
+}
+
+
+.cancel-btn,
+.create-course-btn {
+    height: 50px;
+
+    padding: 0 25px;
+
+    border-radius: 7px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+
+.cancel-btn {
+    color: #555;
+
+    background: #f1f1f1;
+}
+
+
+.cancel-btn:hover {
+    background: #e5e5e5;
+
+    color: #333;
+}
+
+
+.create-course-btn {
+    border: none;
+
+    color: white;
+
+    background: #5362e9;
+
+    cursor: pointer;
+}
+
+
+.create-course-btn:hover {
+    background: #414fda;
+
+    transform: translateY(-1px);
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 991px) {
+
+    .course-create-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .course-create-info {
+        position: static;
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .course-create-header {
+        padding: 45px 0;
+    }
+
+    .course-header-content {
+        display: block;
+    }
+
+    .course-header-content h1 {
+        font-size: 32px;
+    }
+
+    .back-dashboard {
+        margin-top: 20px;
+    }
+
+    .course-create-section {
+        padding: 40px 15px 70px;
+    }
+
+    .course-form-card {
+        padding: 25px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-btn,
+    .create-course-btn {
+        width: 100%;
+    }
+
+}
+
+</style>
+
+{% endblock %}

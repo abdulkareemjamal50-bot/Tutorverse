@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-center booking-success">
+
+    <h2>Booking Successful!</h2>
+
+    <p class="success-message">
+        Your lesson has been booked successfully.
+    </p>
+
+    <p class="success-subtext">
+        You can view your booking from your bookings page.
+    </p>
+
+    <div class="success-buttons">
+
+        <a href="{% url 'my_bookings' %}" class="btn_one">
+            View My Bookings
+        </a>
+
+        <a href="{% url 'browse_teachers' %}" class="btn_one">
+            Browse More Tutors
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

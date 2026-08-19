@@ -1,0 +1,1093 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ========================================= -->
+<!-- SECTION TOP -->
+<!-- ========================================= -->
+
+<section class="section-top">
+
+    <div class="container">
+
+        <div class="col-lg-10 offset-lg-1 text-center">
+
+            <div
+                class="section-top-title wow fadeInRight"
+                data-wow-duration="1s"
+                data-wow-delay="0.3s"
+                data-wow-offset="0"
+            >
+
+                <h1>Browse Tutors</h1>
+
+                <ul>
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        / Browse Tutors
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- TUTOR SECTION -->
+<!-- ========================================= -->
+
+<section class="team_area section-padding">
+
+    <div class="container">
+
+        <!-- SECTION TITLE -->
+
+        <div class="section-title text-center">
+
+            <h2>
+                Find Your Perfect Tutor
+            </h2>
+
+            <p>
+                Browse verified tutors by subject, location,
+                experience, lesson mode, and hourly rate.
+                Find the right tutor for online or in-person learning.
+            </p>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- FILTER FORM -->
+        <!-- ========================================= -->
+
+        <form
+            method="GET"
+            action="{% url 'browse_teachers' %}"
+            class="tutor-filter-form"
+        >
+
+            <!-- SEARCH -->
+
+            <div class="filter-group">
+
+                <label>
+                    Search
+                </label>
+
+                <input
+                    type="text"
+                    name="search"
+                    value="{{ search }}"
+                    placeholder="Search tutors, subjects or categories..."
+                >
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="filter-group">
+
+                <label>
+                    Category
+                </label>
+
+               <select
+    name="category"
+    id="categorySelect"
+>
+
+                    <option value="">
+                        All Categories
+                    </option>
+
+                    {% for category in categories %}
+
+                        <option
+                            value="{{ category.id }}"
+                            {% if selected_category == category.id|stringformat:"s" %}
+                                selected
+                            {% endif %}
+                        >
+
+                            {{ category.name }}
+
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <!-- SUBJECT -->
+
+           <div class="filter-group">
+
+    <label>
+        Subject
+    </label>
+
+    <select
+        name="subject"
+        id="subjectSelect"
+    >
+
+        <option value="">
+            Select Subject
+        </option>
+
+        {% for subject in subjects %}
+
+            <option
+                value="{{ subject.id }}"
+                data-category="{{ subject.category.id }}"
+                {% if selected_subject == subject.id|stringformat:"s" %}
+                    selected
+                {% endif %}
+            >
+
+                {{ subject.name }}
+
+            </option>
+
+        {% endfor %}
+
+    </select>
+
+</div>
+
+            <!-- LESSON MODE -->
+
+            <div class="filter-group">
+
+                <label>
+                    Lesson Mode
+                </label>
+
+                <select name="lesson_mode">
+
+                    <option value="">
+                        All Modes
+                    </option>
+
+                    <option
+                        value="online"
+                        {% if selected_lesson_mode == 'online' %}
+                            selected
+                        {% endif %}
+                    >
+                        Online
+                    </option>
+
+                    <option
+                        value="offline"
+                        {% if selected_lesson_mode == 'offline' %}
+                            selected
+                        {% endif %}
+                    >
+                        Offline
+                    </option>
+
+                    <option
+                        value="both"
+                        {% if selected_lesson_mode == 'both' %}
+                            selected
+                        {% endif %}
+                    >
+                        Online & Offline
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- VERIFIED -->
+
+            <div class="filter-checkbox">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        name="verified"
+                        value="1"
+                        {% if verified == '1' %}
+                            checked
+                        {% endif %}
+                    >
+
+                    Verified Tutors
+
+                </label>
+
+            </div>
+
+
+            <!-- APPLY -->
+
+            <button
+                type="submit"
+                class="btn_one"
+            >
+                Apply Filters
+            </button>
+
+
+            <!-- CLEAR -->
+
+            <a
+                href="{% url 'browse_teachers' %}"
+                class="clear-filter"
+            >
+                Clear
+            </a>
+
+        </form>
+
+
+        <!-- ========================================= -->
+        <!-- FIND TUTORS NEAR ME -->
+        <!-- ========================================= -->
+
+        <div class="nearby-search">
+
+            <button
+                type="button"
+                id="nearbyTutorsBtn"
+                class="nearby-tutors-btn"
+            >
+
+                <i class="fa fa-location-arrow"></i>
+
+                Find Tutors Near Me
+
+            </button>
+
+
+            <p id="locationStatus">
+
+                {% if location_enabled %}
+
+                    <i class="fa fa-check-circle"></i>
+
+                    Showing tutors based on your location.
+
+                {% else %}
+
+                    Allow location access to find tutors nearest to you.
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+
+        <!-- ========================================= -->
+        <!-- TUTOR CARDS -->
+        <!-- ========================================= -->
+
+        <div class="row">
+
+            {% for teacher in teachers %}
+
+                <div
+                    class="col-lg-3 col-md-6 mb-4 wow fadeInUp"
+                >
+
+                    <div class="our-team">
+
+
+                        <!-- =============================== -->
+                        <!-- TEACHER IMAGE -->
+                        <!-- =============================== -->
+
+                        <div class="team-content">
+
+                            {% if teacher.profile_picture %}
+
+                                <img
+                                    src="{{ teacher.profile_picture.url }}"
+                                    alt="{{ teacher.user.get_full_name }}"
+                                    class="teacher-card-image"
+                                >
+
+                            {% else %}
+
+                                <img
+                                    src="{% static 'assets/img/team/default.jpg' %}"
+                                    alt="Default teacher"
+                                    class="teacher-card-image"
+                                >
+
+                            {% endif %}
+
+
+                            <!-- SOCIAL LINKS -->
+
+                            <ul class="social-links">
+
+                                <li>
+
+                                    <a href="#">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+
+                                </li>
+
+                                <li>
+
+                                    <a href="#">
+                                        <i class="fa-brands fa-linkedin-in"></i>
+                                    </a>
+
+                                </li>
+
+                                <li>
+
+                                    <a href="#">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </a>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+
+                        <!-- =============================== -->
+                        <!-- TEACHER NAME -->
+                        <!-- =============================== -->
+
+                        <div class="team-prof">
+
+                            <h3>
+
+                                {{ teacher.user.get_full_name|default:teacher.user.username }}
+
+                            </h3>
+
+
+                            <span>
+
+                                {{ teacher.qualification }}
+
+                            </span>
+
+
+                            <!-- VERIFIED -->
+
+                            {% if teacher.verified %}
+
+                                <div class="verified-badge">
+
+                                    <i class="fa fa-check-circle"></i>
+
+                                    Verified Tutor
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- =============================== -->
+                        <!-- TEACHER INFORMATION -->
+                        <!-- =============================== -->
+
+                        <div class="sth_det2">
+
+
+                            <!-- SUBJECTS -->
+
+                            <span>
+
+                                📚
+
+                                {% for subject in teacher.subjects.all %}
+
+                                    {{ subject.name }}
+
+                                    {% if not forloop.last %}
+                                        ,
+                                    {% endif %}
+
+                                {% endfor %}
+
+                            </span>
+
+
+                            <br>
+
+
+                            <!-- LOCATION -->
+
+                            <span>
+
+                                📍
+
+                                {{ teacher.city }},
+                                {{ teacher.state }}
+
+                            </span>
+
+
+                            <!-- DISTANCE -->
+
+                            {% if teacher.distance != None %}
+
+                                <br>
+
+                                <span class="teacher-distance">
+
+                                    <i class="fa fa-location-arrow"></i>
+
+                                    {{ teacher.distance }} km away
+
+                                </span>
+
+                            {% endif %}
+
+
+                            <br>
+
+
+                            <!-- LESSON MODE -->
+
+                            <span>
+
+                                💻
+
+                                {{ teacher.lesson_mode|title }}
+
+                            </span>
+
+
+                            <br>
+
+
+                            <!-- HOURLY RATE -->
+
+                            <span>
+
+                                💰
+
+                                ₦{{ teacher.hourly_rate }}/hr
+
+                            </span>
+
+
+                            <br>
+
+
+                            <!-- EXPERIENCE -->
+
+                            <span>
+
+                                {{ teacher.experience }}
+                                Years Experience
+
+                            </span>
+
+
+                        </div>
+
+
+                        <!-- =============================== -->
+                        <!-- VIEW PROFILE -->
+                        <!-- =============================== -->
+
+                        <div class="text-center mt-3 mb-3">
+
+                            <a
+                                href="{% url 'teacher_profile' teacher.id %}"
+                                class="btn_one"
+                            >
+
+                                View Profile
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            {% empty %}
+
+
+                <!-- =============================== -->
+                <!-- NO TEACHERS -->
+                <!-- =============================== -->
+
+                <div class="col-12 text-center">
+
+                    <h3>
+                        No tutors available yet.
+                    </h3>
+
+                    <p>
+                        Try searching for another subject or category.
+                    </p>
+
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================= -->
+<!-- FIND TUTORS NEAR ME JAVASCRIPT -->
+<!-- ========================================= -->
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    const nearbyButton =
+        document.getElementById('nearbyTutorsBtn');
+
+
+    const locationStatus =
+        document.getElementById('locationStatus');
+
+
+    nearbyButton.addEventListener('click', function () {
+
+
+        /* Check browser location support */
+
+        if (!navigator.geolocation) {
+
+            locationStatus.textContent =
+                'Your browser does not support location detection.';
+
+            return;
+
+        }
+
+
+        /* Disable button while detecting */
+
+        nearbyButton.disabled = true;
+
+
+        nearbyButton.innerHTML =
+            '<i class="fa fa-spinner fa-spin"></i> Finding tutors...';
+
+
+        /* Get student's location */
+
+        navigator.geolocation.getCurrentPosition(
+
+
+            /* ========================= */
+            /* SUCCESS */
+            /* ========================= */
+
+            function (position) {
+
+
+                const latitude =
+                    position.coords.latitude;
+
+
+                const longitude =
+                    position.coords.longitude;
+
+
+                /* Get current URL */
+
+                const url =
+                    new URL(window.location.href);
+
+
+                /* Add student's latitude */
+
+                url.searchParams.set(
+                    'latitude',
+                    latitude
+                );
+
+
+                /* Add student's longitude */
+
+                url.searchParams.set(
+                    'longitude',
+                    longitude
+                );
+
+
+                /* Reload page */
+
+                window.location.href =
+                    url.toString();
+
+            },
+
+
+            /* ========================= */
+            /* ERROR */
+            /* ========================= */
+
+            function () {
+
+
+                nearbyButton.disabled = false;
+
+
+                nearbyButton.innerHTML =
+                    '<i class="fa fa-location-arrow"></i> Find Tutors Near Me';
+
+
+                locationStatus.textContent =
+                    'Please allow location access to find tutors near you.';
+
+            }
+
+        );
+
+    });
+
+});
+
+</script>
+
+
+<!-- ========================================= -->
+<!-- PAGE CSS -->
+<!-- ========================================= -->
+
+<style>
+
+
+/* ========================================= */
+/* FILTER FORM */
+/* ========================================= */
+
+.tutor-filter-form {
+
+    display: grid !important;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr !important;
+
+    gap: 15px !important;
+
+    align-items: end !important;
+
+    margin-bottom: 25px !important;
+
+    padding: 25px !important;
+
+    background: #fff !important;
+
+    border: 1px solid #eee !important;
+
+    border-radius: 10px !important;
+
+}
+
+
+/* ========================================= */
+/* FILTER LABEL */
+/* ========================================= */
+
+.filter-group label {
+
+    display: block !important;
+
+    margin-bottom: 7px !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+
+}
+
+
+/* ========================================= */
+/* INPUTS */
+/* ========================================= */
+
+.filter-group input,
+.filter-group select {
+
+    width: 100% !important;
+
+    height: 48px !important;
+
+    padding: 0 14px !important;
+
+    border: 1px solid #ddd !important;
+
+    border-radius: 5px !important;
+
+    background: #fff !important;
+
+    outline: none !important;
+
+}
+
+
+/* ========================================= */
+/* VERIFIED CHECKBOX */
+/* ========================================= */
+
+.filter-checkbox {
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    height: 48px !important;
+
+}
+
+
+.filter-checkbox label {
+
+    margin: 0 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+
+}
+
+
+.filter-checkbox input {
+
+    margin-right: 7px !important;
+
+}
+
+
+/* ========================================= */
+/* CLEAR BUTTON */
+/* ========================================= */
+
+.clear-filter {
+
+    color: #5361df !important;
+
+    text-decoration: none !important;
+
+    font-weight: 600 !important;
+
+}
+
+
+/* ========================================= */
+/* FIND NEARBY */
+/* ========================================= */
+
+.nearby-search {
+
+    text-align: center !important;
+
+    margin: 20px auto 45px !important;
+
+}
+
+
+/* ========================================= */
+/* LOCATION BUTTON */
+/* ========================================= */
+
+.nearby-tutors-btn {
+
+    height: 50px !important;
+
+    border: none !important;
+
+    padding: 0 25px !important;
+
+    background: #5361df !important;
+
+    color: #fff !important;
+
+    border-radius: 5px !important;
+
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+
+    transition: 0.3s ease !important;
+
+    white-space: nowrap !important;
+
+}
+
+
+.nearby-tutors-btn:hover {
+
+    background: #4350c8 !important;
+
+}
+
+
+.nearby-tutors-btn:disabled {
+
+    opacity: 0.7 !important;
+
+    cursor: wait !important;
+
+}
+
+
+/* ========================================= */
+/* LOCATION MESSAGE */
+/* ========================================= */
+
+#locationStatus {
+
+    margin: 8px 0 0 !important;
+
+    font-size: 13px !important;
+
+    color: #777 !important;
+
+}
+
+
+/* ========================================= */
+/* DISTANCE */
+/* ========================================= */
+
+.teacher-distance {
+
+    color: #5361df !important;
+
+    font-weight: 600 !important;
+
+    font-size: 13px !important;
+
+}
+
+
+/* ========================================= */
+/* VERIFIED BADGE */
+/* ========================================= */
+
+.verified-badge {
+
+    display: inline-block !important;
+
+    margin-top: 8px !important;
+
+    padding: 5px 10px !important;
+
+    border-radius: 20px !important;
+
+    background: #e8f7ee !important;
+
+    color: #198754 !important;
+
+    font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+}
+
+
+.verified-badge i {
+
+    margin-right: 4px !important;
+
+}
+
+
+/* ========================================= */
+/* TEACHER IMAGE */
+/* ========================================= */
+
+.teacher-card-image {
+
+    width: 100% !important;
+
+    height: 250px !important;
+
+    object-fit: cover !important;
+
+    object-position: center !important;
+
+    display: block !important;
+
+}
+
+
+/* ========================================= */
+/* MOBILE */
+/* ========================================= */
+
+@media (max-width: 991px) {
+
+    .tutor-filter-form {
+
+        grid-template-columns:
+            repeat(2, 1fr) !important;
+
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .tutor-filter-form {
+
+        grid-template-columns:
+            1fr !important;
+
+    }
+
+
+    .nearby-tutors-btn {
+
+        width: 100% !important;
+
+    }
+
+}
+
+
+</style>
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    const categorySelect =
+        document.getElementById('categorySelect');
+
+    const subjectSelect =
+        document.getElementById('subjectSelect');
+
+
+    // Save all subjects when the page loads
+
+    const allSubjects =
+        Array.from(
+            subjectSelect.options
+        );
+
+
+    function filterSubjects() {
+
+        const selectedCategory =
+            categorySelect.value;
+
+
+        // Reset subject dropdown
+
+        subjectSelect.innerHTML = '';
+
+
+        // Add default option
+
+        const defaultOption =
+            document.createElement('option');
+
+        defaultOption.value = '';
+
+        defaultOption.textContent =
+            selectedCategory
+                ? 'Select Subject'
+                : 'All Subjects';
+
+        subjectSelect.appendChild(
+            defaultOption
+        );
+
+
+        // If no category selected,
+        // show all subjects
+
+        if (!selectedCategory) {
+
+            allSubjects.forEach(function (option) {
+
+                if (option.value !== '') {
+
+                    subjectSelect.appendChild(
+                        option.cloneNode(true)
+                    );
+
+                }
+
+            });
+
+            return;
+        }
+
+
+        // Show only subjects
+        // belonging to selected category
+
+        allSubjects.forEach(function (option) {
+
+            if (
+                option.dataset.category ===
+                selectedCategory
+            ) {
+
+                subjectSelect.appendChild(
+                    option.cloneNode(true)
+                );
+
+            }
+
+        });
+
+    }
+
+
+    // Run when category changes
+
+    categorySelect.addEventListener(
+        'change',
+        filterSubjects
+    );
+
+
+    // Run once when page loads
+
+    filterSubjects();
+
+});
+
+</script>
+
+{% endblock %}

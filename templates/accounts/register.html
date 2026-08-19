@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="register-section">
+
+    <div class="register-container">
+
+        <h1>Join TutorVerse</h1>
+
+        <p>Choose how you want to use TutorVerse.</p>
+
+        <div class="register-options">
+
+            <!-- STUDENT -->
+            <div class="register-card">
+
+                <div class="register-icon">🎓</div>
+
+                <h2>Student</h2>
+
+                <p>
+                    Find qualified tutors, book lessons,
+                    and manage your learning.
+                </p>
+
+                <a href="{% url 'student_register' %}" class="btn_one">
+                    Register as Student
+                </a>
+
+            </div>
+
+
+            <!-- TEACHER -->
+            <div class="register-card">
+
+                <div class="register-icon">👨‍🏫</div>
+
+                <h2>Teacher</h2>
+
+                <p>
+                    Create your teacher profile,
+                    manage bookings, and teach students.
+                </p>
+
+                <a href="{% url 'teacher_register' %}" class="btn_one">
+                    Register as Teacher
+                </a>
+
+            </div>
+
+        </div>
+
+        <p class="login-link">
+            Already have an account?
+            <a href="{% url 'login' %}">Sign In</a>
+        </p>
+
+    </div>
+
+</section>
+
+
+<style>
+
+.register-section {
+    padding: 80px 20px 100px;
+    background: #f7f8ff;
+    min-height: 600px;
+}
+
+.register-container {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+}
+
+.register-container h1 {
+    color: #07145c;
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.register-container > p {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 45px;
+}
+
+.register-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.register-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 40px 30px;
+    transition: 0.3s;
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.register-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.register-card h2 {
+    color: #07145c;
+    font-size: 23px;
+    margin-bottom: 12px;
+}
+
+.register-card p {
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.register-card .btn_one {
+    display: inline-block;
+    background: #5361df;
+    color: #fff;
+    padding: 13px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link {
+    margin-top: 30px;
+}
+
+.login-link a {
+    color: #5361df;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media (max-width: 700px) {
+
+    .register-options {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+{% endblock %}

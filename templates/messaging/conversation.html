@@ -1,0 +1,718 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ==============================
+     CHAT PAGE HEADER
+================================ -->
+
+<section class="section-top">
+    <div class="container">
+        <div class="col-lg-10 offset-lg-1 text-center">
+
+            <div class="section-top-title">
+
+                <h1>Messages</h1>
+
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        / Messages
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ==============================
+     CHAT SECTION
+================================ -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8 col-md-10 col-12">
+
+                <!-- BACK BUTTON -->
+
+                <div class="mb-3">
+
+                    <a
+                        href="{% url 'browse_teachers' %}"
+                        class="chat-back-btn"
+                    >
+                        <i class="fa fa-arrow-left"></i>
+                        Back to Tutors
+                    </a>
+
+                </div>
+
+
+                <!-- ==============================
+                     CHAT CARD
+                ================================= -->
+
+                <div class="chat-card">
+
+
+                    <!-- ==============================
+                         CHAT HEADER
+                    ================================= -->
+
+                    <div class="chat-header">
+
+                        <div class="chat-user-info">
+
+                            <div class="chat-avatar">
+
+                                {{ other_user.first_name|first|default:other_user.username|first|upper }}
+
+                            </div>
+
+                            <div>
+
+                                <h4>
+                                    {{ other_user.get_full_name|default:other_user.username }}
+                                </h4>
+
+                                <span>
+                                    TutorVerse Messages
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==============================
+                         MESSAGES AREA
+                    ================================= -->
+
+                    <div
+                        class="chat-messages"
+                        id="chatMessages"
+                    >
+
+                        {% if messages %}
+
+                            {% for msg in messages %}
+
+                                {% if msg.sender_id == request.user.id %}
+
+                                    <!-- MY MESSAGE -->
+
+                                    <div class="message-row sent">
+
+                                        <div class="message-content">
+
+                                            <div class="message-bubble sent-bubble">
+
+                                                {{ msg.message|linebreaksbr }}
+
+                                            </div>
+
+                                            <small class="message-time">
+
+                                                {{ msg.sent_at|date:"M d, Y • g:i A" }}
+
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+
+                                {% else %}
+
+                                    <!-- RECEIVED MESSAGE -->
+
+                                    <div class="message-row received">
+
+                                        <div class="message-content">
+
+                                            <div class="message-sender">
+
+                                                {{ msg.sender.get_full_name|default:msg.sender.username }}
+
+                                            </div>
+
+                                            <div class="message-bubble received-bubble">
+
+                                                {{ msg.message|linebreaksbr }}
+
+                                            </div>
+
+                                            <small class="message-time">
+
+                                                {{ msg.sent_at|date:"M d, Y • g:i A" }}
+
+                                            </small>
+
+                                        </div>
+
+                                    </div>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+
+                        {% else %}
+
+                            <!-- EMPTY CHAT -->
+
+                            <div class="empty-chat">
+
+                                <div class="empty-chat-icon">
+
+                                    <i class="fa fa-comments"></i>
+
+                                </div>
+
+                                <h4>
+                                    Start a conversation
+                                </h4>
+
+                                <p>
+                                    Send a message to
+                                    {{ other_user.get_full_name|default:other_user.username }}
+                                    and start discussing your lesson.
+                                </p>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- ==============================
+                         MESSAGE INPUT
+                    ================================= -->
+
+                    <div class="chat-input-area">
+
+                        <form
+                            method="POST"
+                            class="message-form"
+                        >
+
+                            {% csrf_token %}
+
+                            <div class="message-input-wrapper">
+
+                                <textarea
+                                    name="message"
+                                    class="message-input"
+                                    placeholder="Type your message..."
+                                    rows="1"
+                                    maxlength="2000"
+                                    required
+                                ></textarea>
+
+                                <button
+                                    type="submit"
+                                    class="send-message-btn"
+                                    title="Send message"
+                                >
+
+                                    <i class="fa fa-paper-plane"></i>
+
+                                    <span>
+                                        Send
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                            <small class="message-help">
+                                Press Send to deliver your message.
+                            </small>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==============================
+     CHAT CSS
+================================ -->
+
+<style>
+
+.chat-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #5361df;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.chat-back-btn:hover {
+    color: #414fcf;
+}
+
+
+/* ==============================
+   CHAT CARD
+================================ */
+
+.chat-card {
+    background: #ffffff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
+
+
+/* ==============================
+   CHAT HEADER
+================================ */
+
+.chat-header {
+    padding: 18px 22px;
+
+    background: #5361df;
+
+    color: #ffffff;
+}
+
+.chat-user-info {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.chat-user-info h4 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.chat-user-info span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 12px;
+}
+
+
+/* ==============================
+   AVATAR
+================================ */
+
+.chat-avatar {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #5361df;
+
+    font-size: 18px;
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+
+/* ==============================
+   MESSAGES AREA
+================================ */
+
+.chat-messages {
+    height: 450px;
+
+    overflow-y: auto;
+
+    padding: 25px 20px;
+
+    background: #f8f9fc;
+
+    scroll-behavior: smooth;
+}
+
+
+/* ==============================
+   MESSAGE ROW
+================================ */
+
+.message-row {
+    display: flex;
+
+    width: 100%;
+
+    margin-bottom: 18px;
+}
+
+.message-row.sent {
+    justify-content: flex-end;
+}
+
+.message-row.received {
+    justify-content: flex-start;
+}
+
+
+/* ==============================
+   MESSAGE CONTENT
+================================ */
+
+.message-content {
+    max-width: 75%;
+}
+
+.message-row.sent .message-content {
+    text-align: right;
+}
+
+.message-row.received .message-content {
+    text-align: left;
+}
+
+
+/* ==============================
+   MESSAGE BUBBLES
+================================ */
+
+.message-bubble {
+    display: inline-block;
+
+    padding: 11px 15px;
+
+    border-radius: 14px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+}
+
+.sent-bubble {
+    background: #5361df;
+
+    color: #ffffff;
+
+    border-bottom-right-radius: 4px;
+}
+
+.received-bubble {
+    background: #ffffff;
+
+    color: #222222;
+
+    border: 1px solid #e3e3e3;
+
+    border-bottom-left-radius: 4px;
+}
+
+
+/* ==============================
+   SENDER NAME
+================================ */
+
+.message-sender {
+    margin-bottom: 5px;
+
+    color: #5361df;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* ==============================
+   MESSAGE TIME
+================================ */
+
+.message-time {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #999999;
+
+    font-size: 10px;
+}
+
+
+/* ==============================
+   EMPTY CHAT
+================================ */
+
+.empty-chat {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.empty-chat-icon {
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    border-radius: 50%;
+
+    background: #eef0ff;
+
+    color: #5361df;
+
+    font-size: 25px;
+}
+
+.empty-chat h4 {
+    margin-bottom: 8px;
+
+    color: #07145c;
+
+    font-size: 20px;
+}
+
+.empty-chat p {
+    max-width: 450px;
+
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* ==============================
+   INPUT AREA
+================================ */
+
+.chat-input-area {
+    padding: 15px 18px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e5e5e5;
+}
+
+.message-input-wrapper {
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 10px;
+}
+
+.message-input {
+    flex: 1;
+
+    min-height: 45px;
+    max-height: 120px;
+
+    resize: vertical;
+
+    padding: 12px 14px;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+.message-input:focus {
+    border-color: #5361df;
+
+    box-shadow: 0 0 0 2px rgba(83, 97, 223, 0.1);
+}
+
+
+/* ==============================
+   SEND BUTTON
+================================ */
+
+.send-message-btn {
+    height: 45px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 0 20px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    background: #5361df;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.send-message-btn:hover {
+    background: #414fcf;
+}
+
+
+/* ==============================
+   HELP TEXT
+================================ */
+
+.message-help {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #999999;
+
+    font-size: 11px;
+}
+
+
+/* ==============================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    .chat-messages {
+        height: 400px;
+
+        padding: 20px 14px;
+    }
+
+    .message-content {
+        max-width: 85%;
+    }
+
+    .send-message-btn {
+        width: 48px;
+
+        padding: 0;
+    }
+
+    .send-message-btn span {
+        display: none;
+    }
+
+}
+
+
+/* ==============================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 480px) {
+
+    .chat-messages {
+        height: 380px;
+    }
+
+    .chat-input-area {
+        padding: 12px;
+    }
+
+    .message-input-wrapper {
+        gap: 6px;
+    }
+
+}
+
+</style>
+
+
+<!-- ==============================
+     AUTO SCROLL TO NEWEST MESSAGE
+================================ -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const chatMessages = document.getElementById("chatMessages");
+
+    if (chatMessages) {
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

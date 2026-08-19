@@ -1,0 +1,523 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Teacher Dashboard</h2>
+
+            <p>
+                Manage your profile, courses, lessons, student bookings, and messages.
+            </p>
+
+        </div>
+
+
+        <!-- =========================================
+             DASHBOARD ACTION BUTTONS
+        ========================================== -->
+
+        <div class="text-end mb-4">
+
+            <!-- MESSAGES -->
+
+            <a
+                href="{% url 'inbox' %}"
+                class="btn_one message-dashboard-btn"
+            >
+
+                <i class="fa fa-comments"></i>
+
+                Messages
+
+                {% if unread_message_count > 0 %}
+
+                    <span class="message-badge">
+                        {{ unread_message_count }}
+                    </span>
+
+                {% endif %}
+
+            </a>
+
+
+            <!-- PROFILE -->
+
+            <a
+                href="{% url 'teacher_profile_setup' %}"
+                class="btn_one"
+            >
+
+                Complete My Profile
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================================
+             STATISTICS
+        ========================================== -->
+
+        <div class="row">
+
+
+            <!-- TOTAL BOOKINGS -->
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card p-4 text-center">
+
+                    <h3>
+                        {{ bookings.count }}
+                    </h3>
+
+                    <p>
+                        Total Bookings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PENDING BOOKINGS -->
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card p-4 text-center">
+
+                    <h3>
+                        {{ pending_bookings.count }}
+                    </h3>
+
+                    <p>
+                        Pending Bookings
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACCEPTED BOOKINGS -->
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card p-4 text-center">
+
+                    <h3>
+                        {{ accepted_bookings.count }}
+                    </h3>
+
+                    <p>
+                        Accepted Bookings
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             MESSAGES SUMMARY
+        ========================================== -->
+
+        <div class="card p-4 mb-5">
+
+            <div class="row align-items-center">
+
+
+                <div class="col-md-8">
+
+                    <h4>
+
+                        <i class="fa fa-comments"></i>
+
+                        Student Messages
+
+                    </h4>
+
+
+                    {% if unread_message_count > 0 %}
+
+                        <p class="mb-0">
+
+                            You have
+
+                            <strong>
+                                {{ unread_message_count }}
+                            </strong>
+
+                            unread message{{ unread_message_count|pluralize }}
+                            from students.
+
+                        </p>
+
+                    {% else %}
+
+                        <p class="mb-0">
+
+                            You don't have any unread messages.
+
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+
+                    <a
+                        href="{% url 'inbox' %}"
+                        class="btn_one"
+                    >
+
+                        View Messages
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             MY COURSES
+        ========================================== -->
+
+        <div class="card p-4 mb-5">
+
+
+            <div class="row align-items-center">
+
+
+                <!-- COURSE INFORMATION -->
+
+                <div class="col-md-8">
+
+                    <h3>
+
+                        <i class="fa fa-book"></i>
+
+                        My Courses
+
+                    </h3>
+
+
+                    <p class="mb-0">
+
+                        Create and manage the courses you teach.
+                        Add your knowledge and make it available
+                        to students on TutorVerse.
+
+                    </p>
+
+                </div>
+
+
+                <!-- CREATE COURSE -->
+
+                <div class="col-md-4 text-md-end mt-3 mt-md-0">
+
+                    <a
+                        href="{% url 'create_course' %}"
+                        class="btn_one"
+                    >
+
+                        <i class="fa fa-plus"></i>
+
+                        Create Course
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- COURSE COUNT -->
+
+            <div class="mt-4">
+
+                {% if courses %}
+
+                    <p>
+
+                        You currently have
+
+                        <strong>
+                            {{ courses.count }}
+                        </strong>
+
+                        course{{ courses.count|pluralize }}.
+
+                    </p>
+
+
+                  <a href="{% url 'teacher_courses' %}" class="teacher-dashboard-btn">
+    <i class="fa fa-book"></i>
+    <span>View My Courses</span>
+    <i class="fa fa-arrow-right btn-arrow"></i>
+</a>
+
+                {% else %}
+
+                    <p class="mb-0">
+
+                        You haven't created any courses yet.
+
+                        Start sharing your knowledge with students.
+
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================================
+             RECENT BOOKINGS
+        ========================================== -->
+
+        <div class="mt-5">
+
+            <h3>
+
+                Recent Bookings
+
+            </h3>
+
+
+            {% if bookings %}
+
+
+                {% for booking in bookings %}
+
+
+                    <div class="card p-4 mb-3">
+
+                        <div class="row align-items-center">
+
+
+                            <!-- STUDENT -->
+
+                            <div class="col-md-3">
+
+                                <strong>
+                                    Student
+                                </strong>
+
+                                <p>
+
+                                    {{ booking.student.get_full_name|default:booking.student.username }}
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- SUBJECT -->
+
+                            <div class="col-md-2">
+
+                                <strong>
+                                    Subject
+                                </strong>
+
+                                <p>
+
+                                    {{ booking.subject }}
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- DATE -->
+
+                            <div class="col-md-2">
+
+                                <strong>
+                                    Date
+                                </strong>
+
+                                <p>
+
+                                    {{ booking.lesson_date }}
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- TIME -->
+
+                            <div class="col-md-2">
+
+                                <strong>
+                                    Time
+                                </strong>
+
+                                <p>
+
+                                    {{ booking.lesson_time }}
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- STATUS -->
+
+                            <div class="col-md-1">
+
+                                <strong>
+                                    Status
+                                </strong>
+
+                                <p>
+
+                                    {{ booking.get_status_display }}
+
+                                </p>
+
+                            </div>
+
+
+                            <!-- VIEW -->
+
+                            <div class="col-md-2">
+
+                                <a
+                                    href="{% url 'booking_detail' booking.id %}"
+                                    class="btn_one"
+                                >
+
+                                    View
+
+                                </a>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                {% endfor %}
+
+
+            {% else %}
+
+
+                <div class="text-center">
+
+                    <h4>
+
+                        No bookings yet.
+
+                    </h4>
+
+                    <p>
+
+                        Student bookings will appear here.
+
+                    </p>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================
+     MESSAGE BUTTON CSS
+========================================== -->
+
+<style>
+
+.message-dashboard-btn {
+
+    position: relative;
+
+    margin-right: 10px;
+
+}
+
+
+.message-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 20px;
+
+    height: 20px;
+
+    padding: 0 6px;
+
+    margin-left: 5px;
+
+    border-radius: 20px;
+
+    background: #e74c3c;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+@media (max-width: 576px) {
+
+    .message-dashboard-btn {
+
+        margin-right: 0;
+
+        margin-bottom: 10px;
+
+    }
+
+}
+
+</style>
+
+
+{% endblock %}

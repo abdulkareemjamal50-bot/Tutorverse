@@ -1,0 +1,250 @@
+{% load static %}
+
+<!-- START PRELOADER -->
+<div class="preloaders">
+    <span class="loader"></span>
+</div>
+<!-- END PRELOADER -->
+
+
+<!-- START NAVBAR -->
+<div id="navigation" class="navbar-light bg-faded site-navigation">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <!-- LOGO -->
+            <div class="col-20 align-self-center">
+
+                <div class="site-logo">
+
+                    <a href="{% url 'home' %}">
+                        <img
+                            src="{% static 'assets/img/logo.png' %}"
+                            alt="TutorVerse"
+                        >
+                    </a>
+
+                </div>
+
+            </div>
+            <!-- END LOGO -->
+
+
+            <!-- MAIN MENU -->
+            <div class="col-60 d-flex">
+
+                <nav id="main-menu">
+
+                    <ul>
+
+                        <!-- HOME -->
+                        <li>
+                            <a href="{% url 'home' %}">
+                                Home
+                            </a>
+                        </li>
+
+
+                        <!-- ABOUT -->
+                       <li>
+    <a href="{% url 'about' %}">About</a>
+</li>
+
+                        <!-- COURSES -->
+                        <li class="menu-item-has-children">
+
+                            <a href="{% url 'course_list' %}">
+                                Courses
+                            </a>
+
+                            <ul>
+
+                                <li>
+                                    <a href="{% url 'course_list' %}">
+                                        All Courses
+                                    </a>
+                                </li>
+
+                                <!--
+                                Course Details should NOT be here.
+
+                                A course detail page requires a course ID,
+                                for example:
+
+                                /courses/1/
+
+                                Students reach it by clicking a specific
+                                course from the course list.
+                                -->
+
+                            </ul>
+
+                        </li>
+
+
+                        <!-- PAGES -->
+                        <li class="menu-item-has-children">
+
+                            <a href="#">
+                                Pages
+                            </a>
+
+                            <ul>
+
+                                <li>
+                                    <a href="{% url 'browse_teachers' %}">
+                                        Browse Tutors
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        Contact
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                    
+
+
+                        <!-- CONTACT -->
+                        <li>
+    <a href="{% url 'contact' %}">Contact</a>
+</li>
+
+                    </ul>
+
+                </nav>
+
+            </div>
+            <!-- END MAIN MENU -->
+
+
+            <!-- AUTH BUTTONS -->
+            <div class="col-20 d-none d-xl-block text-end align-self-center">
+
+                <a
+                    href="{% url 'login' %}"
+                    class="header-btn"
+                >
+                    Sign In
+                </a>
+
+
+                <a
+                    href="{% url 'register' %}"
+                    class="btn_one"
+                >
+                    Sign Up
+                </a>
+
+            </div>
+            <!-- END AUTH BUTTONS -->
+
+
+            <!-- MOBILE MENU -->
+            <ul class="mobile_menu">
+
+                <!-- HOME -->
+                <li>
+                    <a href="{% url 'home' %}">
+                        Home
+                    </a>
+                </li>
+
+
+                <!-- ABOUT -->
+                <li>
+                   <a href="{% url 'about' %}">
+                        About
+                    </a>
+                </li>
+
+
+                <!-- COURSES -->
+                <li>
+
+                    <a href="{% url 'course_list' %}">
+                        Courses
+                    </a>
+
+                    <ul class="sub-menu">
+
+                        <li>
+                            <a href="{% url 'course_list' %}">
+                                All Courses
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- PAGES -->
+                <li>
+
+                    <a href="#">
+                        Pages
+                    </a>
+
+                    <ul class="sub-menu">
+
+                        <li>
+                            <a href="{% url 'browse_teachers' %}">
+                                Browse Tutors
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+
+                <!-- BLOG -->
+                <li>
+                    <a href="#">
+                        Blog
+                    </a>
+                </li>
+
+
+                <!-- CONTACT -->
+                <li>
+                    <a href="#">
+                        Contact
+                    </a>
+                </li>
+
+
+                <!-- MOBILE AUTH -->
+                <li>
+
+                    <a href="{% url 'login' %}">
+                        Sign In
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="{% url 'register' %}">
+                        Sign Up
+                    </a>
+
+                </li>
+
+            </ul>
+            <!-- END MOBILE MENU -->
+
+        </div>
+        <!-- END ROW -->
+
+    </div>
+    <!-- END CONTAINER -->
+
+</div>
+<!-- END NAVBAR -->

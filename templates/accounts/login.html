@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="login-section">
+
+    <div class="container">
+
+        <div class="login-wrapper">
+
+            <!-- LEFT SIDE -->
+            <div class="login-info">
+
+                <div class="login-logo">
+                    <i class="fa fa-graduation-cap"></i>
+                    <span>TutorVerse</span>
+                </div>
+
+                <h1>Welcome Back!</h1>
+
+                <p>
+                    Sign in to your TutorVerse account and continue
+                    your learning journey.
+                </p>
+
+                <div class="login-benefits">
+
+                    <div>
+                        <i class="fa fa-check-circle"></i>
+                        <span>Find verified tutors</span>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-check-circle"></i>
+                        <span>Book lessons easily</span>
+                    </div>
+
+                    <div>
+                        <i class="fa fa-check-circle"></i>
+                        <span>Manage your lessons</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+            <div class="login-form-box">
+
+                <div class="login-heading">
+
+                    <h2>Sign In</h2>
+
+                    <p>
+                        Enter your details to access your account.
+                    </p>
+
+                </div>
+
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+
+                        <div class="login-error">
+                            Invalid username or password.
+                            Please try again.
+                        </div>
+
+                    {% endif %}
+
+
+                    <div class="form-group">
+
+                        <label>Username</label>
+
+                        {{ form.username }}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Password</label>
+
+                        {{ form.password }}
+
+                    </div>
+
+
+                    <button type="submit" class="login-btn">
+                        Sign In
+                    </button>
+
+                </form>
+
+
+                <div class="register-links">
+
+                    <p>Don't have an account?</p>
+
+                    <a href="{% url 'student_register' %}">
+                        Register as Student
+                    </a>
+
+                    <span>or</span>
+
+                    <a href="{% url 'teacher_register' %}">
+                        Register as Teacher
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+.login-section {
+    padding: 90px 0;
+    background: #f8f9ff;
+}
+
+.login-wrapper {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+
+/* LEFT SIDE */
+
+.login-info {
+    background: #5362e9;
+    padding: 60px 50px;
+    color: white;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 70px;
+}
+
+.login-logo i {
+    font-size: 32px;
+}
+
+.login-info h1 {
+    font-size: 42px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.login-info p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 35px;
+}
+
+.login-benefits div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+.login-benefits i {
+    font-size: 18px;
+}
+
+
+/* FORM SIDE */
+
+.login-form-box {
+    padding: 60px 50px;
+}
+
+.login-heading {
+    margin-bottom: 35px;
+}
+
+.login-heading h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #10145c;
+}
+
+.login-heading p {
+    color: #777;
+    font-size: 15px;
+}
+
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #222;
+}
+
+.form-group input {
+    width: 100%;
+    height: 52px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0 15px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #5362e9;
+    box-shadow: 0 0 0 3px rgba(83, 98, 233, 0.1);
+}
+
+
+.login-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 6px;
+    background: #5362e9;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #414fda;
+}
+
+
+.login-error {
+    background: #ffe5e5;
+    color: #c0392b;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+
+.register-links {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.register-links p {
+    color: #777;
+    margin-bottom: 12px;
+}
+
+.register-links a {
+    color: #5362e9;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.register-links span {
+    margin: 0 8px;
+    color: #aaa;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+
+    .login-section {
+        padding: 50px 15px;
+    }
+
+    .login-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .login-info {
+        padding: 40px 30px;
+    }
+
+    .login-info h1 {
+        font-size: 32px;
+    }
+
+    .login-logo {
+        margin-bottom: 40px;
+    }
+
+    .login-form-box {
+        padding: 40px 30px;
+    }
+
+}
+
+</style>
+
+{% endblock %}

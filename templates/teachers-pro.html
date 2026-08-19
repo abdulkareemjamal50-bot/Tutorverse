@@ -1,0 +1,326 @@
+```html
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- START SECTION TOP -->
+<section class="section-top">
+    <div class="container">
+        <div class="col-lg-10 offset-lg-1 text-center">
+
+            <div class="section-top-title">
+                <h1>Instructor Details</h1>
+
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+
+                    <li> / Instructor Details</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- END SECTION TOP -->
+
+
+<!-- START TEACHER PROFILE -->
+<section class="template_agent section-padding">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="single_agent">
+
+                    <!-- TEACHER IMAGE -->
+                    <div class="single_agent_image">
+
+                        {% if teacher.profile_picture %}
+
+                            <img
+                                src="{{ teacher.profile_picture.url }}"
+                                class="img-fluid"
+                                alt="{{ teacher.user.get_full_name }}"
+                            >
+
+                        {% else %}
+
+                            <img
+                                src="{% static 'assets/img/team/team1.jpg' %}"
+                                class="img-fluid"
+                                alt="Teacher"
+                            >
+
+                        {% endif %}
+
+                    </div>
+                    <!-- END TEACHER IMAGE -->
+
+
+                    <!-- TEACHER INFORMATION -->
+                    <div class="single_agent_content">
+
+                        <h4>
+                            {{ teacher.user.get_full_name|default:teacher.user.username }}
+                        </h4>
+
+                        <h5>
+                            {{ teacher.qualification }}
+                        </h5>
+
+                        {% if teacher.verified %}
+                            <span class="text-success">
+                                ✓ Verified Tutor
+                            </span>
+                        {% endif %}
+
+
+                        <!-- BIO -->
+                        <p>
+                            {{ teacher.bio }}
+                        </p>
+
+
+                        <!-- TEACHER DETAILS -->
+                        <ul>
+
+                            <li>
+                                <i class="fa fa-envelope-o"></i>
+                                {{ teacher.user.email }}
+                            </li>
+
+                            <li>
+                                <i class="fa fa-map-marker"></i>
+                                {{ teacher.city }}, {{ teacher.state }}
+                            </li>
+
+                            <li>
+                                <i class="fa fa-graduation-cap"></i>
+                                {{ teacher.experience }} years experience
+                            </li>
+
+                            <li>
+                                <i class="fa fa-laptop"></i>
+                                {{ teacher.get_lesson_mode_display }} lessons
+                            </li>
+
+                            <li>
+                                <i class="fa fa-money"></i>
+                                ₦{{ teacher.hourly_rate }} / hour
+                            </li>
+
+                        </ul>
+
+                    </div>
+                    <!-- END TEACHER INFORMATION -->
+
+
+                    <!-- BACK BUTTON -->
+                    <div class="agent_social">
+
+                        <ul class="list-inline">
+
+                            <li>
+                                <a
+                                    href="{% url 'browse_teachers' %}"
+                                    class="top_f_facebook"
+                                >
+                                    <i class="fa fa-arrow-left"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END TEACHER PROFILE -->
+
+
+<!-- START INTRODUCTION VIDEO -->
+{% if teacher.intro_video %}
+
+<section class="section-padding teacher-video-section">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <h2>Meet Your Tutor</h2>
+
+            <p>
+                Get to know your tutor before booking a lesson.
+            </p>
+
+        </div>
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8 col-md-10">
+
+                <div class="teacher-video-card">
+
+                    <video
+                        class="teacher-intro-video"
+                        controls
+                        preload="metadata"
+                    >
+
+                        <source
+                            src="{{ teacher.intro_video.url }}"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support video playback.
+
+                    </video>
+
+
+                    <div class="teacher-video-info">
+
+                        <h4>
+                            Introduction from
+                            {{ teacher.user.get_full_name|default:teacher.user.username }}
+                        </h4>
+
+                        <p>
+                            Watch this short introduction to learn more about
+                            the tutor, their teaching experience, and how they
+                            can help you achieve your learning goals.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+<!-- END INTRODUCTION VIDEO -->
+
+
+<!-- START SUBJECTS -->
+<section class="course_area section-padding">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <h2>Subjects I Teach</h2>
+
+            <p>
+                Explore the subjects offered by this tutor.
+            </p>
+
+        </div>
+
+
+        <div class="row">
+
+            {% for subject in teacher.subjects.all %}
+
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+
+                    <div class="single_course">
+
+                        <div class="single_course_content">
+
+                            <h3>
+                                {{ subject.name }}
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12 text-center">
+
+                    <p>
+                        No subjects have been added yet.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END SUBJECTS -->
+
+
+<!-- START BOOKING CTA -->
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="text-center lesson-cta">
+
+            <h2>
+                Ready to learn with this tutor?
+            </h2>
+
+            <p>
+                Book a lesson today and start your learning journey.
+            </p>
+
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+                <!-- BOOK LESSON -->
+
+                <a
+                    href="{% url 'create_booking' teacher.id %}"
+                    class="btn_one"
+                >
+                    Book a Lesson
+                </a>
+
+
+                <!-- MESSAGE TUTOR -->
+
+                <a
+                    href="{% url 'conversation' teacher.user.id %}"
+                    class="btn_one"
+                >
+                    💬 Message Tutor
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END BOOKING CTA -->
+
+{% endblock %}
+

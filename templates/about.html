@@ -1,0 +1,592 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- START SECTION TOP -->
+<section class="section-top">
+    <div class="container">
+        <div class="col-lg-10 offset-lg-1 text-center">
+
+            <div class="section-top-title wow fadeInRight"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.3s">
+
+                <h1>About Tutorverse</h1>
+
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+
+                    <li> / About</li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- END SECTION TOP -->
+
+
+<!-- START FEATURES -->
+<section class="top_cat__area section-padding"
+         style="background-image: url('{% static 'assets/img/bg/shape-1.png' %}');
+                background-size: cover;
+                background-position: center center;">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <h2>Education Meets The Right Connection</h2>
+
+            <p>
+                Tutorverse makes it easier for students to discover
+                teachers, courses and learning opportunities that match
+                their goals.
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            <!-- FEATURE 1 -->
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.2s">
+
+                <div class="single_tp">
+
+                    <span class="sc_one">01</span>
+
+                    <h3>
+                        Trusted<br>
+                        Teachers
+                    </h3>
+
+                    <p>
+                        Discover educators who are passionate about
+                        helping students achieve their academic goals.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEATURE 2 -->
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.3s">
+
+                <div class="single_tp">
+
+                    <span class="sc_two">02</span>
+
+                    <h3>
+                        Flexible<br>
+                        Learning
+                    </h3>
+
+                    <p>
+                        Choose learning options that fit your schedule,
+                        whether online or through physical lessons.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEATURE 3 -->
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.4s">
+
+                <div class="single_tp">
+
+                    <span class="sc_three">03</span>
+
+                    <h3>
+                        Better<br>
+                        Connections
+                    </h3>
+
+                    <p>
+                        Connect students and teachers through one
+                        simple and accessible education platform.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FEATURE 4 -->
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.5s">
+
+                <div class="single_tp">
+
+                    <span class="sc_four">04</span>
+
+                    <h3>
+                        Student<br>
+                        Support
+                    </h3>
+
+                    <p>
+                        Make the learning journey easier with tools
+                        designed around the needs of students.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- END FEATURES -->
+
+
+<!-- START ABOUT -->
+<section class="ab_area section-padding">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- IMAGE -->
+            <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.2s">
+
+                <div class="ab_img">
+
+                    <img src="{% static 'assets/img/about1.png' %}"
+                         class="img-fluid"
+                         alt="Students learning with Tutorverse">
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTENT -->
+            <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.1s">
+
+                <div class="ab_content">
+
+                    <h2>
+                        Making Quality Learning Easier To Find
+                    </h2>
+
+                    <p>
+                        Tutorverse is an education platform created to
+                        bridge the gap between students and teachers.
+                        We believe that finding the right learning
+                        support should not be difficult.
+                    </p>
+
+                    <p>
+                        From discovering courses to connecting with
+                        educators, Tutorverse brings important parts
+                        of the learning journey together in one place.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Discover teachers and courses that match your goals
+                        </li>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Explore online and offline learning opportunities
+                        </li>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Connect with educators more easily
+                        </li>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Build a learning experience around your needs
+                        </li>
+
+                    </ul>
+
+                    <a class="btn_one"
+                       href="{% url 'course_list' %}">
+
+                        Explore Courses
+
+                        <i class="ti-arrow-top-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END ABOUT -->
+
+
+<!-- START VIDEO -->
+<section class="vid_area va2"
+         style="background-image: url('{% static 'assets/img/bg/video.jpg' %}');
+                background-size: cover;
+                background-position: center center;">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-12 vp_top wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.2s">
+
+                <div class="video-area2">
+
+                    <a href="https://www.youtube.com/watch?v=RXv_uIN6e-Y"
+                       class="magnific_popup video-button">
+
+                        <i class="fa fa-play"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END VIDEO -->
+
+
+<!-- START VALUES -->
+<section class="count_area counter_feature">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+
+                <div class="single-counter">
+
+                    <span class="ti-user sc_one"></span>
+
+                    <h2 class="counter-num">01</h2>
+
+                    <p>Student First</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+
+                <div class="single-counter">
+
+                    <span class="ti-blackboard sc_two"></span>
+
+                    <h2 class="counter-num">02</h2>
+
+                    <p>Quality Teaching</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+
+                <div class="single-counter">
+
+                    <span class="ti-location-pin sc_three"></span>
+
+                    <h2 class="counter-num">03</h2>
+
+                    <p>Online & Offline</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-3 col-sm-6 col-xs-12">
+
+                <div class="single-counter">
+
+                    <span class="ti-light-bulb sc_four"></span>
+
+                    <h2 class="counter-num">04</h2>
+
+                    <p>Better Learning</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END VALUES -->
+
+
+<!-- START STUDENTS / TEACHERS -->
+<section class="insfreecourse section-padding">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <h2>Built For Students And Teachers</h2>
+
+            <p>
+                Tutorverse creates a better connection between people
+                who want to learn and people who are ready to teach.
+            </p>
+
+        </div>
+
+        <div class="row">
+
+
+            <!-- STUDENTS -->
+            <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.2s">
+
+                <div class="single_ins"
+                     style="background-image: url('{% static 'assets/img/ins1.png' %}');
+                            background-size: cover;
+                            background-position: center center;">
+
+                    <div class="single_ins_content">
+
+                        <h4>For Students</h4>
+
+                        <h1>Find Your Learning Path</h1>
+
+                        <p>
+                            Discover courses, explore teachers and
+                            find learning opportunities designed around
+                            your academic goals.
+                        </p>
+
+                        <a class="btn_one"
+                           href="{% url 'course_list' %}">
+
+                            Explore Courses
+
+                            <i class="ti-arrow-top-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TEACHERS -->
+            <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.3s">
+
+                <div class="single_ins"
+                     style="background-image: url('{% static 'assets/img/ins2.png' %}');
+                            background-size: cover;
+                            background-position: center center;">
+
+                    <div class="single_ins_content">
+
+                        <h4>For Teachers</h4>
+
+                        <h1>Share Your Knowledge</h1>
+
+                        <p>
+                            Create courses, connect with students and
+                            turn your knowledge into meaningful learning
+                            experiences.
+                        </p>
+
+                        <a class="btn_one"
+                           href="{% url 'teacher_dashboard' %}">
+
+                            Teacher Dashboard
+
+                            <i class="ti-arrow-top-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END STUDENTS / TEACHERS -->
+
+
+<!-- START TESTIMONIAL / VISION -->
+<section class="testi_area section-padding">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>
+                Our Vision For<br>
+                Better Education
+            </h2>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div id="testimonial-slider2" class="owl-carousel">
+
+
+                    <!-- ITEM 1 -->
+                    <div class="testimonial">
+
+                        <img src="{% static 'assets/img/quote.png' %}"
+                             alt="Quote">
+
+                        <div class="testimonial_content">
+
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+
+                            <p>
+                                We believe every student deserves access
+                                to the right guidance, the right resources
+                                and the right teacher.
+                            </p>
+
+                        </div>
+
+                        <div class="testi_pic_title">
+
+                            <h4>Our Mission</h4>
+
+                            <p>Connect. Learn. Grow.</p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ITEM 2 -->
+                    <div class="testimonial">
+
+                        <img src="{% static 'assets/img/quote.png' %}"
+                             alt="Quote">
+
+                        <div class="testimonial_content">
+
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+
+                            <p>
+                                Great teaching becomes more powerful when
+                                students can easily discover and connect
+                                with the people who can guide them.
+                            </p>
+
+                        </div>
+
+                        <div class="testi_pic_title">
+
+                            <h4>Our Belief</h4>
+
+                            <p>Better Connections Create Better Learning</p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ITEM 3 -->
+                    <div class="testimonial">
+
+                        <img src="{% static 'assets/img/quote.png' %}"
+                             alt="Quote">
+
+                        <div class="testimonial_content">
+
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+                            <i class="ti-star"></i>
+
+                            <p>
+                                Tutorverse is designed to make education
+                                more accessible, flexible and connected
+                                for students and teachers.
+                            </p>
+
+                        </div>
+
+                        <div class="testi_pic_title">
+
+                            <h4>Our Vision</h4>
+
+                            <p>Education Without Unnecessary Barriers</p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END TESTIMONIAL / VISION -->
+
+
+{% endblock %}

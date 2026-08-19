@@ -1,0 +1,398 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="section-title text-center">
+
+            <h2>Booking Details</h2>
+
+            <p>
+                Review your lesson booking.
+            </p>
+
+        </div>
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="card p-4">
+
+
+                    <!-- SUBJECT -->
+
+                    <h3>
+                        {{ booking.subject }}
+                    </h3>
+
+                    <hr>
+
+
+                    <!-- STUDENT -->
+
+                    <p>
+
+                        <strong>
+                            Student:
+                        </strong>
+
+                        {{ booking.student.get_full_name|default:booking.student.username }}
+
+                    </p>
+
+
+                    <!-- TEACHER -->
+
+                    <p>
+
+                        <strong>
+                            Teacher:
+                        </strong>
+
+                        {{ booking.teacher.user.get_full_name|default:booking.teacher.user.username }}
+
+                    </p>
+
+
+                    <!-- DATE -->
+
+                    <p>
+
+                        <strong>
+                            Date:
+                        </strong>
+
+                        {{ booking.lesson_date|date:"M. d, Y" }}
+
+                    </p>
+
+
+                    <!-- TIME -->
+
+                    <p>
+
+                        <strong>
+                            Time:
+                        </strong>
+
+                        {{ booking.lesson_time|time:"g:i a" }}
+
+                    </p>
+
+
+                    <!-- DURATION -->
+
+                    <p>
+
+                        <strong>
+                            Duration:
+                        </strong>
+
+                        {{ booking.duration }} minutes
+
+                    </p>
+
+
+                    <!-- LESSON MODE -->
+
+                    <p>
+
+                        <strong>
+                            Lesson Mode:
+                        </strong>
+
+                        {% if booking.is_online %}
+
+                            Online
+
+                        {% else %}
+
+                            Offline
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <!-- LOCATION -->
+
+                    {% if booking.location %}
+
+                        <p>
+
+                            <strong>
+                                Location:
+                            </strong>
+
+                            {{ booking.location }}
+
+                        </p>
+
+                    {% endif %}
+
+
+                    <!-- NOTE -->
+
+                    {% if booking.note %}
+
+                        <p>
+
+                            <strong>
+                                Student Note:
+                            </strong>
+
+                            {{ booking.note }}
+
+                        </p>
+
+                    {% endif %}
+
+
+                    <!-- STATUS -->
+
+                    <p>
+
+                        <strong>
+                            Status:
+                        </strong>
+
+
+                        {% if booking.status == 'pending' %}
+
+                            <span class="status pending">
+                                Pending
+                            </span>
+
+                        {% elif booking.status == 'accepted' %}
+
+                            <span class="status accepted">
+                                Accepted
+                            </span>
+
+                        {% elif booking.status == 'cancelled' %}
+
+                            <span class="status cancelled">
+                                Cancelled
+                            </span>
+
+                        {% elif booking.status == 'completed' %}
+
+                            <span class="status completed">
+                                Completed
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <!-- ========================= -->
+                    <!-- TEACHER ACTIONS -->
+                    <!-- ========================= -->
+
+                    {% if request.user == booking.teacher.user %}
+
+                        {% if booking.status == 'pending' %}
+
+                            <div class="mt-4">
+
+                                <h4>
+                                    Booking Actions
+                                </h4>
+
+
+                                <div class="d-flex gap-3 mt-3">
+
+
+                                    <!-- ACCEPT -->
+
+                                    <form
+                                        method="POST"
+                                        action="{% url 'update_booking_status' booking.id %}"
+                                    >
+
+                                        {% csrf_token %}
+
+                                        <input
+                                            type="hidden"
+                                            name="status"
+                                            value="accepted"
+                                        >
+
+                                        <button
+                                            type="submit"
+                                            class="btn_one"
+                                        >
+                                            Accept Booking
+                                        </button>
+
+                                    </form>
+
+
+                                    <!-- CANCEL -->
+
+                                    <form
+                                        method="POST"
+                                        action="{% url 'update_booking_status' booking.id %}"
+                                    >
+
+                                        {% csrf_token %}
+
+                                        <input
+                                            type="hidden"
+                                            name="status"
+                                            value="cancelled"
+                                        >
+
+                                        <button
+                                            type="submit"
+                                            class="btn_one"
+                                        >
+                                            Cancel Booking
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
+                    {% endif %}
+
+
+                    <!-- ========================= -->
+                    <!-- STUDENT MESSAGE -->
+                    <!-- ========================= -->
+
+                    {% if request.user == booking.student %}
+
+                        {% if booking.status == 'pending' %}
+
+                            <div class="alert alert-warning mt-4">
+
+                                <strong>
+                                    Waiting for tutor response.
+                                </strong>
+
+                                <p class="mb-0 mt-2">
+
+                                    Your booking has been sent to the tutor.
+                                    You will see the status change when the
+                                    tutor accepts or cancels it.
+
+                                </p>
+
+                            </div>
+
+                        {% elif booking.status == 'accepted' %}
+
+                            <div class="alert alert-success mt-4">
+
+                                <strong>
+                                    Booking Accepted!
+                                </strong>
+
+                                <p class="mb-0 mt-2">
+
+                                    Your tutor has accepted this lesson.
+
+                                </p>
+
+                            </div>
+
+                        {% elif booking.status == 'cancelled' %}
+
+                            <div class="alert alert-danger mt-4">
+
+                                <strong>
+                                    Booking Cancelled.
+                                </strong>
+
+                            </div>
+
+                        {% endif %}
+
+                    {% endif %}
+
+
+                    <!-- ========================= -->
+                    <!-- BACK BUTTON -->
+                    <!-- ========================= -->
+
+                    <div class="mt-4">
+
+                        {% if request.user == booking.student %}
+
+                            <a
+                                href="{% url 'my_bookings' %}"
+                                class="btn_one"
+                            >
+                                ← My Bookings
+                            </a>
+
+                        {% else %}
+
+                            <a
+                                href="{% url 'teacher_dashboard' %}"
+                                class="btn_one"
+                            >
+                                ← Teacher Dashboard
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+.status {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.accepted {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status.completed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+</style>
+
+{% endblock %}

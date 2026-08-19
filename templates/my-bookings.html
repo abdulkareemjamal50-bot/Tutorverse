@@ -1,0 +1,408 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<section class="page-header">
+    <div class="container text-center">
+        <h1>My Bookings</h1>
+        <p>View and manage your tutoring lessons.</p>
+    </div>
+</section>
+
+
+<!-- BOOKINGS -->
+<section class="section-padding">
+    <div class="container">
+
+        {% if bookings %}
+
+        <div class="booking-list">
+
+            {% for booking in bookings %}
+
+            <div class="booking-card">
+
+                <!-- TEACHER -->
+                <div class="booking-info">
+                    <span class="booking-label">Teacher</span>
+                    <h4>
+                        {{ booking.teacher.user.get_full_name|default:booking.teacher.user.username }}
+                    </h4>
+                </div>
+
+
+                <!-- SUBJECT -->
+                <div class="booking-info">
+                    <span class="booking-label">Subject</span>
+                    <p>{{ booking.subject }}</p>
+                </div>
+
+
+                <!-- DATE -->
+                <div class="booking-info">
+                    <span class="booking-label">Date</span>
+                    <p>{{ booking.lesson_date|date:"M. d, Y" }}</p>
+                </div>
+
+
+                <!-- TIME -->
+                <div class="booking-info">
+                    <span class="booking-label">Time</span>
+                    <p>{{ booking.lesson_time|time:"g:i a" }}</p>
+                </div>
+
+
+                <!-- STATUS -->
+                <div class="booking-info">
+                    <span class="booking-label">Status</span>
+
+                    {% if booking.status == 'pending' %}
+                        <span class="status pending">Pending</span>
+
+                    {% elif booking.status == 'accepted' %}
+                        <span class="status accepted">Accepted</span>
+
+                    {% elif booking.status == 'completed' %}
+                        <span class="status completed">Completed</span>
+
+                    {% elif booking.status == 'cancelled' %}
+                        <span class="status cancelled">Cancelled</span>
+                    {% endif %}
+                </div>
+
+
+                <!-- VIEW BUTTON -->
+                <div class="booking-action">
+                    <a href="{% url 'student_booking_detail' booking.id %}"
+                       class="view-btn">
+                        View
+                    </a>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- NO BOOKINGS -->
+        <div class="empty-bookings text-center">
+
+            <h3>No bookings yet</h3>
+
+            <p>
+                You haven't booked a lesson with a tutor yet.
+            </p>
+
+            <a href="{% url 'browse_teachers' %}" class="view-btn">
+                Browse Tutors
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+
+<style>
+
+/* ==============================
+   PAGE HEADER
+============================== */
+
+.page-header {
+    padding: 70px 0 45px;
+    text-align: center;
+}
+
+.page-header h1 {
+    margin: 0 0 10px;
+    color: #07145c;
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.page-header p {
+    margin: 0;
+    color: #666;
+    font-size: 16px;
+}
+
+
+/* ==============================
+   BOOKINGS SECTION
+============================== */
+
+.section-padding {
+    padding: 20px 0 90px;
+}
+
+.booking-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+/* ==============================
+   BOOKING CARD
+============================== */
+
+.booking-card {
+    width: 100%;
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1.4fr
+        1fr
+        1fr
+        1fr
+        auto;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 24px 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+
+    box-sizing: border-box;
+
+    transition: all 0.25s ease;
+}
+
+.booking-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+
+/* ==============================
+   BOOKING INFORMATION
+============================== */
+
+.booking-info {
+    min-width: 0;
+}
+
+.booking-label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #222;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.booking-info h4 {
+    margin: 0;
+
+    color: #07145c;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    word-break: break-word;
+}
+
+.booking-info p {
+    margin: 0;
+
+    color: #222;
+
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+
+/* ==============================
+   STATUS
+============================== */
+
+.status {
+    display: inline-block;
+
+    width: fit-content;
+
+    padding: 6px 13px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.accepted {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.completed {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.status.cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+
+/* ==============================
+   VIEW BUTTON
+============================== */
+
+.booking-action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.view-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 90px;
+
+    padding: 12px 22px;
+
+    background: #5361df;
+    color: #ffffff;
+
+    border-radius: 4px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    transition: background 0.2s ease;
+}
+
+.view-btn:hover {
+    background: #414fcf;
+    color: #ffffff;
+}
+
+
+/* ==============================
+   EMPTY BOOKINGS
+============================== */
+
+.empty-bookings {
+    padding: 70px 20px;
+}
+
+.empty-bookings h3 {
+    margin-bottom: 10px;
+
+    color: #07145c;
+}
+
+.empty-bookings p {
+    margin-bottom: 25px;
+
+    color: #666;
+}
+
+
+/* ==============================
+   TABLET
+============================== */
+
+@media (max-width: 1100px) {
+
+    .booking-card {
+        grid-template-columns:
+            1.4fr
+            1.2fr
+            1fr
+            1fr
+            auto;
+
+        gap: 18px;
+    }
+
+    .booking-action {
+        grid-column: 5;
+    }
+
+}
+
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 768px) {
+
+    .page-header {
+        padding: 50px 20px 35px;
+    }
+
+    .page-header h1 {
+        font-size: 34px;
+    }
+
+    .booking-card {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 20px;
+
+        padding: 22px;
+    }
+
+    .booking-action {
+        grid-column: span 2;
+
+        justify-content: flex-start;
+
+        padding-top: 5px;
+    }
+
+    .view-btn {
+        width: 100%;
+    }
+
+}
+
+
+/* ==============================
+   SMALL MOBILE
+============================== */
+
+@media (max-width: 480px) {
+
+    .booking-card {
+        grid-template-columns: 1fr;
+    }
+
+    .booking-action {
+        grid-column: span 1;
+    }
+
+}
+
+</style>
+
+{% endblock %}
