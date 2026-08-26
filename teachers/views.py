@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import TeacherProfile
 from .forms import TeacherProfileForm
@@ -41,6 +42,7 @@ def teacher_profile_setup(request):
     )
 
 
+@login_required
 def teacher_detail(request, teacher_id):
 
     teacher = get_object_or_404(
@@ -53,5 +55,22 @@ def teacher_detail(request, teacher_id):
         'teachers/teacher_detail.html',
         {
             'teacher': teacher
+        }
+    )
+
+
+@login_required
+def teacher_student_profile(request, student_id):
+
+    student = get_object_or_404(
+        User,
+        id=student_id
+    )
+
+    return render(
+        request,
+        'teachers/student_profile.html',
+        {
+            'student': student
         }
     )

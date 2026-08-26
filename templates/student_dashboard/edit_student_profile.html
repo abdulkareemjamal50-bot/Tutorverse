@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="profile-edit-section section-padding">
+
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="profile-edit-header text-center">
+            <span class="profile-edit-badge">
+                <i class="ti-user"></i> Student Profile
+            </span>
+
+            <h2>Edit My Profile</h2>
+
+            <p>
+                Update your personal information and keep your TutorVerse
+                profile looking its best.
+            </p>
+        </div>
+
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8 col-md-10">
+
+                <div class="profile-edit-card">
+
+                    <!-- Card Header -->
+                    <div class="profile-card-header">
+
+                        <div class="profile-icon">
+                            <i class="ti-pencil-alt"></i>
+                        </div>
+
+                        <div>
+                            <h4>Profile Information</h4>
+                            <p>Make changes to your account information below.</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Form -->
+                    <form method="POST" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <div class="profile-form">
+
+                            {{ form.as_p }}
+
+                        </div>
+
+
+                        <!-- Buttons -->
+                        <div class="profile-form-actions">
+
+                            <a
+                                href="{% url 'student_profile' %}"
+                                class="profile-cancel-btn"
+                            >
+                                <i class="ti-arrow-left"></i>
+                                Cancel
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="profile-save-btn"
+                            >
+                                <i class="ti-check"></i>
+                                Save Changes
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- Security / Info Note -->
+                <div class="profile-info-note">
+
+                    <div class="info-icon">
+                        <i class="ti-info-alt"></i>
+                    </div>
+
+                    <div>
+                        <strong>Keep your profile updated</strong>
+
+                        <p>
+                            A complete profile helps tutors understand who they
+                            are teaching and makes your TutorVerse experience
+                            better.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

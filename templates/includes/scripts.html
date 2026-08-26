@@ -29,3 +29,37 @@
 
 <!-- Main Script -->
 <script src="{% static 'assets/js/scripts.js' %}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const preloader = document.getElementById("tutorverse-preloader");
+
+    if (!preloader) return;
+
+    const MINIMUM_LOADING_TIME = 1200;
+
+    const startTime = Date.now();
+
+    window.addEventListener("load", function () {
+
+        const elapsed = Date.now() - startTime;
+        const remainingTime = Math.max(
+            0,
+            MINIMUM_LOADING_TIME - elapsed
+        );
+
+        setTimeout(function () {
+
+            preloader.classList.add("tutorverse-loaded");
+
+            setTimeout(function () {
+                preloader.remove();
+            }, 500);
+
+        }, remainingTime);
+
+    });
+
+});
+</script>

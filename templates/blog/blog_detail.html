@@ -1,0 +1,139 @@
+```html
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- START PAGE HEADER -->
+<section class="section-top">
+
+    <div class="container">
+
+        <div class="col-lg-10 offset-lg-1 text-center">
+
+            <div class="section-top-title">
+
+                <h1>{{ post.title }}</h1>
+
+                <ul>
+
+                    <li>
+                        <a href="{% url 'home' %}">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'blog_list' %}">
+                            Learning Resources
+                        </a>
+                    </li>
+
+                    <li>
+                        {{ post.category }}
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END PAGE HEADER -->
+
+
+<!-- START BLOG DETAIL -->
+<section class="blog_detail_area section-padding">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-9 col-md-10 col-sm-12">
+
+
+                <!-- BLOG IMAGE -->
+                {% if post.image %}
+
+                <div class="blog_detail_image">
+
+                    <img
+                        src="{{ post.image.url }}"
+                        class="img-fluid"
+                        alt="{{ post.title }}"
+                    >
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- BLOG CONTENT -->
+                <div class="blog_detail_content">
+
+                    <!-- CATEGORY -->
+                    <span class="blog_category">
+                        {{ post.category }}
+                    </span>
+
+
+                    <!-- TITLE -->
+                    <h2>
+                        {{ post.title }}
+                    </h2>
+
+
+                    <!-- META -->
+                    <div class="blog_meta">
+
+                        <span>
+                            By {{ post.author }}
+                        </span>
+
+                        <span>
+                            {{ post.created_at|date:"F d, Y" }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- ARTICLE -->
+                    <div class="blog_article">
+
+                        {{ post.content|linebreaks }}
+
+                    </div>
+
+
+                    <!-- BACK BUTTON -->
+                    <div class="blog_back">
+
+                        <a
+                            href="{% url 'blog_list' %}"
+                            class="btn_one"
+                        >
+
+                            <i class="ti-arrow-left"></i>
+
+                            Back to Learning Resources
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END BLOG DETAIL -->
+
+{% endblock %}
+

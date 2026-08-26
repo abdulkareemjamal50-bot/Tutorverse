@@ -688,14 +688,54 @@ document.addEventListener('DOMContentLoaded', function () {
 <!-- ========================================= -->
 
 <style>
+/* =========================================================
+   TUTORVERSE BROWSE TUTORS
+   PROFESSIONAL MARKETPLACE DESIGN
+========================================================= */
 
 
-/* ========================================= */
-/* FILTER FORM */
-/* ========================================= */
+/* =========================================================
+   PAGE BACKGROUND
+========================================================= */
+
+.team_area {
+    background: #f8f9fc !important;
+    padding-top: 75px !important;
+    padding-bottom: 90px !important;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.team_area .section-title {
+    max-width: 760px !important;
+    margin: 0 auto 42px !important;
+}
+
+.team_area .section-title h2 {
+    font-size: 38px !important;
+    font-weight: 700 !important;
+    color: #172033 !important;
+    margin-bottom: 15px !important;
+    letter-spacing: -0.5px !important;
+}
+
+.team_area .section-title p {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    color: #72798a !important;
+    max-width: 680px !important;
+    margin: 0 auto !important;
+}
+
+
+/* =========================================================
+   FILTER PANEL
+========================================================= */
 
 .tutor-filter-form {
-
     display: grid !important;
 
     grid-template-columns:
@@ -704,241 +744,357 @@ document.addEventListener('DOMContentLoaded', function () {
         1fr
         1fr !important;
 
-    gap: 15px !important;
+    gap: 18px !important;
 
     align-items: end !important;
 
+    padding: 28px !important;
+
     margin-bottom: 25px !important;
 
-    padding: 25px !important;
+    background: #ffffff !important;
 
-    background: #fff !important;
+    border: 1px solid #e8eaf0 !important;
 
-    border: 1px solid #eee !important;
+    border-radius: 14px !important;
 
-    border-radius: 10px !important;
-
+    box-shadow:
+        0 8px 30px rgba(28, 39, 60, 0.05) !important;
 }
 
 
-/* ========================================= */
-/* FILTER LABEL */
-/* ========================================= */
+/* =========================================================
+   FILTER GROUP
+========================================================= */
+
+.filter-group {
+    min-width: 0 !important;
+}
 
 .filter-group label {
-
     display: block !important;
 
-    margin-bottom: 7px !important;
+    margin-bottom: 8px !important;
 
-    font-size: 14px !important;
+    color: #303849 !important;
+
+    font-size: 13px !important;
 
     font-weight: 600 !important;
-
 }
 
 
-/* ========================================= */
-/* INPUTS */
-/* ========================================= */
+/* =========================================================
+   INPUTS / SELECTS
+========================================================= */
 
 .filter-group input,
 .filter-group select {
-
     width: 100% !important;
 
     height: 48px !important;
 
     padding: 0 14px !important;
 
-    border: 1px solid #ddd !important;
+    border: 1px solid #e0e3ea !important;
 
-    border-radius: 5px !important;
+    border-radius: 8px !important;
 
-    background: #fff !important;
+    background: #ffffff !important;
+
+    color: #303849 !important;
+
+    font-size: 14px !important;
 
     outline: none !important;
 
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease !important;
 }
 
 
-/* ========================================= */
-/* VERIFIED CHECKBOX */
-/* ========================================= */
+.filter-group input::placeholder {
+    color: #a1a7b3 !important;
+}
+
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: #5361df !important;
+
+    box-shadow:
+        0 0 0 3px rgba(83, 97, 223, 0.10) !important;
+}
+
+
+/* =========================================================
+   CHECKBOX
+========================================================= */
 
 .filter-checkbox {
-
     display: flex !important;
 
     align-items: center !important;
 
     height: 48px !important;
+}
 
+.filter-checkbox label {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 7px !important;
+
+    margin: 0 !important;
+
+    color: #444b5b !important;
+
+    font-size: 13px !important;
+
+    font-weight: 600 !important;
+
+    cursor: pointer !important;
+}
+
+.filter-checkbox input {
+    width: 16px !important;
+
+    height: 16px !important;
+
+    accent-color: #5361df !important;
+
+    cursor: pointer !important;
 }
 
 
-.filter-checkbox label {
+/* =========================================================
+   APPLY FILTER BUTTON
+========================================================= */
 
-    margin: 0 !important;
+.tutor-filter-form .btn_one {
+    height: 48px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    padding: 0 22px !important;
+
+    border: none !important;
+
+    border-radius: 8px !important;
+
+    background: #5361df !important;
+
+    color: #ffffff !important;
 
     font-size: 14px !important;
 
     font-weight: 600 !important;
 
+    text-decoration: none !important;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease !important;
+}
+
+.tutor-filter-form .btn_one:hover {
+    background: #4350c8 !important;
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 8px 18px rgba(83, 97, 223, 0.20) !important;
 }
 
 
-.filter-checkbox input {
-
-    margin-right: 7px !important;
-
-}
-
-
-/* ========================================= */
-/* CLEAR BUTTON */
-/* ========================================= */
+/* =========================================================
+   CLEAR FILTER
+========================================================= */
 
 .clear-filter {
+    grid-column: 1 / -1 !important;
+
+    display: inline-block !important;
+
+    width: fit-content !important;
+
+    margin-top: 2px !important;
 
     color: #5361df !important;
 
-    text-decoration: none !important;
+    font-size: 13px !important;
 
     font-weight: 600 !important;
 
+    text-decoration: none !important;
+
+    transition: color 0.2s ease !important;
+}
+
+.clear-filter:hover {
+    color: #303fbd !important;
 }
 
 
-/* ========================================= */
-/* FIND NEARBY */
-/* ========================================= */
+/* =========================================================
+   NEARBY SEARCH
+========================================================= */
 
 .nearby-search {
+    display: flex !important;
 
-    text-align: center !important;
+    flex-direction: column !important;
 
-    margin: 20px auto 45px !important;
+    align-items: center !important;
 
+    justify-content: center !important;
+
+    margin: 10px auto 45px !important;
 }
 
 
-/* ========================================= */
-/* LOCATION BUTTON */
-/* ========================================= */
-
 .nearby-tutors-btn {
+    height: 46px !important;
 
-    height: 50px !important;
+    padding: 0 22px !important;
 
-    border: none !important;
+    display: inline-flex !important;
 
-    padding: 0 25px !important;
+    align-items: center !important;
 
-    background: #5361df !important;
+    justify-content: center !important;
 
-    color: #fff !important;
+    gap: 9px !important;
 
-    border-radius: 5px !important;
+    border: 1px solid #5361df !important;
+
+    background: #ffffff !important;
+
+    color: #5361df !important;
+
+    border-radius: 8px !important;
+
+    font-size: 13px !important;
 
     font-weight: 600 !important;
 
     cursor: pointer !important;
 
-    transition: 0.3s ease !important;
-
-    white-space: nowrap !important;
-
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease !important;
 }
 
 
 .nearby-tutors-btn:hover {
+    background: #5361df !important;
 
-    background: #4350c8 !important;
+    color: #ffffff !important;
 
+    transform: translateY(-1px) !important;
 }
 
 
 .nearby-tutors-btn:disabled {
-
-    opacity: 0.7 !important;
+    opacity: 0.65 !important;
 
     cursor: wait !important;
 
+    transform: none !important;
 }
 
-
-/* ========================================= */
-/* LOCATION MESSAGE */
-/* ========================================= */
 
 #locationStatus {
+    margin: 10px 0 0 !important;
 
-    margin: 8px 0 0 !important;
-
-    font-size: 13px !important;
-
-    color: #777 !important;
-
-}
-
-
-/* ========================================= */
-/* DISTANCE */
-/* ========================================= */
-
-.teacher-distance {
-
-    color: #5361df !important;
-
-    font-weight: 600 !important;
-
-    font-size: 13px !important;
-
-}
-
-
-/* ========================================= */
-/* VERIFIED BADGE */
-/* ========================================= */
-
-.verified-badge {
-
-    display: inline-block !important;
-
-    margin-top: 8px !important;
-
-    padding: 5px 10px !important;
-
-    border-radius: 20px !important;
-
-    background: #e8f7ee !important;
-
-    color: #198754 !important;
+    color: #8a909d !important;
 
     font-size: 12px !important;
 
-    font-weight: 600 !important;
-
+    text-align: center !important;
 }
 
 
-.verified-badge i {
+#locationStatus i {
+    color: #198754 !important;
 
     margin-right: 4px !important;
-
 }
 
 
-/* ========================================= */
-/* TEACHER IMAGE */
-/* ========================================= */
+/* =========================================================
+   TUTOR CARD COLUMN
+========================================================= */
+
+.team_area .row > [class*="col-"] {
+    margin-bottom: 25px !important;
+}
+
+
+/* =========================================================
+   TUTOR CARD
+========================================================= */
+
+.our-team {
+    height: 100% !important;
+
+    background: #ffffff !important;
+
+    border: 1px solid #e8eaf0 !important;
+
+    border-radius: 12px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 5px 22px rgba(25, 35, 55, 0.055) !important;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease !important;
+
+    position: relative !important;
+}
+
+
+.our-team:hover {
+    transform: translateY(-6px) !important;
+
+    border-color: #dfe2f4 !important;
+
+    box-shadow:
+        0 15px 35px rgba(25, 35, 55, 0.10) !important;
+}
+
+
+/* =========================================================
+   TEACHER IMAGE AREA
+========================================================= */
+
+.team-content {
+    position: relative !important;
+
+    height: 215px !important;
+
+    overflow: hidden !important;
+
+    background: #eef0f5 !important;
+}
+
 
 .teacher-card-image {
-
     width: 100% !important;
 
-    height: 250px !important;
+    height: 215px !important;
 
     object-fit: cover !important;
 
@@ -946,42 +1102,459 @@ document.addEventListener('DOMContentLoaded', function () {
 
     display: block !important;
 
+    transition: transform 0.45s ease !important;
 }
 
 
-/* ========================================= */
-/* MOBILE */
-/* ========================================= */
+.our-team:hover .teacher-card-image {
+    transform: scale(1.035) !important;
+}
 
-@media (max-width: 991px) {
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
+
+.team-content::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.22)
+        );
+
+    pointer-events: none !important;
+}
+
+
+/* =========================================================
+   SOCIAL LINKS
+========================================================= */
+
+.social-links {
+    position: absolute !important;
+
+    left: 50% !important;
+
+    bottom: 15px !important;
+
+    transform: translate(-50%, 15px) !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 7px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    list-style: none !important;
+
+    opacity: 0 !important;
+
+    z-index: 5 !important;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease !important;
+}
+
+
+.our-team:hover .social-links {
+    opacity: 1 !important;
+
+    transform: translate(-50%, 0) !important;
+}
+
+
+.social-links li {
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+.social-links li a {
+    width: 32px !important;
+
+    height: 32px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    border-radius: 50% !important;
+
+    background: rgba(255, 255, 255, 0.94) !important;
+
+    color: #5361df !important;
+
+    font-size: 12px !important;
+
+    text-decoration: none !important;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease !important;
+}
+
+
+.social-links li a:hover {
+    background: #5361df !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TEACHER NAME SECTION
+========================================================= */
+
+.team-prof {
+    padding: 18px 18px 12px !important;
+
+    text-align: left !important;
+
+    border-bottom: 1px solid #f0f1f5 !important;
+}
+
+
+.team-prof h3 {
+    margin: 0 0 5px !important;
+
+    color: #1d2535 !important;
+
+    font-size: 17px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.35 !important;
+}
+
+
+.team-prof > span {
+    display: block !important;
+
+    min-height: 18px !important;
+
+    color: #7b8290 !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.5 !important;
+}
+
+
+/* =========================================================
+   VERIFIED BADGE
+========================================================= */
+
+.verified-badge {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    gap: 5px !important;
+
+    margin-top: 9px !important;
+
+    padding: 5px 9px !important;
+
+    border-radius: 20px !important;
+
+    background: #edf9f2 !important;
+
+    color: #16834b !important;
+
+    font-size: 10px !important;
+
+    font-weight: 600 !important;
+
+    line-height: 1 !important;
+}
+
+
+.verified-badge i {
+    margin: 0 !important;
+
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   TEACHER INFORMATION
+========================================================= */
+
+.sth_det2 {
+    padding: 15px 18px 5px !important;
+
+    min-height: 165px !important;
+
+    color: #666e7d !important;
+
+    text-align: left !important;
+}
+
+
+.sth_det2 span {
+    display: block !important;
+
+    margin-bottom: 8px !important;
+
+    color: #626a79 !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.45 !important;
+}
+
+
+.sth_det2 span:first-child {
+    color: #4f5665 !important;
+
+    font-weight: 500 !important;
+}
+
+
+/* =========================================================
+   DISTANCE
+========================================================= */
+
+.teacher-distance {
+    color: #5361df !important;
+
+    font-weight: 600 !important;
+
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   VIEW PROFILE BUTTON
+========================================================= */
+
+.our-team .text-center {
+    margin-top: 5px !important;
+
+    margin-bottom: 18px !important;
+}
+
+
+.our-team .btn_one {
+    display: inline-flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    min-width: 135px !important;
+
+    height: 40px !important;
+
+    padding: 0 18px !important;
+
+    border-radius: 7px !important;
+
+    background: #5361df !important;
+
+    color: #ffffff !important;
+
+    font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    text-decoration: none !important;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease !important;
+}
+
+
+.our-team .btn_one:hover {
+    background: #4350c8 !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-1px) !important;
+
+    box-shadow:
+        0 7px 16px rgba(83, 97, 223, 0.20) !important;
+}
+
+
+/* =========================================================
+   NO TUTORS
+========================================================= */
+
+.team_area .col-12.text-center {
+    padding: 60px 20px !important;
+}
+
+
+.team_area .col-12.text-center h3 {
+    margin-bottom: 10px !important;
+
+    color: #252d3d !important;
+
+    font-size: 22px !important;
+}
+
+
+.team_area .col-12.text-center p {
+    color: #818896 !important;
+
+    font-size: 14px !important;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1199px) {
 
     .tutor-filter-form {
-
         grid-template-columns:
             repeat(2, 1fr) !important;
+    }
 
+    .clear-filter {
+        grid-column: auto !important;
     }
 
 }
 
 
-@media (max-width: 576px) {
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .team_area {
+        padding-top: 55px !important;
+
+        padding-bottom: 65px !important;
+    }
+
+
+    .team_area .section-title {
+        margin-bottom: 30px !important;
+    }
+
+
+    .team_area .section-title h2 {
+        font-size: 29px !important;
+    }
+
+
+    .team_area .section-title p {
+        font-size: 13px !important;
+
+        line-height: 1.7 !important;
+    }
+
 
     .tutor-filter-form {
+        grid-template-columns: 1fr !important;
 
-        grid-template-columns:
-            1fr !important;
+        padding: 20px !important;
 
+        gap: 15px !important;
+
+        border-radius: 10px !important;
+    }
+
+
+    .clear-filter {
+        grid-column: auto !important;
+
+        text-align: center !important;
+
+        width: 100% !important;
+    }
+
+
+    .nearby-search {
+        margin-bottom: 35px !important;
     }
 
 
     .nearby-tutors-btn {
-
         width: 100% !important;
 
+        max-width: 320px !important;
+    }
+
+
+    .team-content,
+    .teacher-card-image {
+        height: 230px !important;
+    }
+
+
+    .social-links {
+        opacity: 1 !important;
+
+        transform: translate(-50%, 0) !important;
+    }
+
+
+    .our-team {
+        max-width: 390px !important;
+
+        margin-left: auto !important;
+
+        margin-right: auto !important;
     }
 
 }
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .team_area .section-title h2 {
+        font-size: 26px !important;
+    }
+
+
+    .team-prof {
+        padding-left: 16px !important;
+
+        padding-right: 16px !important;
+    }
+
+
+    .sth_det2 {
+        padding-left: 16px !important;
+
+        padding-right: 16px !important;
+    }
+
+
+    .team-content,
+    .teacher-card-image {
+        height: 220px !important;
+    }
+
+}
+
 
 
 </style>

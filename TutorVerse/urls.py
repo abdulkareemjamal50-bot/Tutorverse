@@ -2,7 +2,7 @@ from django.urls import path, include
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.views.generic import TemplateView
 urlpatterns = [
 
     path(
@@ -45,6 +45,17 @@ urlpatterns = [
     include('messaging.urls')
 ),
 path('contact/', views.contact, name='contact'),
+path(
+    'privacy-policy/',
+    TemplateView.as_view(template_name='privacy_policy.html'),
+    name='privacy_policy'
+),
+
+path(
+    'terms-and-conditions/',
+    TemplateView.as_view(template_name='terms_conditions.html'),
+    name='terms_conditions'
+),
 ]
 urlpatterns += static(
     settings.MEDIA_URL,

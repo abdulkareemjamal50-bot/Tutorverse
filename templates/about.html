@@ -168,9 +168,9 @@
 
                 <div class="ab_img">
 
-                    <img src="{% static 'assets/img/about1.png' %}"
+                    <img src="{% static 'assets/img/abt1.jpg' %}"
                          class="img-fluid"
-                         alt="Students learning with Tutorverse">
+                         alt="Students learning with Tutorverse" >
 
                 </div>
 
@@ -246,11 +246,11 @@
 <!-- END ABOUT -->
 
 
-<!-- START VIDEO -->
-<section class="vid_area va2"
-         style="background-image: url('{% static 'assets/img/bg/video.jpg' %}');
-                background-size: cover;
-                background-position: center center;">
+<!-- =========================================
+     START TUTORVERSE VIDEO
+========================================= -->
+
+<section class="vid_area va2">
 
     <div class="container">
 
@@ -260,10 +260,33 @@
                  data-wow-duration="1s"
                  data-wow-delay="0.2s">
 
-                <div class="video-area2">
+                <div class="video-area2 tutorverse-video-wrapper">
 
-                    <a href="https://www.youtube.com/watch?v=RXv_uIN6e-Y"
-                       class="magnific_popup video-button">
+                    <!-- Tutorverse Promotional Video -->
+                    <video
+                        id="tutorverseVideo"
+                        class="tutorverse-video"
+                        preload="metadata"
+                        playsinline
+                    >
+
+                        <source
+                            src="{% static 'assets/videos/tutor.mp4' %}"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support HTML5 video.
+
+                    </video>
+
+
+                    <!-- Tutorverse Play Button -->
+                    <a
+                        href="#"
+                        id="tutorversePlayButton"
+                        class="video-button"
+                        aria-label="Play Tutorverse video"
+                    >
 
                         <i class="fa fa-play"></i>
 
@@ -278,7 +301,10 @@
     </div>
 
 </section>
-<!-- END VIDEO -->
+
+<!-- =========================================
+     END TUTORVERSE VIDEO
+========================================= -->
 
 
 <!-- START VALUES -->
@@ -588,5 +614,136 @@
 </section>
 <!-- END TESTIMONIAL / VISION -->
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    const video = document.getElementById("tutorverseVideo");
+    const playButton = document.getElementById("tutorversePlayButton");
+
+
+    /* =========================================
+       CHECK ELEMENTS
+    ========================================= */
+
+    if (!video || !playButton) {
+        console.error("Tutorverse video elements were not found.");
+        return;
+    }
+
+
+    /* =========================================
+       PLAY VIDEO
+    ========================================= */
+
+    playButton.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        video.play()
+            .then(function () {
+
+                playButton.style.display = "none";
+
+            })
+            .catch(function (error) {
+
+                console.error(
+                    "Tutorverse video could not play:",
+                    error
+                );
+
+            });
+
+    });
+
+
+    /* =========================================
+       CLICK VIDEO TO PLAY / PAUSE
+    ========================================= */
+
+    video.addEventListener("click", function () {
+
+        if (video.paused) {
+
+            video.play()
+                .then(function () {
+
+                    playButton.style.display = "none";
+
+                });
+
+        } else {
+
+            video.pause();
+
+            playButton.style.display = "block";
+
+        }
+
+    });
+
+
+    /* =========================================
+       VIDEO STARTED
+    ========================================= */
+
+    video.addEventListener("play", function () {
+
+        playButton.style.display = "none";
+
+    });
+
+
+    /* =========================================
+       VIDEO PAUSED
+    ========================================= */
+
+    video.addEventListener("pause", function () {
+
+        /*
+           Don't show the button if the video has
+           reached the end. The 'ended' event handles
+           that separately.
+        */
+
+        if (!video.ended) {
+
+            playButton.style.display = "block";
+
+        }
+
+    });
+
+
+    /* =========================================
+       VIDEO FINISHED
+    ========================================= */
+
+    video.addEventListener("ended", function () {
+
+        playButton.style.display = "block";
+
+        /*
+           Return video to beginning so the user
+           can watch it again.
+        */
+        video.currentTime = 0;
+
+    });
+
+
+    /* =========================================
+       VIDEO ERROR
+    ========================================= */
+
+    video.addEventListener("error", function () {
+
+        console.error(
+            "Tutorverse video failed to load."
+        );
+
+    });
+
+});
+</script>
 {% endblock %}

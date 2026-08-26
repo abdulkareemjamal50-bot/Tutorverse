@@ -21,14 +21,22 @@ urlpatterns = [
         name='login'
     ),
 
+    # Firebase / Google Login
+    path(
+        'firebase-login/',
+        views.firebase_login,
+        name='firebase_login'
+    ),
+
     path(
         'logout/',
         views.logout_view,
         name='logout'
     ),
+
     path(
-    'register/',
-    views.register,
-    name='register'
-),
+        'register/',
+        views.register,
+        name='register'
+    ),
 ]

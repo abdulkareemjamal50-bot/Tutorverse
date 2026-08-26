@@ -96,42 +96,66 @@
 		</section>
 		<!-- END COUNTER --><!-- START COUNTER -->
 <section class="count_area counter_feature">
-    <div class="container">
-        <div class="row">
+  <div class="container">
+    <div class="row">
 
-            <div class="col-lg-3 col-sm-6 col-xs-12">
-                <div class="single-counter">
-                    <span class="ti-book sc_one"></span>
-                    <h2 class="counter-num">250+</h2>
-                    <p>Courses Available</p>
-                </div>
+        <!-- COURSES -->
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="single-counter">
+                <span class="ti-book sc_one"></span>
+
+                <h2 class="counter-num" data-count="250">
+                    10
+                </h2>
+
+                <p>Courses Available</p>
             </div>
-
-            <div class="col-lg-3 col-sm-6 col-xs-12">
-                <div class="single-counter">
-                    <span class="ti-blackboard sc_two"></span>
-                    <h2 class="counter-num">120+</h2>
-                    <p>Expert Tutors</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-6 col-xs-12">
-                <div class="single-counter">
-                    <span class="ti-user sc_three"></span>
-                    <h2 class="counter-num">15,000+</h2>
-                    <p>Active Students</p>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-6 col-xs-12">
-                <div class="single-counter">
-                    <span class="ti-medall-alt sc_four"></span>
-                    <h2 class="counter-num">95%</h2>
-                    <p>Student Satisfaction</p>
-                </div>
-            </div>
-
         </div>
+
+
+        <!-- TUTORS -->
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="single-counter">
+                <span class="ti-blackboard sc_two"></span>
+
+                <h2 class="counter-num" data-count="120">
+                    40
+                </h2>
+
+                <p>Expert Tutors</p>
+            </div>
+        </div>
+
+
+        <!-- STUDENTS -->
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="single-counter">
+                <span class="ti-user sc_three"></span>
+
+                <h2 class="counter-num" data-count="15000">
+                    100
+                </h2>
+
+                <p>Active Students</p>
+            </div>
+        </div>
+
+
+        <!-- SATISFACTION -->
+        <div class="col-lg-3 col-sm-6 col-xs-12">
+            <div class="single-counter">
+                <span class="ti-medall-alt sc_four"></span>
+
+                <h2 class="counter-num" data-count="95">
+                    95
+                </h2>
+
+                <p>Student Satisfaction</p>
+            </div>
+        </div>
+
+    </div>
+</div>
     </div>
 </section>
 <!-- END COUNTER -->
@@ -193,45 +217,124 @@
 </section>
 <!-- END WHY CHOOSE US -->			
 		
-<!-- START ABOUT US -->
-<section class="ab_area section-padding">
+<!-- START ABOUT TUTORVERSE -->
+<section class="about-tutorverse section-padding">
+
     <div class="container">
-        <div class="row">
 
-            <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
-                <div class="ab_img">
-                    <img src="{% static 'assets/img/about1.png' %}" class="img-fluid" alt="TutorVerse Learning">
+        <div class="row align-items-center">
+
+            <!-- =========================
+                 LEFT: IMAGE
+            ========================== -->
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+
+                <div class="about-image-wrapper">
+
+                    <img
+                        src="{% static 'assets/img/about1.jpg' %}"
+                        alt="Tutor helping student learn"
+                        class="about-tutor-image"
+                    >
+
+                    <!-- FLOATING EXPERIENCE CARD -->
+
+                    <div class="about-floating-card">
+
+                        <div class="floating-icon">
+                            <i class="fa fa-graduation-cap"></i>
+                        </div>
+
+                        <div>
+                            <strong>Learn Better</strong>
+                            <span>With the right tutor</span>
+                        </div>
+
+                    </div>
+
                 </div>
-            </div><!-- END COL -->
 
-            <div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
+            </div>
+
+
+            <!-- =========================
+                 RIGHT: CONTENT
+            ========================== -->
+
+            <div class="col-lg-6 col-md-6 col-sm-12">
+
                 <div class="ab_content">
-                    <h2>Empowering Students Through Personalized Learning</h2>
+
+                    <span class="about-label">
+                        LEARN WITH TUTORVERSE
+                    </span>
+
+                    <h2>
+                        Empowering Students Through
+                        Personalized Learning
+                    </h2>
 
                     <p>
-                        TutorVerse connects students with qualified tutors for one-on-one and group learning sessions. Whether you're preparing for exams, improving your skills, or learning something new, finding the right tutor has never been easier.
+                        TutorVerse connects students with qualified tutors
+                        for one-on-one and group learning sessions. Whether
+                        you're preparing for exams, improving your skills,
+                        or learning something new, finding the right tutor
+                        has never been easier.
                     </p>
 
                     <p>
-                        Our platform provides flexible scheduling, secure online learning, and a growing community of passionate educators dedicated to helping students achieve academic success.
+                        Our platform makes it simple to discover experienced
+                        tutors, communicate with them, and book flexible
+                        online or in-person learning sessions.
                     </p>
 
-                    <ul>
-                        <li><span class="ti-check"></span> Find experienced tutors across multiple subjects</li>
-                        <li><span class="ti-check"></span> Book online or in-person tutoring sessions easily</li>
-                        <li><span class="ti-check"></span> Learn at your own pace with personalized guidance</li>
+
+                    <!-- BENEFITS -->
+
+                    <ul class="about-benefits">
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Find experienced tutors across multiple subjects
+                        </li>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Book online or in-person tutoring sessions easily
+                        </li>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Learn at your own pace with personalized guidance
+                        </li>
+
                     </ul>
 
-                    <a class="btn_one" href="course.html">
-                        Explore Tutors <i class="ti-arrow-top-right"></i>
-                    </a>
-                </div>
-            </div><!-- END COL -->
 
-        </div><!-- END ROW -->
-    </div><!-- END CONTAINER -->
+                    <!-- BUTTON -->
+
+                    <a
+                        class="btn_one"
+                        href="{% url 'browse_teachers' %}"
+                    >
+
+                        Explore Tutors
+
+                        <i class="ti-arrow-top-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
-<!-- END ABOUT US -->	
+<!-- END ABOUT TUTORVERSE -->
 	
 <!-- START CATEGORY -->
 <section class="top_cat__area section-padding" style="background-image: url(assets/img/bg/section-2.jpg); background-size:cover; background-position:center center;">
@@ -267,7 +370,7 @@
 
                         <a href="{% url 'browse_teachers' %}?category={{ category.id }}">
 
-                            {% if category.name == "Mathematics" %}
+                            {% if category.name == "" %}
                                 <img src="{% static 'assets/img/e1.png' %}" alt="">
                             
                             {% elif category.name == "Science" %}
@@ -308,408 +411,1218 @@
 
 </div>
 </section>
-<!-- END CATEGORY -->				
+<!-- END CATEGORY -->	
 
-<!-- START COURSE -->
-<section class="home_course section-padding">
+<div class="row justify-content-center tutorverse-course-grid">
+
+    {% for course in courses %}
+
+    <div class="col-lg-4 col-md-6 col-sm-10 col-xs-12 mb-4">
+
+        <div class="tutorverse-course-card">
+
+            <!-- COURSE IMAGE -->
+            <div class="tutorverse-course-image">
+
+                {% if course.course_image %}
+                    <img
+                        src="{{ course.course_image.url }}"
+                        alt="{{ course.title }}"
+                    >
+                {% else %}
+                    <img
+                        src="{% static 'assets/img/course/1.png' %}"
+                        alt="{{ course.title }}"
+                    >
+                {% endif %}
+
+                <!-- CATEGORY -->
+                <span class="tutorverse-course-category">
+                    {{ course.category.name }}
+                </span>
+
+            </div>
+
+
+            <!-- COURSE CONTENT -->
+            <div class="tutorverse-course-content">
+
+                <!-- RATING -->
+                <div class="tutorverse-course-rating">
+
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+
+                    <span>5.0</span>
+
+                </div>
+
+
+                <!-- TITLE -->
+                <h4 class="tutorverse-course-title">
+
+                    <a href="{% url 'course_detail' course.id %}">
+                        {{ course.title }}
+                    </a>
+
+                </h4>
+
+
+                <!-- SUBJECT -->
+                <div class="tutorverse-course-info">
+
+                    <span>
+                        <i class="ti-book"></i>
+                        {{ course.subject.name }}
+                    </span>
+
+                </div>
+
+
+                <!-- DURATION -->
+                <div class="tutorverse-course-info">
+
+                    <span>
+                        <i class="ti-alarm-clock"></i>
+                        {{ course.duration|default:"Self-paced" }}
+                    </span>
+
+                </div>
+
+
+                <!-- BOTTOM -->
+                <div class="tutorverse-course-bottom">
+
+                    <div class="tutorverse-course-price">
+
+                        {% if course.price == 0 %}
+                            Free
+                        {% else %}
+                            ₦{{ course.price|floatformat:0 }}
+                        {% endif %}
+
+                    </div>
+
+
+                    <a
+                        href="{% url 'course_detail' course.id %}"
+                        class="tutorverse-course-btn"
+                    >
+                        View Course
+                        <i class="ti-arrow-top-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <!-- NO COURSES -->
+    <div class="col-12">
+
+        <div class="tutorverse-no-courses">
+
+            <i class="ti-book"></i>
+
+            <h4>No courses available yet</h4>
+
+            <p>
+                Our tutors are preparing exciting courses for students.
+                Check back soon!
+            </p>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+		
+		<!-- START TUTORVERSE VIDEO -->
+<section class="vid_area section-padding tutorverse-video-section">
+
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-sm-6 col-xs-12">
-                <div class="section-title">
-                    <h2>Explore Our <b>Featured</b> <br />Courses</h2>
-                </div>
-            </div><!--- END COL -->
-
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <div class="cour_btn">
-                    <a href="course.html" class="btn_one">Browse All Courses <i class="ti-arrow-top-right"></i></a>
-                </div>
-            </div><!--- END COL -->
-        </div><!--- END ROW -->
 
         <div class="row">
 
-            <!-- Course 1 -->
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <div class="single_course">
-                    <div class="single_c_img">
-                        <img src="{% static 'assets/img/course/1.png' %}" class="img-fluid" alt="course-image" />
-                        <span>Programming</span>
-                    </div>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <h4><a href="course.html">Python Programming for Beginners</a></h4>
-                    <p><span class="ti-book"></span> 18 Lessons</p>
-                    <p><span class="ti-alarm-clock"></span> 12 Hours</p>
-                    <div class="price">₦25,000</div>
+            <div class="col-lg-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.2s"
+                 data-wow-offset="0">
+
+                <div class="tutorverse-video">
+
+                    <video
+                        class="tutorverse-video-player"
+                        controls
+                        preload="metadata"
+                        playsinline
+                    >
+
+                        <source
+                            src="{% static 'assets/videos/tutor.mp4' %}"
+                            type="video/mp4">
+
+                        Your browser does not support HTML5 video.
+
+                    </video>
+
                 </div>
+
             </div>
 
-            <!-- Course 2 -->
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <div class="single_course">
-                    <div class="single_c_img">
-                        <img src="{% static 'assets/img/course/2.png' %}" class="img-fluid" alt="course-image" />
-                        <span>Web Development</span>
-                    </div>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <h4><a href="course.html">Complete HTML, CSS & JavaScript</a></h4>
-                    <p><span class="ti-book"></span> 26 Lessons</p>
-                    <p><span class="ti-alarm-clock"></span> 20 Hours</p>
-                    <div class="price">₦30,000</div>
-                </div>
-            </div>
+        </div>
 
-            <!-- Course 3 -->
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <div class="single_course">
-                    <div class="single_c_img">
-                        <img src="{% static 'assets/img/course/3.png' %}" class="img-fluid" alt="course-image" />
-                        <span>UI/UX Design</span>
-                    </div>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <h4><a href="course.html">UI/UX Design with Figma</a></h4>
-                    <p><span class="ti-book"></span> 15 Lessons</p>
-                    <p><span class="ti-alarm-clock"></span> 10 Hours</p>
-                    <div class="price">₦22,000</div>
-                </div>
-            </div>
+    </div>
 
-            <!-- Course 4 -->
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <div class="single_course">
-                    <div class="single_c_img">
-                        <img src="{% static 'assets/img/course/4.png' %}" class="img-fluid" alt="course-image" />
-                        <span>Data Science</span>
-                    </div>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <h4><a href="course.html">Data Analysis with Python</a></h4>
-                    <p><span class="ti-book"></span> 20 Lessons</p>
-                    <p><span class="ti-alarm-clock"></span> 16 Hours</p>
-                    <div class="price">₦35,000</div>
-                </div>
-            </div>
-
-            <!-- Course 5 -->
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <div class="single_course">
-                    <div class="single_c_img">
-                        <img src="{% static 'assets/img/course/5.png' %}" class="img-fluid" alt="course-image" />
-                        <span>Cybersecurity</span>
-                    </div>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <h4><a href="course.html">Ethical Hacking Essentials</a></h4>
-                    <p><span class="ti-book"></span> 24 Lessons</p>
-                    <p><span class="ti-alarm-clock"></span> 18 Hours</p>
-                    <div class="price">₦40,000</div>
-                </div>
-            </div>
-
-            <!-- Course 6 -->
-            <div class="col-lg-4 col-sm-6 col-xs-12">
-                <div class="single_course">
-                    <div class="single_c_img">
-                        <img src="{% static 'assets/img/course/6.png' %}" class="img-fluid" alt="course-image" />
-                        <span>Digital Marketing</span>
-                    </div>
-                    <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                    <h4><a href="course.html">Digital Marketing Masterclass</a></h4>
-                    <p><span class="ti-book"></span> 17 Lessons</p>
-                    <p><span class="ti-alarm-clock"></span> 14 Hours</p>
-                    <div class="price">Free</div>
-                </div>
-            </div>
-
-        </div><!--- END ROW -->
-    </div><!--- END CONTAINER -->
 </section>
-<!-- END COURSE -->
- 
+<!-- END TUTORVERSE VIDEO -->
+		
+<!-- START TEAM -->
+<section class="team_area section-padding">
+    <div class="container">
 
-		
-		<!-- START VIDEO -->
-		<section class="vid_area section-padding">
-			<div class="container">																
-				<div class="row">
-					<div class="col-lg-12 vp_top wow fadeInUDown" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
-						<div class="video-area" style="background-image: url('{% static "assets/img/bg/video.jpg" %}');  background-size:cover; background-position: center center;">
-							<a href="https://www.youtube.com/watch?v=RXv_uIN6e-Y" class="magnific_popup video-button"><i class="fa fa-play"></i></a>
-						</div>
-					</div><!--- END COL -->	
-				</div><!--- END ROW -->
-			</div><!--- END CONTAINER -->
-		</section>
-		<!-- END VIDEO -->			
-		
-		<!-- START TEAM -->
-		<section class="team_area section-padding">
-			<div class="container">									
-				<div class="section-title text-center">
-					<h2>Meet our Instructors</h2>
-					<p>We offer a brand new approach to the most basic learning paradigms. Choose from a wide range of learning options and gain new skills! Our school is know.</p>
-				</div>						
-				<div class="row">													
-					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="our-team">
-							<div class="team-content">
-								<a href="#"><img src="{% static 'assets/img/team/team1.jpg' %}" alt=""></a>
-								<ul class="social-links">
-									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
-							</div>
-							<div class="team-prof">
-								<h3>Bilkis Vabi</h3>
-								<span>Web designer</span>
-							</div>
+        <div class="section-title text-center">
+            <h2>Meet Our Tutors</h2>
+            <p>
+                Learn from experienced tutors and discover the right teacher
+                to help you achieve your academic goals.
+            </p>
+        </div>
+
+        <div class="row">
+
+            {% for tutor in tutors %}
+
+            <div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.1s"
+                 data-wow-offset="0">
+
+                <div class="our-team">
+
+                    <!-- Tutor Image -->
+                    <div class="team-content">
+
+        <a href="{% url 'browse_teachers' %}" class="tutor-image-link">
+
+        {% if tutor.profile_picture %}
+            <img 
+                src="{{ tutor.profile_picture.url }}" 
+                alt="{{ tutor.user.get_full_name }}"
+                class="tutor-profile-picture"
+            >
+        {% else %}
+            <img 
+                src="{% static 'assets/img/team/team1.jpg' %}" 
+                alt="{{ tutor.user.get_full_name }}"
+                class="tutor-profile-picture"
+            >
+        {% endif %}
+
+    </a>
+                        <!-- Social Links -->
+                        <ul class="social-links">
+
+                            {% if tutor.twitter %}
+                            <li>
+                                <a href="{{ tutor.twitter }}" target="_blank">
+                                    <i class="fa-solid fa-x"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% if tutor.facebook %}
+                            <li>
+                                <a href="{{ tutor.facebook }}" target="_blank">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% if tutor.linkedin %}
+                            <li>
+                                <a href="{{ tutor.linkedin }}" target="_blank">
+                                    <i class="fa-brands fa-linkedin-in"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+
+                    <!-- Tutor Information -->
+                    <div class="team-prof">
+
+                        <h3>
+                            {{ tutor.user.get_full_name }}
+                        </h3>
+
+                        <span>
+                            {{ tutor.subject }}
+                        </span>
+
+                    </div>
+
+                    <!-- Tutor Statistics -->
 							<div class="sth_det2">
-								<span class="ti-file"> <u>04 Course</u></span>
-								<span class="ti-user"> <u>27 Student</u></span>
-							</div>									
-						</div>
-					</div><!--- END COL -->										
-					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="our-team">
-							<div class="team-content">
-								<a href="#"><img src="{% static 'assets/img/team/team2.jpg' %}" alt=""></a>
-								<ul class="social-links">
-									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
-							</div>
-							<div class="team-prof">
-								<h3>Mood Wasim</h3>
-								<span>TemplateMonster company</span>
-							</div>
-							<div class="sth_det2">
-								<span class="ti-file"> <u>06 Course</u></span>
-								<span class="ti-user"> <u>41 Student</u></span>
-							</div>							
-						</div>
-					</div><!--- END COL -->										
-					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="our-team">
-							<div class="team-content">
-								<a href="#"><img src="{% static 'assets/img/team/team3.jpg' %}" alt=""></a>
-								<ul class="social-links">
-									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
-							</div>
-							<div class="team-prof">
-								<h3>Shyinn tim</h3>
-								<span>Codecanyou</span>
-							</div>
-							<div class="sth_det2">
-								<span class="ti-file"> <u>13 Course</u></span>
-								<span class="ti-user"> <u>31 Student</u></span>
-							</div>
-						</div>
-					</div><!--- END COL -->										
-					<div class="col-lg-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="our-team">
-							<div class="team-content">
-								<a href="#"><img src="{% static 'assets/img/team/team4.jpg' %}" alt=""></a>
-								<ul class="social-links">
-									<li><a href="#"><i class="fa-solid fa-x"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-									<li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-								</ul>
-							</div>
-							<div class="team-prof">
-								<h3>Shorif shorifa</h3>
-								<span>Tsc chottor</span>
-							</div>
-							<div class="sth_det2">
-								<span class="ti-file"> <u>07 Course</u></span>
-								<span class="ti-user"> <u>24 Student</u></span>
-							</div>
-						</div>
-					</div><!--- END COL -->							  
-				</div><!--- END ROW -->
-			</div><!--- END CONTAINER -->
-		</section>
-		<!-- END TEAM -->	
+
+			<span class="ti-file">
+				<u>{{ tutor.subjects.count }} Subjects</u>
+			</span>
+
+			<span class="ti-user">
+				<u>{{ tutor.experience }} Years Experience</u>
+			</span>
+
+		</div>
+
+                </div>
+
+            </div>
+            <!-- END COL -->
+
+            {% empty %}
+
+            <div class="col-12 text-center">
+                <p>No tutors are available yet.</p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+        <!-- END ROW -->
+
+
+        <!-- Browse All Tutors Button -->
+        <div class="text-center mt-4">
+
+            <a href="{% url 'browse_teachers' %}" class="btn_one">
+                Browse All Tutors
+            </a>
+
+        </div>
+
+    </div>
+    <!-- END CONTAINER -->
+
+</section>
+<!-- END TEAM -->
+
+
 
 	<!-- START PROMO -->
-	<section class="ab_area section-padding">
-		<div class="container">									
-			<div class="row">													
-				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-					<div class="ab_content">
-						<h2>Why Choose Us For Your Online Education Courses</h2>
-						<p>We offer a brand new approach to the most basic learning paradigms. Choose from a wide range of learning options and gain new skills! Our school is know.</p>
-						<p>We offer a brand new approach to the most basic learning paradigms. Choose from a wide range of learning options and gain new skills! Our school is know.</p>
-						<ul>
-							<li><span class="ti-check"></span> Get access to <b>12,000+</b> of our top courses</li>
-							<li><span class="ti-check"></span> Popular topic to learn now in our online courses for student</li>
-							<li><span class="ti-check"></span> Find the right instructor for you</li>
-						</ul>
-						<a class="btn_one" href="course.html">View All Courses <i class="ti-arrow-top-right"></i></a>
-					</div>
-				</div><!--- END COL -->	
-				<div class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0">
-					<div class="ab_img">
-						<img src="{% static 'assets/img/about3.png' %}" class="img-fluid" alt="image">
-						<div class="home_ps2">
-							<span class="ti-book"></span>
-							<h2>3300+</h2>
-							<p>Online Course</p>
-						</div>
-					</div>
-				</div><!--- END COL -->					
-			</div><!--- END ROW -->
-		</div><!--- END CONTAINER -->
-	</section>
-	<!-- END PROMO -->			
+<section class="ab_area section-padding">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- LEFT CONTENT -->
+            <div
+                class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp"
+                data-wow-duration="1s"
+                data-wow-delay="0.1s"
+                data-wow-offset="0"
+            >
+
+                <div class="ab_content">
+
+                    <h2>
+                        Learn Better With The Right Tutor
+                    </h2>
+
+                    <p>
+                        Tutorverse makes it easier for students to find
+                        the right tutor based on their subject, location,
+                        experience, learning needs, and preferred lesson mode.
+                    </p>
+
+                    <p>
+                        Whether you prefer learning online or face-to-face,
+                        Tutorverse connects you with qualified tutors who
+                        are ready to help you understand, improve, and succeed.
+                    </p>
+
+                    <ul>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Find tutors based on your
+                            <b>subject and learning needs</b>
+                        </li>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Choose between
+                            <b>online or in-person</b> lessons
+                        </li>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Connect with
+                            <b>verified and experienced</b> tutors
+                        </li>
+
+                        <li>
+                            <span class="ti-check"></span>
+                            Find tutors
+                            <b>near your location</b>
+                        </li>
+
+                    </ul>
+
+                    <a
+                        class="btn_one"
+                        href="{% url 'browse_teachers' %}"
+                    >
+                        Find A Tutor
+                        <i class="ti-arrow-top-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+            <!-- END COL -->
+
+
+            <!-- RIGHT IMAGE -->
+            <div
+                class="col-lg-6 col-sm-12 col-xs-12 wow fadeInUp"
+                data-wow-duration="1s"
+                data-wow-delay="0.2s"
+                data-wow-offset="0"
+            >
+
+                <div class="ab_img">
+
+                    <img
+                        src="{% static 'assets/img/tutors.jpg' %}"
+                        class="img-fluid"
+                        alt="Tutorverse student learning with a tutor"
+                    >
+
+                    <!-- FLOATING STAT -->
+                    <div class="home_ps2">
+
+                        <span class="ti-user"></span>
+
+                        <h2>Verified</h2>
+
+                        <p>Tutors Ready To Teach</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- END COL -->
+
+        </div>
+        <!-- END ROW -->
+
+    </div>
+    <!-- END CONTAINER -->
+
+</section>
+<!-- END PROMO -->		
 
 		<!-- START TESTIMONIALS -->
-		<section class="testi_area section-padding">
-			<div class="container">
-				<div class="section-title">
-					<h2>What Student’s Say To Do <br />Their Online Course</h2>
-				</div>						
-				<div class="row">
-					<div class="col-lg-6 col-sm-12 col-xs-12">
-						<div class="ab_img">
-							<img src="{% static 'assets/img/review.png' %}" class="img-fluid" alt="image">
-						</div>					
-					</div><!-- END COL -->						
-					<div class="col-lg-6 col-sm-12 col-xs-12">
-						<div id="testimonial-slider" class="owl-carousel">
-							<div class="testimonial">
-								<img src="{% static 'assets/img/quote.png' %}" alt="" />
-								<div class="testimonial_content">													
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
-								</div>
-								<div class="testi_pic_title">
-									<img src="{% static 'assets/img/testimonial/1.png' %}" alt="">
-									<h4>Ajmain Adil</h4>
-									<p>Groton Inc</p>
-								</div>
-							</div><!-- END TESTIMONIAL -->
-							<div class="testimonial">
-							<img src="{% static 'assets/img/quote.png' %}" alt="" />
-								<div class="testimonial_content">													
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
-								</div>
-								<div class="testi_pic_title">
-									<img src="{% static 'assets/img/testimonial/2.png' %}" alt="">
-									<h4>Sharukh Khan</h4>
-									<p>Red Chili Inc</p>
-								</div>
-							</div><!-- END TESTIMONIAL -->
-							<div class="testimonial">
-								<img src="{% static 'assets/img/quote.png' %}" alt="" />
-								<div class="testimonial_content">													
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
-								</div>
-								<div class="testi_pic_title">
-									<img src="{% static 'assets/img/testimonial/3.png' %}" alt="">
-									<h4>Anushka sharma</h4>
-									<p>Naika Company</p>
-								</div>
-							</div><!-- END TESTIMONIAL -->
-							<div class="testimonial">
-								<img src="{% static 'assets/img/quote.png' %}" alt="" />
-								<div class="testimonial_content">													
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
-								</div>
-								<div class="testi_pic_title">
-									<img src="{% static 'assets/img/testimonial/4.png' %}" alt="">
-									<h4>Ajmain Adil</h4>
-									<p>Groton Inc</p>
-								</div>
-							</div><!-- END TESTIMONIAL -->
-							<div class="testimonial">
-								<img src="{% static 'assets/img/quote.png' %}" alt="" />
-								<div class="testimonial_content">													
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<i class="ti-star"></i>
-									<p>Aqestic optio amet a ququam saepe aliquid voluate dicta fuga dolor saerror sed earum a magni soluta quam minus dolor dolor sed earum a magni soluta autem dolor error error sit quam minus sint rem a rerum dolobus veritatis delectus.</p>
-								</div>
-								<div class="testi_pic_title">
-									<img src="{% static 'assets/img/testimonial/5.png' %}" alt="">
-									<h4>Ajmain Adil</h4>
-									<p>Groton Inc</p>
-								</div>
-							</div><!-- END TESTIMONIAL -->
-						</div><!-- END TESTIMONIAL SLIDER -->
-					</div><!-- END COL -->		
-				</div><!--- END ROW -->
-			</div><!--- END CONTAINER -->		
-		</section>
-		<!-- END TESTINUNIALS -->
+<section class="testi_area section-padding">
+
+    <div class="container">
+
+        <!-- SECTION TITLE -->
+        <div class="section-title">
+
+            <h2>
+                What Students Say <br />
+                <b>About Tutorverse</b>
+            </h2>
+
+        </div>
+
+
+        <div class="row">
+
+            <!-- LEFT IMAGE -->
+            <div class="col-lg-6 col-sm-12 col-xs-12">
+
+                <div class="ab_img">
+
+                    <img
+                        src="{% static 'assets/img/review.jpg' %}"
+                        class="img-fluid"
+                        alt="Tutorverse students"
+                    >
+
+                </div>
+
+            </div>
+            <!-- END COL -->
+
+
+            <!-- RIGHT TESTIMONIALS -->
+            <div class="col-lg-6 col-sm-12 col-xs-12">
+
+                <div id="testimonial-slider" class="owl-carousel">
+
+
+                    <!-- TESTIMONIAL 1 -->
+                    <div class="testimonial">
+
+                        <img
+                            src="{% static 'assets/img/quote.png' %}"
+                            alt="Quote"
+                        >
+
+                        <div class="testimonial_content">
+
+                            <div class="testimonial-stars">
+
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+
+                            </div>
+
+                            <p>
+                                Tutorverse made it so much easier for me
+                                to find a tutor who understood exactly
+                                what I needed help with. I was able to
+                                find the right tutor for my subject and
+                                start learning with confidence.
+                            </p>
+
+                        </div>
+
+                        <div class="testi_pic_title">
+
+                            <img
+                                src="{% static 'assets/img/mub.jpg' %}"
+                                alt="Student"
+                            >
+
+                            <div>
+                                <h4>Odugbesan Mubeen</h4>
+                                <p>Secondary School Student</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- END TESTIMONIAL -->
+
+
+                    <!-- TESTIMONIAL 2 -->
+                    <div class="testimonial">
+
+                        <img
+                            src="{% static 'assets/img/quote.png' %}"
+                            alt="Quote"
+                        >
+
+                        <div class="testimonial_content">
+
+                            <div class="testimonial-stars">
+
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+
+                            </div>
+
+                            <p>
+                                I really like the flexibility Tutorverse
+                                provides. I can choose between online and
+                                in-person lessons and find tutors based
+                                on my location. It has completely changed
+                                the way I approach learning.
+                            </p>
+
+                        </div>
+
+                        <div class="testi_pic_title">
+
+                            <img
+                                src="{% static 'assets/img/testimonial/2.png' %}"
+                                alt="Student"
+                            >
+
+                            <div>
+                                <h4>David Williams</h4>
+                                <p>University Student</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- END TESTIMONIAL -->
+
+
+                    <!-- TESTIMONIAL 3 -->
+                    <div class="testimonial">
+
+                        <img
+                            src="{% static 'assets/img/quote.png' %}"
+                            alt="Quote"
+                        >
+
+                        <div class="testimonial_content">
+
+                            <div class="testimonial-stars">
+
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+
+                            </div>
+
+                            <p>
+                                Finding a good tutor used to be difficult
+                                for me. With Tutorverse, I can compare
+                                tutors, check their experience, view
+                                their subjects and choose someone who
+                                matches my learning needs.
+                            </p>
+
+                        </div>
+
+                        <div class="testi_pic_title">
+
+                            <img
+                                src="{% static 'assets/img/testimonial/3.png' %}"
+                                alt="Student"
+                            >
+
+                            <div>
+                                <h4>Fatima Ibrahim</h4>
+                                <p>Secondary School Student</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- END TESTIMONIAL -->
+
+
+                    <!-- TESTIMONIAL 4 -->
+                    <div class="testimonial">
+
+                        <img
+                            src="{% static 'assets/img/quote.png' %}"
+                            alt="Quote"
+                        >
+
+                        <div class="testimonial_content">
+
+                            <div class="testimonial-stars">
+
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+
+                            </div>
+
+                            <p>
+                                What I love most about Tutorverse is
+                                that it focuses on the student. I was
+                                able to find an experienced tutor who
+                                explained difficult topics in a simple
+                                way and helped me become more confident.
+                            </p>
+
+                        </div>
+
+                        <div class="testi_pic_title">
+
+                            <img
+                                src="{% static 'assets/img/testimonial/4.png' %}"
+                                alt="Student"
+                            >
+
+                            <div>
+                                <h4>Samuel Adeyemi</h4>
+                                <p>University Student</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- END TESTIMONIAL -->
+
+
+                    <!-- TESTIMONIAL 5 -->
+                    <div class="testimonial">
+
+                        <img
+                            src="{% static 'assets/img/quote.png' %}"
+                            alt="Quote"
+                        >
+
+                        <div class="testimonial_content">
+
+                            <div class="testimonial-stars">
+
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+                                <i class="ti-star"></i>
+
+                            </div>
+
+                            <p>
+                                Tutorverse gives students more control
+                                over their learning. I can search for
+                                tutors, look at their profiles and choose
+                                the learning option that works best for
+                                me.
+                            </p>
+
+                        </div>
+
+                        <div class="testi_pic_title">
+
+                            <img
+                                src="{% static 'assets/img/testimonial/5.png' %}"
+                                alt="Student"
+                            >
+
+                            <div>
+                                <h4>Zainab Yusuf</h4>
+                                <p>Secondary School Student</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- END TESTIMONIAL -->
+
+
+                </div>
+                <!-- END TESTIMONIAL SLIDER -->
+
+            </div>
+            <!-- END COL -->
+
+        </div>
+        <!-- END ROW -->
+
+    </div>
+    <!-- END CONTAINER -->
+
+</section>
+<!-- END TESTIMONIALS -->
 
 		<!-- START BLOG -->
-		<section id="blog" class="blog_area section-padding">
-			<div class="container">
-				<div class="section-title text-center">
-					<h2>Latest Blog & news</h2>
-					<p>We offer a brand new approach to the most basic learning paradigms. Choose from a wide range of learning options and gain new skills! Our school is know.</p>
-				</div>	
-				<div class="row">		
-					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="single_blog">
-							<img src="{% static 'assets/img/blog/1.jpg' %}" class="img-fluid" alt="image" />
-							<div class="content_box">
-								<span>May 10, 2024 | <a href="blog.html">Education</a></span>
-								<h2><a href="blog.html">Professional Mobile Painting and Sculpting</a></h2>
-								<a class="btn_one" href="blog.html">Read More <i class="ti-arrow-top-right"></i></a>
-							</div>
-						</div>
-					</div><!-- END COL-->				
-					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0">
-						<div class="single_blog">
-							<img src="{% static 'assets/img/blog/2.jpg' %}" class="img-fluid" alt="image" />
-							<div class="content_box">
-								<span>May 16, 2024 | <a href="blog.html">Education</a></span>
-								<h2><a href="blog.html">Professional Ceramic Moulding for Beginner</a></h2>
-								<a class="btn_one" href="blog.html">Read More <i class="ti-arrow-top-right"></i></a>							
-							</div>
-						</div>
-					</div><!-- END COL-->
-					<div class="col-lg-4 col-sm-4 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s" data-wow-offset="0">
-						<div class="single_blog">
-							<img src="{% static 'assets/img/blog/3.jpg' %}" class="img-fluid" alt="image" />
-							<div class="content_box">
-								<span>May 18, 2024 | <a href="blog.html">Programing</a></span>
-								<h2><a href="blog.html">Education Is About Create Leaders For Tomorrow </a></h2>
-								<a class="btn_one" href="blog.html">Read More <i class="ti-arrow-top-right"></i></a>
-							</div>
-						</div>
-					</div><!-- END COL-->						
-				</div><!-- / END ROW -->
-			</div><!-- END CONTAINER  -->
-		</section>	
+
+
+<!-- START LEARNING RESOURCES -->
+<section id="blog" class="blog_area section-padding">
+
+    <div class="container">
+
+        <!-- SECTION TITLE -->
+        <div class="section-title text-center">
+
+            <h2>
+                Learning <b>Resources</b> & Insights
+            </h2>
+
+            <p>
+                Discover helpful study tips, learning strategies, and
+                educational insights designed to help students learn
+                better and achieve more.
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            {% for post in latest_posts %}
+
+            <div class="col-lg-4 col-sm-6 col-xs-12 wow fadeInUp"
+                 data-wow-duration="1s"
+                 data-wow-delay="0.{{ forloop.counter }}s"
+                 data-wow-offset="0">
+
+                <div class="single_blog">
+
+                    <!-- BLOG IMAGE -->
+                    {% if post.image %}
+
+                        <img src="{{ post.image.url }}"
+                             class="img-fluid"
+                             alt="{{ post.title }}">
+
+                    {% else %}
+
+                        <div class="blog-placeholder">
+                            <i class="ti-book"></i>
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- BLOG CONTENT -->
+                    <div class="content_box">
+
+                        <span>
+                            {{ post.category }}
+                        </span>
+
+
+                        <h2>
+                            <a href="{% url 'blog_detail' post.slug %}">
+                                {{ post.title }}
+                            </a>
+                        </h2>
+
+
+                        <p>
+                            {{ post.excerpt }}
+                        </p>
+
+
+                        <a class="btn_one"
+                           href="{% url 'blog_detail' post.slug %}">
+
+                            Read More
+
+                            <i class="ti-arrow-top-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+                <div class="col-12 text-center">
+
+                    <p>
+                        No learning resources available yet.
+                    </p>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+<!-- END LEARNING RESOURCES -->
+
+
+
 		<!-- END BLOG -->	
 		
-		
+	<style>
+
+/* =========================================
+   ABOUT TUTORVERSE
+========================================= */
+
+.about-tutorverse {
+    background: #ffffff;
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.about-image-wrapper {
+
+    position: relative;
+
+    padding-right: 30px;
+
+}
+
+
+.about-tutor-image {
+
+    width: 100%;
+
+    height: 500px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    display: block;
+
+}
+
+
+/* =========================================
+   FLOATING CARD
+========================================= */
+
+.about-floating-card {
+
+    position: absolute;
+
+    right: 0;
+
+    bottom: 35px;
+
+    background: #ffffff;
+
+    padding: 18px 22px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.12);
+
+}
+
+
+.floating-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #eef0ff;
+
+    color: #5362e9;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 18px;
+
+}
+
+
+.about-floating-card strong {
+
+    display: block;
+
+    color: #10145c;
+
+    font-size: 14px;
+
+}
+
+
+.about-floating-card span {
+
+    display: block;
+
+    color: #888;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.ab_content {
+
+    padding-left: 35px;
+
+}
+
+
+.about-label {
+
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: #5362e9;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+}
+
+
+.ab_content h2 {
+
+    color: #10145c;
+
+    font-size: 38px;
+
+    line-height: 1.25;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+}
+
+
+.ab_content p {
+
+    color: #707070;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* =========================================
+   BENEFITS
+========================================= */
+
+.about-benefits {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 25px 0;
+
+}
+
+
+.about-benefits li {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 14px;
+
+    color: #333;
+
+    font-size: 14px;
+
+}
+
+
+.about-benefits li span {
+
+    width: 22px;
+
+    height: 22px;
+
+    min-width: 22px;
+
+    border-radius: 50%;
+
+    background: #eef0ff;
+
+    color: #5362e9;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 10px;
+
+}
+/* =========================================================
+   TUTORVERSE BLOG CARD FIX
+   ========================================================= */
+
+.single_blog {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.single_blog img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+}
+
+.single_blog .content_box {
+    display: flex;
+    flex-direction: column;
+
+    padding: 25px 25px 28px;
+
+    flex: 1;
+
+    background: #ffffff;
+}
+
+
+/* Blog category/date */
+.single_blog .content_box > span {
+    display: block;
+
+    margin-bottom: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* Blog title */
+.single_blog .content_box h2 {
+    margin-bottom: 12px;
+
+    line-height: 1.4;
+
+    min-height: auto;
+}
+
+
+/* Blog description */
+.single_blog .content_box p {
+    margin-bottom: 22px;
+
+    line-height: 1.7;
+
+    color: #666;
+}
+
+
+/* Read More button */
+.single_blog .content_box .btn_one {
+    position: static !important;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    width: fit-content;
+
+    margin-top: auto;
+
+    text-decoration: none;
+}
+
+
+/* Make sure the icon doesn't cause problems */
+.single_blog .content_box .btn_one i {
+    position: static !important;
+
+    margin-left: 4px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media only screen and (max-width: 767px) {
+
+    .single_blog {
+        margin-bottom: 30px;
+    }
+
+    .single_blog img {
+        height: 220px;
+    }
+
+    .single_blog .content_box {
+        padding: 22px 20px 25px;
+    }
+
+    .single_blog .content_box h2 {
+        font-size: 20px;
+    }
+
+}
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 991px) {
+
+    .about-image-wrapper {
+
+        padding-right: 15px;
+
+        margin-bottom: 50px;
+
+    }
+
+    .ab_content {
+
+        padding-left: 0;
+
+    }
+
+}
+
+
+@media (max-width: 767px) {
+
+    .about-tutor-image {
+
+        height: 350px;
+
+    }
+
+    .about-floating-card {
+
+        right: 15px;
+
+        bottom: 20px;
+
+    }
+
+    .ab_content h2 {
+
+        font-size: 30px;
+
+    }
+
+}
+
+</style>	
 
 		
 	

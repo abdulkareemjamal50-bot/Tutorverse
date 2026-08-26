@@ -24,6 +24,11 @@ urlpatterns = [
 
     # Courses
     path('courses/', include('courses.urls')),
+    path(
+    'blog/',
+    include('blog.urls')
+),
+    
 ]
 
 

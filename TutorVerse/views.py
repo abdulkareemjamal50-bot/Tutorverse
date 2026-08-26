@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 
 from teachers.models import TeacherProfile
 from categories.models import Category, Subject
+from django.core.mail import send_mail
+from django.contrib import messages
+from courses.models import Course
+from blog.models import BlogPost
 
 import math
 
@@ -13,15 +17,33 @@ import math
 # =========================
 
 def home(request):
- categories = Category.objects.all()
- return render(
+    categories = Category.objects.all()
+
+    tutors = TeacherProfile.objects.filter(
+        is_available=True
+    )[:4]
+
+    courses = Course.objects.filter(
+        is_available=True
+    ).select_related(
+        'teacher__user',
+        'category',
+        'subject'
+    ).order_by('-created_at')[:6]
+    latest_posts = BlogPost.objects.filter(
+        published=True
+    ).order_by('-created_at')[:3]
+
+    return render(
         request,
         'index.html',
         {
-            'categories': categories
+            'categories': categories,
+            'tutors': tutors,
+            'courses': courses,
+             'latest_posts': latest_posts,
         }
     )
-
 
 # =========================
 # CALCULATE DISTANCE
@@ -448,4 +470,33 @@ def student_profile(request):
 
 
 def contact(request):
+
+    if request.method == 'POST':
+
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+
+        send_mail(
+            subject=f"Tutorverse Contact: {subject}",
+            message=f"""
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+""",
+            from_email=None,
+            recipient_list=['abdulkareemjamal50@gmail.com'],
+            fail_silently=False,
+        )
+
+        messages.success(
+            request,
+            'Your message has been sent successfully. We will get back to you soon.'
+        )
+
+        return redirect('contact')
+
     return render(request, 'contact.html')
