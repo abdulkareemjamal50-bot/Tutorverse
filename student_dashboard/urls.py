@@ -21,5 +21,10 @@ urlpatterns = [
         views.edit_student_profile,
         name='edit_student_profile'
     ),
+    path(
+    'student/<int:student_id>/',
+    views.teacher_view_student_profile,
+    name='teacher_view_student_profile'
+),
 
 ]

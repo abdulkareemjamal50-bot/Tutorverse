@@ -118,10 +118,54 @@ def update_booking_status(request, booking_id):
 
         status = request.POST.get('status')
 
-        if status in ['accepted', 'cancelled']:
+        if status == 'accepted':
 
-            booking.status = status
+            # Get lesson details from the teacher
+            is_online = request.POST.get('is_online') == 'true'
+
+            meeting_link = request.POST.get(
+                'meeting_link',
+                ''
+            ).strip()
+
+            location = request.POST.get(
+                'location',
+                ''
+            ).strip()
+
+            # Online lesson must have a meeting link
+            if is_online and not meeting_link:
+                return redirect(
+                    'booking_detail',
+                    booking_id=booking.id
+                )
+
+            # Offline lesson must have a location
+            if not is_online and not location:
+                return redirect(
+                    'booking_detail',
+                    booking_id=booking.id
+                )
+
+            booking.is_online = is_online
+            booking.meeting_link = meeting_link
+            booking.location = location
+            booking.status = 'accepted'
+
             booking.save()
+
+        elif status == 'cancelled':
+
+            booking.status = 'cancelled'
+            booking.save()
+
+        elif status == 'completed':
+
+            # Only an accepted booking can be completed
+            if booking.status == 'accepted':
+
+                booking.status = 'completed'
+                booking.save()
 
     return redirect(
         'booking_detail',

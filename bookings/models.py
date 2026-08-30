@@ -24,7 +24,9 @@ class Booking(models.Model):
         related_name="teacher_bookings"
     )
 
-    subject = models.CharField(max_length=150)
+    subject = models.CharField(
+        max_length=150
+    )
 
     lesson_date = models.DateField()
 
@@ -40,9 +42,18 @@ class Booking(models.Model):
         blank=True
     )
 
-    is_online = models.BooleanField(default=True)
+    is_online = models.BooleanField(
+        default=True
+    )
 
-    note = models.TextField(blank=True)
+    meeting_link = models.URLField(
+        blank=True,
+        null=True
+    )
+
+    note = models.TextField(
+        blank=True
+    )
 
     status = models.CharField(
         max_length=20,
@@ -50,7 +61,9 @@ class Booking(models.Model):
         default='pending'
     )
 
-    booked_at = models.DateTimeField(auto_now_add=True)
+    booked_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
     def __str__(self):
         return f"{self.student.username} booked {self.teacher.user.username}"

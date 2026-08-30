@@ -154,6 +154,33 @@
                     </div>
 
                 </div>
+                <!-- IDENTITY VERIFICATION -->
+
+<div class="form-group">
+
+    <label for="{{ form.identity_document_type.id_for_label }}">
+        Identity Document Type
+    </label>
+
+    {{ form.identity_document_type }}
+
+</div>
+
+
+<div class="form-group">
+
+    <label for="{{ form.identity_document.id_for_label }}">
+        Upload Identity Document
+    </label>
+
+    {{ form.identity_document }}
+
+    <small class="form-text text-muted">
+        Upload a clear copy of your National ID, Driver's License,
+        International Passport, or Voter's Card.
+    </small>
+
+</div>
                 
                 <!-- INTRODUCTION VIDEO -->
 <div class="form-group">

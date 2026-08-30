@@ -461,35 +461,185 @@
     color: #aaa;
 }
 
+/* =========================================
+   RESPONSIVE / TABLET / MOBILE
+========================================= */
 
-/* ================================
-   MOBILE
-================================ */
+/* Prevent elements from forcing horizontal overflow */
+.login-section,
+.login-wrapper,
+.login-info,
+.login-form-box {
+    box-sizing: border-box;
+}
 
-@media (max-width: 767px) {
+.login-wrapper {
+    width: 100%;
+}
+
+.login-info,
+.login-form-box {
+    min-width: 0;
+}
+
+
+/* =========================================
+   TABLET + SMALL SCREENS
+   Important: 991px instead of 767px
+========================================= */
+
+@media (max-width: 991px) {
 
     .login-section {
-        padding: 50px 15px;
+        padding: 50px 20px;
     }
 
     .login-wrapper {
+        width: 100%;
+        max-width: 700px;
         grid-template-columns: 1fr;
     }
 
     .login-info {
-        padding: 40px 30px;
-    }
-
-    .login-info h1 {
-        font-size: 32px;
+        padding: 40px 35px;
     }
 
     .login-logo {
-        margin-bottom: 40px;
+        margin-bottom: 35px;
+    }
+
+    .login-info h1 {
+        font-size: 34px;
+    }
+
+    .login-info p {
+        font-size: 15px;
     }
 
     .login-form-box {
-        padding: 40px 30px;
+        padding: 40px 35px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .login-section {
+        padding: 30px 15px 50px;
+    }
+
+    .login-wrapper {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 12px;
+        display: block;
+    }
+
+    .login-info {
+        padding: 30px 25px;
+    }
+
+    .login-logo {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .login-logo i {
+        font-size: 28px;
+    }
+
+    .login-info h1 {
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+
+    .login-info p {
+        font-size: 14px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+    .login-benefits div {
+        font-size: 14px;
+        margin-bottom: 14px;
+    }
+
+    .login-form-box {
+        padding: 30px 25px;
+    }
+
+    .login-heading {
+        margin-bottom: 25px;
+    }
+
+    .login-heading h2 {
+        font-size: 27px;
+    }
+
+    .login-heading p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .form-group input {
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .login-btn,
+    .google-login-btn {
+        height: 50px;
+    }
+
+    .register-links {
+        font-size: 14px;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 400px) {
+
+    .login-section {
+        padding: 20px 10px 40px;
+    }
+
+    .login-info {
+        padding: 25px 20px;
+    }
+
+    .login-form-box {
+        padding: 25px 20px;
+    }
+
+    .login-logo {
+        font-size: 22px;
+    }
+
+    .login-info h1 {
+        font-size: 27px;
+    }
+
+    .login-heading h2 {
+        font-size: 25px;
+    }
+
+    .register-links a {
+        display: block;
+        margin: 8px 0;
+    }
+
+    .register-links span {
+        display: none;
     }
 
 }

@@ -103,21 +103,21 @@
                                         Tutors
                                     </a>
                                 </li>
+                             <!-- INSIGHTS -->
+
+                                <li>
+                                    <a href="{% url 'blog_list' %}">
+                                        Insights
+                                    </a>
+                                </li>
 
 
-                         <li>
-        <a href="{% url 'blog_list' %}">
-            Insights
-        </a>
-    </li>
+                                                            <!-- CONTACT -->
+                                                            <li>
+                                        <a href="{% url 'contact' %}">Contact</a>
+                                    </li>
 
-
-                        <!-- CONTACT -->
-                        <li>
-    <a href="{% url 'contact' %}">Contact</a>
-</li>
-
-                    </ul>
+                                                        </ul>
 
                 </nav>
 
@@ -133,34 +133,48 @@
 
         <div class="user-account">
 
-            <button
-                type="button"
-                class="user-account-btn"
-                onclick="toggleUserMenu()"
-            >
+           <button
+    type="button"
+    class="user-account-btn"
+    onclick="toggleUserMenu()"
+>
 
-                {% if user.profile.profile_picture %}
+    {% if user.teacherprofile and user.teacherprofile.profile_picture %}
 
-                    <img
-                        src="{{ user.profile.profile_picture.url }}"
-                        alt="{{ user.username }}"
-                    >
+        <!-- TEACHER PROFILE PICTURE -->
 
-                {% else %}
+        <img
+            src="{{ user.teacherprofile.profile_picture.url }}"
+            alt="{{ user.username }}"
+        >
 
-                    <div class="user-avatar">
-                        {{ user.username|first|upper }}
-                    </div>
+    {% elif user.studentprofile and user.studentprofile.profile_picture %}
 
-                {% endif %}
+        <!-- STUDENT PROFILE PICTURE -->
 
-                <span>
-                    {{ user.get_full_name|default:user.username }}
-                </span>
+        <img
+            src="{{ user.studentprofile.profile_picture.url }}"
+            alt="{{ user.username }}"
+        >
 
-                <i class="fa fa-angle-down"></i>
+    {% else %}
 
-            </button>
+        <!-- DEFAULT AVATAR -->
+
+        <div class="user-avatar">
+            {{ user.username|first|upper }}
+        </div>
+
+    {% endif %}
+
+
+    <span>
+        {{ user.get_full_name|default:user.username }}
+    </span>
+
+    <i class="fa fa-angle-down"></i>
+
+</button>
 
 
             <!-- USER DROPDOWN -->
@@ -333,12 +347,12 @@
 
                 </li>
 
-            <!-- INSIGHTS -->
-<li>
-    <a href="{% url 'blog_list' %}">
-        Insights
-    </a>
-</li>
+                            <!-- INSIGHTS -->
+                <li>
+                    <a href="{% url 'blog_list' %}">
+                        Insights
+                    </a>
+                </li>
 
 
                 <!-- MOBILE AUTH -->
@@ -585,7 +599,13 @@
     background: #fff1f0;
 
 }
-
+.user-account-btn img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
 </style>
 <script>
 

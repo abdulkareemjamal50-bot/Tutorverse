@@ -5,6 +5,9 @@ from bookings.models import Booking
 from .models import StudentProfile
 from .forms import StudentProfileForm
 
+from django.conf import settings
+from django.shortcuts import render, redirect, get_object_or_404
+
 
 @login_required
 def dashboard(request):
@@ -93,5 +96,29 @@ def edit_student_profile(request):
         {
             'form': form,
             'profile': profile,
+        }
+    )
+# ==========================================
+# TEACHER VIEW STUDENT PROFILE
+# ==========================================
+
+@login_required
+def teacher_view_student_profile(request, student_id):
+
+    student = get_object_or_404(
+        settings.AUTH_USER_MODEL,
+        id=student_id
+    )
+
+    profile, created = StudentProfile.objects.get_or_create(
+        user=student
+    )
+
+    return render(
+        request,
+        'student_dashboard/student_profile.html',
+        {
+            'profile': profile,
+            'student': student,
         }
     )

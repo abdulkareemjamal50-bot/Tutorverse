@@ -8,6 +8,8 @@ from django.core.mail import send_mail
 from django.contrib import messages
 from courses.models import Course
 from blog.models import BlogPost
+from django.db.models import Avg, Count
+
 
 import math
 
@@ -87,6 +89,9 @@ def calculate_distance(
 # BROWSE TEACHERS
 # =========================
 
+
+
+
 def browse_teachers(request):
 
     # =========================
@@ -140,6 +145,14 @@ def browse_teachers(request):
         is_available=True
     ).prefetch_related(
         'subjects__category'
+    ).annotate(
+        average_rating=Avg(
+            'reviews__rating'
+        ),
+        review_count=Count(
+            'reviews',
+            distinct=True
+        )
     )
 
 
@@ -416,39 +429,50 @@ def about(request):
 # =========================
 # TEACHER PROFILE
 # =========================
-
-def teacher_profile(
-    request,
-    teacher_id
-):
+def teacher_profile(request, teacher_id):
 
     teacher = get_object_or_404(
-
         TeacherProfile,
-
         id=teacher_id
-
     )
+
+    # Get reviews for this teacher
+    reviews = teacher.reviews.select_related(
+        'student'
+    ).all().order_by('-created_at')
+
+    # Review count
+    review_count = reviews.count()
+
+    # Average rating
+    if review_count > 0:
+
+        average_rating = round(
+            sum(review.rating for review in reviews)
+            / review_count,
+            1
+        )
+
+    else:
+
+        average_rating = 0
 
 
     context = {
+        'teacher': teacher,
 
-        'teacher': teacher
-
+        # Reviews
+        'reviews': reviews,
+        'review_count': review_count,
+        'average_rating': average_rating,
     }
 
 
     return render(
-
         request,
-
         'teachers-pro.html',
-
         context
-
     )
-
-
 # =========================
 # STUDENT PROFILE
 # =========================

@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from .models import TeacherProfile
 from .forms import TeacherProfileForm
+from student_dashboard.models import StudentProfile
+
+
+User = get_user_model()
 
 
 @login_required
@@ -23,7 +27,16 @@ def teacher_profile_setup(request):
 
         if form.is_valid():
 
-            form.save()
+            profile = form.save(commit=False)
+
+            # If the teacher uploads a new identity document,
+            # require verification again.
+            if 'identity_document' in request.FILES:
+                profile.verified = False
+
+            profile.save()
+
+            form.save_m2m()
 
             return redirect('teacher_dashboard')
 
@@ -37,7 +50,8 @@ def teacher_profile_setup(request):
         request,
         'teachers/profile_setup.html',
         {
-            'form': form
+            'form': form,
+            'teacher': profile,
         }
     )
 
@@ -58,19 +72,18 @@ def teacher_detail(request, teacher_id):
         }
     )
 
-
 @login_required
 def teacher_student_profile(request, student_id):
 
-    student = get_object_or_404(
-        User,
-        id=student_id
+    profile = get_object_or_404(
+        StudentProfile,
+        user__id=student_id
     )
 
     return render(
         request,
         'teachers/student_profile.html',
         {
-            'student': student
+            'profile': profile
         }
     )

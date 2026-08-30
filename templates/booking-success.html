@@ -2,30 +2,347 @@
 
 {% block content %}
 
-<div class="text-center booking-success">
+<style>
 
-    <h2>Booking Successful!</h2>
+/* =========================================
+   BOOKING SUCCESS PAGE
+========================================= */
 
-    <p class="success-message">
-        Your lesson has been booked successfully.
-    </p>
+.booking-success-section {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    background:
+        radial-gradient(circle at 10% 20%, rgba(83, 98, 233, 0.08), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(83, 98, 233, 0.06), transparent 30%),
+        #f7f8fc;
+}
 
-    <p class="success-subtext">
-        You can view your booking from your bookings page.
-    </p>
+.booking-success-card {
+    width: 100%;
+    max-width: 650px;
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 55px 50px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(24, 32, 68, 0.10);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
 
-    <div class="success-buttons">
 
-        <a href="{% url 'my_bookings' %}" class="btn_one">
-            View My Bookings
-        </a>
+/* =========================================
+   SUCCESS ICON
+========================================= */
 
-        <a href="{% url 'browse_teachers' %}" class="btn_one">
-            Browse More Tutors
-        </a>
+.success-icon-wrapper {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 28px;
+    border-radius: 50%;
+    background: rgba(83, 98, 233, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.success-icon {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: #5362e9;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    box-shadow: 0 10px 25px rgba(83, 98, 233, 0.25);
+}
+
+.success-icon i {
+    line-height: 1;
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.booking-success-card h2 {
+    margin: 0 0 14px;
+    font-size: 34px;
+    font-weight: 700;
+    color: #151b4f;
+    letter-spacing: -0.5px;
+}
+
+.success-message {
+    margin: 0 auto 10px;
+    max-width: 500px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #3f4357;
+}
+
+.success-subtext {
+    margin: 0 auto 30px;
+    max-width: 500px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #85899a;
+}
+
+
+/* =========================================
+   CONFIRMATION BOX
+========================================= */
+
+.booking-confirmation {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-align: left;
+    background: #f8f9ff;
+    border: 1px solid #e8eaff;
+    border-radius: 12px;
+    padding: 17px 20px;
+    margin: 0 auto 32px;
+    max-width: 500px;
+}
+
+.booking-confirmation-icon {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #5362e9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+.booking-confirmation-text strong {
+    display: block;
+    color: #22263f;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.booking-confirmation-text span {
+    display: block;
+    color: #85899a;
+    font-size: 13px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.success-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.success-buttons a {
+    min-width: 190px;
+    height: 50px;
+    padding: 0 24px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+
+/* PRIMARY */
+
+.success-buttons .primary-btn {
+    background: #5362e9;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(83, 98, 233, 0.20);
+}
+
+.success-buttons .primary-btn:hover {
+    background: #414fda;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(83, 98, 233, 0.28);
+}
+
+
+/* SECONDARY */
+
+.success-buttons .secondary-btn {
+    background: #ffffff;
+    color: #5362e9;
+    border: 1px solid #dfe2f5;
+}
+
+.success-buttons .secondary-btn:hover {
+    background: #f7f8ff;
+    border-color: #5362e9;
+    color: #5362e9;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   FOOT NOTE
+========================================= */
+
+.success-footer {
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top: 1px solid #eeeeF3;
+    color: #9a9dad;
+    font-size: 13px;
+}
+
+.success-footer i {
+    color: #5362e9;
+    margin-right: 5px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    .booking-success-section {
+        padding: 50px 15px;
+    }
+
+    .booking-success-card {
+        padding: 40px 25px;
+        border-radius: 18px;
+    }
+
+    .booking-success-card h2 {
+        font-size: 28px;
+    }
+
+    .success-message {
+        font-size: 15px;
+    }
+
+    .success-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .success-buttons a {
+        width: 100%;
+        min-width: unset;
+    }
+
+}
+
+</style>
+
+
+<section class="booking-success-section">
+
+    <div class="booking-success-card">
+
+        <!-- SUCCESS ICON -->
+        <div class="success-icon-wrapper">
+
+            <div class="success-icon">
+                <i class="fa fa-check"></i>
+            </div>
+
+        </div>
+
+
+        <!-- TITLE -->
+        <h2>
+            Booking Successful!
+        </h2>
+
+
+        <!-- MESSAGE -->
+        <p class="success-message">
+            Your lesson has been successfully booked.
+        </p>
+
+        <p class="success-subtext">
+            Your tutor has received your booking request.
+            You can keep track of your lesson from your bookings dashboard.
+        </p>
+
+
+        <!-- CONFIRMATION MESSAGE -->
+        <div class="booking-confirmation">
+
+            <div class="booking-confirmation-icon">
+                <i class="fa fa-calendar-check-o"></i>
+            </div>
+
+            <div class="booking-confirmation-text">
+
+                <strong>
+                    Your booking is confirmed
+                </strong>
+
+                <span>
+                    Check your bookings dashboard for the latest updates.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="success-buttons">
+
+            <a
+                href="{% url 'my_bookings' %}"
+                class="primary-btn"
+            >
+                <i class="fa fa-calendar"></i>
+                View My Bookings
+            </a>
+
+
+            <a
+                href="{% url 'browse_teachers' %}"
+                class="secondary-btn"
+            >
+                <i class="fa fa-search"></i>
+                Browse More Tutors
+            </a>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <div class="success-footer">
+
+            <i class="fa fa-shield"></i>
+
+            Thank you for choosing
+            <strong>TutorVerse</strong>
+
+        </div>
 
     </div>
 
-</div>
+</section>
 
 {% endblock %}

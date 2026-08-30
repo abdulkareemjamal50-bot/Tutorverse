@@ -3,6 +3,7 @@ from django.conf import settings
 
 
 class TeacherProfile(models.Model):
+
     LESSON_MODE = (
         ('online', 'Online'),
         ('offline', 'Offline'),
@@ -15,12 +16,15 @@ class TeacherProfile(models.Model):
     )
 
     subjects = models.ManyToManyField(
-    'categories.Subject',
-    related_name='teachers'
+        'categories.Subject',
+        related_name='teachers'
     )
+
     bio = models.TextField()
 
-    qualification = models.CharField(max_length=200)
+    qualification = models.CharField(
+        max_length=200
+    )
 
     experience = models.PositiveIntegerField(
         help_text="Years of teaching experience"
@@ -37,19 +41,23 @@ class TeacherProfile(models.Model):
         default='online'
     )
 
-    city = models.CharField(max_length=100)
+    city = models.CharField(
+        max_length=100
+    )
 
-    state = models.CharField(max_length=100)
+    state = models.CharField(
+        max_length=100
+    )
 
     latitude = models.FloatField(
-    null=True,
-    blank=True
-)
+        null=True,
+        blank=True
+    )
 
     longitude = models.FloatField(
-    null=True,
-    blank=True
-)
+        null=True,
+        blank=True
+    )
 
     profile_picture = models.ImageField(
         upload_to='teachers/',
@@ -58,16 +66,45 @@ class TeacherProfile(models.Model):
     )
 
     intro_video = models.FileField(
-    upload_to='teacher_videos/',
-    blank=True,
-    null=True
-)
+        upload_to='teacher_videos/',
+        blank=True,
+        null=True
+    )
 
-    verified = models.BooleanField(default=False)
+    # =========================================
+    # IDENTITY VERIFICATION
+    # =========================================
 
-    is_available = models.BooleanField(default=True)
+    identity_document = models.FileField(
+        upload_to='teacher_identity_documents/',
+        blank=True,
+        null=True,
+        help_text="Upload a valid government-issued ID."
+    )
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    identity_document_type = models.CharField(
+        max_length=50,
+        blank=True,
+        choices=(
+            ('national_id', 'National ID'),
+            ('drivers_license', "Driver's License"),
+            ('passport', 'International Passport'),
+            ('voters_card', "Voter's Card"),
+            ('other', 'Other'),
+        )
+    )
+
+    verified = models.BooleanField(
+        default=False
+    )
+
+    is_available = models.BooleanField(
+        default=True
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )
 
     def __str__(self):
         return self.user.get_full_name() or self.user.username

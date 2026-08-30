@@ -1,0 +1,496 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="profile-section">
+
+    <div class="container">
+
+        <div class="profile-card">
+
+            <!-- PROFILE HEADER -->
+            <div class="profile-header">
+
+                <div class="profile-avatar">
+
+                    {% if profile.profile_picture %}
+                        <img
+                            src="{{ profile.profile_picture.url }}"
+                            alt="{{ profile.user.get_full_name }}"
+                        >
+                    {% else %}
+                        {{ profile.user.first_name|first|upper }}
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <span class="student-role">
+                        STUDENT
+                    </span>
+
+                    <h1>
+                        {{ profile.user.get_full_name|default:profile.user.username }}
+                    </h1>
+
+                    <p>
+                        {{ profile.user.email }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFILE DETAILS -->
+            <div class="profile-details">
+
+                <!-- FIRST NAME -->
+                <div class="profile-item">
+
+                    <span>
+                        First Name
+                    </span>
+
+                    <strong>
+                        {{ profile.user.first_name|default:"Not provided" }}
+                    </strong>
+
+                </div>
+
+
+                <!-- LAST NAME -->
+                <div class="profile-item">
+
+                    <span>
+                        Last Name
+                    </span>
+
+                    <strong>
+                        {{ profile.user.last_name|default:"Not provided" }}
+                    </strong>
+
+                </div>
+
+
+                <!-- USERNAME -->
+                <div class="profile-item">
+
+                    <span>
+                        Username
+                    </span>
+
+                    <strong>
+                        {{ profile.user.username }}
+                    </strong>
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="profile-item">
+
+                    <span>
+                        Email
+                    </span>
+
+                    <strong>
+                        {{ profile.user.email }}
+                    </strong>
+
+                </div>
+
+
+                <!-- EDUCATION -->
+                <div class="profile-item">
+
+                    <span>
+                        Education Level
+                    </span>
+
+                    <strong>
+
+                        {% if profile.education_level %}
+                            {{ profile.education_level }}
+                        {% else %}
+                            Not provided
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+                <!-- LOCATION -->
+                <div class="profile-item">
+
+                    <span>
+                        Location
+                    </span>
+
+                    <strong>
+
+                        {% if profile.city or profile.state %}
+
+                            {{ profile.city }}
+
+                            {% if profile.city and profile.state %}
+                                ,
+                            {% endif %}
+
+                            {{ profile.state }}
+
+                        {% else %}
+
+                            Not provided
+
+                        {% endif %}
+
+                    </strong>
+
+                </div>
+
+
+                <!-- ACCOUNT TYPE -->
+                <div class="profile-item">
+
+                    <span>
+                        Account Type
+                    </span>
+
+                    <strong>
+                        Student
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ABOUT STUDENT -->
+            <div class="profile-about">
+
+                <h3>
+                    About Me
+                </h3>
+
+                {% if profile.bio %}
+
+                    <p>
+                        {{ profile.bio }}
+                    </p>
+
+                {% else %}
+
+                    <p class="not-provided">
+                        This student has not added a bio yet.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+            <div class="profile-actions">
+
+                <a
+                    href="{% url 'teacher_dashboard' %}"
+                    class="btn_one"
+                >
+                    ← Back to Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =========================================
+   PROFILE SECTION
+========================================= */
+
+.profile-section {
+    padding: 70px 0 100px;
+    background: #f7f8ff;
+    min-height: 600px;
+}
+
+
+/* =========================================
+   PROFILE CARD
+========================================= */
+
+.profile-card {
+    max-width: 850px;
+    margin: auto;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 40px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+
+/* =========================================
+   AVATAR
+========================================= */
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #5361df;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    overflow: hidden;
+}
+
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================================
+   STUDENT ROLE
+========================================= */
+
+.student-role {
+    display: block;
+
+    color: #5361df;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 6px;
+}
+
+
+/* =========================================
+   NAME
+========================================= */
+
+.profile-header h1 {
+    margin: 0 0 6px;
+
+    color: #07145c;
+
+    font-size: 28px;
+}
+
+
+.profile-header p {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.profile-details {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    padding: 35px 0;
+}
+
+
+/* =========================================
+   DETAIL ITEM
+========================================= */
+
+.profile-item {
+
+    padding: 18px;
+
+    background: #f8f8fc;
+
+    border-radius: 8px;
+}
+
+
+.profile-item span {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 7px;
+}
+
+
+.profile-item strong {
+
+    color: #07145c;
+
+    font-size: 15px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.profile-about {
+
+    padding: 25px;
+
+    background: #f8f8fc;
+
+    border-radius: 8px;
+
+    margin-bottom: 30px;
+}
+
+
+.profile-about h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 15px;
+
+    color: #07145c;
+
+    font-size: 19px;
+}
+
+
+.profile-about p {
+
+    margin: 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+.not-provided {
+
+    color: #999 !important;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.profile-actions {
+
+    padding-top: 25px;
+
+    border-top: 1px solid #eeeeee;
+}
+
+
+.btn_one {
+
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    border-radius: 4px;
+
+    background: #5361df;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+.btn_one:hover {
+
+    background: #414fda;
+
+    color: white;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .profile-card {
+        padding: 25px;
+    }
+
+
+    .profile-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+
+    .profile-details {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+</style>
+
+{% endblock %}

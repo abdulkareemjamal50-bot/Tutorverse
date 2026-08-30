@@ -56,6 +56,10 @@ path(
     TemplateView.as_view(template_name='terms_conditions.html'),
     name='terms_conditions'
 ),
+path(
+    'reviews/',
+    include('reviews.urls')
+),
 ]
 urlpatterns += static(
     settings.MEDIA_URL,

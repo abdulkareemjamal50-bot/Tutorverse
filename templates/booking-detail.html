@@ -3,16 +3,22 @@
 
 {% block content %}
 
-<section class="section-padding">
+<section class="booking-detail-section">
 
     <div class="container">
 
-        <div class="section-title text-center">
+        <!-- PAGE HEADER -->
+        <div class="booking-page-header text-center">
+
+            <span class="booking-eyebrow">
+                <i class="fa fa-calendar-check-o"></i>
+                Lesson Booking
+            </span>
 
             <h2>Booking Details</h2>
 
             <p>
-                Review your lesson booking.
+                Review the lesson information and manage your booking.
             </p>
 
         </div>
@@ -20,244 +26,683 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-lg-8">
+            <div class="col-xl-9 col-lg-10">
 
-                <div class="card p-4">
 
+                <!-- ======================================
+                     MAIN BOOKING CARD
+                ======================================= -->
 
-                    <!-- SUBJECT -->
+                <div class="booking-card">
 
-                    <h3>
-                        {{ booking.subject }}
-                    </h3>
 
-                    <hr>
+                    <!-- TOP -->
+                    <div class="booking-card-top">
 
+                        <div>
 
-                    <!-- STUDENT -->
+                            <span class="booking-label">
+                                SUBJECT
+                            </span>
 
-                    <p>
+                            <h3>
+                                {{ booking.subject }}
+                            </h3>
 
-                        <strong>
-                            Student:
-                        </strong>
+                        </div>
 
-                        {{ booking.student.get_full_name|default:booking.student.username }}
 
-                    </p>
-
-
-                    <!-- TEACHER -->
-
-                    <p>
-
-                        <strong>
-                            Teacher:
-                        </strong>
-
-                        {{ booking.teacher.user.get_full_name|default:booking.teacher.user.username }}
-
-                    </p>
-
-
-                    <!-- DATE -->
-
-                    <p>
-
-                        <strong>
-                            Date:
-                        </strong>
-
-                        {{ booking.lesson_date|date:"M. d, Y" }}
-
-                    </p>
-
-
-                    <!-- TIME -->
-
-                    <p>
-
-                        <strong>
-                            Time:
-                        </strong>
-
-                        {{ booking.lesson_time|time:"g:i a" }}
-
-                    </p>
-
-
-                    <!-- DURATION -->
-
-                    <p>
-
-                        <strong>
-                            Duration:
-                        </strong>
-
-                        {{ booking.duration }} minutes
-
-                    </p>
-
-
-                    <!-- LESSON MODE -->
-
-                    <p>
-
-                        <strong>
-                            Lesson Mode:
-                        </strong>
-
-                        {% if booking.is_online %}
-
-                            Online
-
-                        {% else %}
-
-                            Offline
-
-                        {% endif %}
-
-                    </p>
-
-
-                    <!-- LOCATION -->
-
-                    {% if booking.location %}
-
-                        <p>
-
-                            <strong>
-                                Location:
-                            </strong>
-
-                            {{ booking.location }}
-
-                        </p>
-
-                    {% endif %}
-
-
-                    <!-- NOTE -->
-
-                    {% if booking.note %}
-
-                        <p>
-
-                            <strong>
-                                Student Note:
-                            </strong>
-
-                            {{ booking.note }}
-
-                        </p>
-
-                    {% endif %}
-
-
-                    <!-- STATUS -->
-
-                    <p>
-
-                        <strong>
-                            Status:
-                        </strong>
-
+                        <!-- STATUS -->
 
                         {% if booking.status == 'pending' %}
 
-                            <span class="status pending">
+                            <span class="booking-status status-pending">
+                                <span></span>
                                 Pending
                             </span>
 
                         {% elif booking.status == 'accepted' %}
 
-                            <span class="status accepted">
+                            <span class="booking-status status-accepted">
+                                <span></span>
                                 Accepted
                             </span>
 
                         {% elif booking.status == 'cancelled' %}
 
-                            <span class="status cancelled">
+                            <span class="booking-status status-cancelled">
+                                <span></span>
                                 Cancelled
                             </span>
 
                         {% elif booking.status == 'completed' %}
 
-                            <span class="status completed">
+                            <span class="booking-status status-completed">
+                                <span></span>
                                 Completed
                             </span>
 
                         {% endif %}
 
-                    </p>
+                    </div>
 
 
-                    <!-- ========================= -->
-                    <!-- TEACHER ACTIONS -->
-                    <!-- ========================= -->
+                    <!-- DIVIDER -->
+
+                    <div class="booking-divider"></div>
+
+
+                    <!-- ======================================
+                         PEOPLE
+                    ======================================= -->
+
+                    <div class="booking-section-title">
+
+                        <i class="fa fa-users"></i>
+
+                        <h4>People</h4>
+
+                    </div>
+
+
+                    <div class="booking-info-grid">
+
+
+                        <!-- STUDENT -->
+
+                        <div class="booking-info-box">
+
+                            <span>
+                                <i class="fa fa-user"></i>
+                                Student
+                            </span>
+
+                            <strong>
+                                {{ booking.student.get_full_name|default:booking.student.username }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- TEACHER -->
+
+                        <div class="booking-info-box">
+
+                            <span>
+                                <i class="fa fa-graduation-cap"></i>
+                                Tutor
+                            </span>
+
+                            <strong>
+                                {{ booking.teacher.user.get_full_name|default:booking.teacher.user.username }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ======================================
+                         LESSON SCHEDULE
+                    ======================================= -->
+
+                    <div class="booking-section-title mt-5">
+
+                        <i class="fa fa-clock-o"></i>
+
+                        <h4>Lesson Schedule</h4>
+
+                    </div>
+
+
+                    <div class="booking-info-grid">
+
+
+                        <!-- DATE -->
+
+                        <div class="booking-info-box">
+
+                            <span>
+                                <i class="fa fa-calendar"></i>
+                                Date
+                            </span>
+
+                            <strong>
+                                {{ booking.lesson_date|date:"F d, Y" }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- TIME -->
+
+                        <div class="booking-info-box">
+
+                            <span>
+                                <i class="fa fa-clock-o"></i>
+                                Time
+                            </span>
+
+                            <strong>
+                                {{ booking.lesson_time|time:"g:i A" }}
+                            </strong>
+
+                        </div>
+
+
+                        <!-- DURATION -->
+
+                        <div class="booking-info-box">
+
+                            <span>
+                                <i class="fa fa-hourglass-half"></i>
+                                Duration
+                            </span>
+
+                            <strong>
+                                {{ booking.duration }} minutes
+                            </strong>
+
+                        </div>
+
+
+                        <!-- LESSON TYPE -->
+
+                        <div class="booking-info-box">
+
+                            <span>
+                                <i class="fa fa-laptop"></i>
+                                Lesson Type
+                            </span>
+
+                            <strong>
+
+                                {% if booking.is_online %}
+                                    Online Lesson
+                                {% else %}
+                                    Offline Lesson
+                                {% endif %}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ======================================
+                         ONLINE LESSON
+                    ======================================= -->
+
+                    {% if booking.is_online and booking.meeting_link %}
+
+                        <div class="lesson-access-card online-access">
+
+                            <div class="lesson-access-icon">
+
+                                <i class="fa fa-video-camera"></i>
+
+                            </div>
+
+
+                            <div class="lesson-access-content">
+
+                                <span>
+                                    ONLINE LESSON
+                                </span>
+
+                                <h4>
+                                    Your lesson is ready
+                                </h4>
+
+                                <p>
+                                    Use the button below to join your
+                                    tutoring session.
+                                </p>
+
+                            </div>
+
+
+                            <a
+                                href="{{ booking.meeting_link }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="join-lesson-btn"
+                            >
+
+                                <i class="fa fa-video-camera"></i>
+
+                                Join Lesson
+
+                            </a>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- ======================================
+                         OFFLINE LESSON
+                    ======================================= -->
+
+                    {% if not booking.is_online and booking.location %}
+
+                        <div class="lesson-access-card offline-access">
+
+                            <div class="lesson-access-icon">
+
+                                <i class="fa fa-map-marker"></i>
+
+                            </div>
+
+
+                            <div class="lesson-access-content">
+
+                                <span>
+                                    OFFLINE LESSON
+                                </span>
+
+                                <h4>
+                                    Lesson Location
+                                </h4>
+
+                                <p>
+                                    {{ booking.location }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- ======================================
+                         STUDENT NOTE
+                    ======================================= -->
+
+                    {% if booking.note %}
+
+                        <div class="booking-note">
+
+                            <div class="booking-section-title">
+
+                                <i class="fa fa-sticky-note-o"></i>
+
+                                <h4>Student Note</h4>
+
+                            </div>
+
+                            <p>
+                                {{ booking.note }}
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!-- ======================================
+                         TEACHER ACTIONS
+                    ======================================= -->
 
                     {% if request.user == booking.teacher.user %}
 
+
                         {% if booking.status == 'pending' %}
 
-                            <div class="mt-4">
+                            <div class="teacher-action-panel">
 
-                                <h4>
-                                    Booking Actions
-                                </h4>
+                                <div class="teacher-action-heading">
+
+                                    <div>
+
+                                        <span>
+                                            TUTOR ACTION
+                                        </span>
+
+                                        <h4>
+                                            Accept this booking
+                                        </h4>
+
+                                    </div>
+
+                                </div>
 
 
-                                <div class="d-flex gap-3 mt-3">
+                                <p class="action-description">
+
+                                    Confirm how this lesson will take place.
+                                    If the lesson is online, provide the
+                                    meeting link. If it is offline, provide
+                                    the agreed location.
+
+                                </p>
 
 
-                                    <!-- ACCEPT -->
+                                <form
+                                    method="POST"
+                                    action="{% url 'update_booking_status' booking.id %}"
+                                    id="acceptBookingForm"
+                                >
 
-                                    <form
-                                        method="POST"
-                                        action="{% url 'update_booking_status' booking.id %}"
+                                    {% csrf_token %}
+
+                                    <input
+                                        type="hidden"
+                                        name="status"
+                                        value="accepted"
                                     >
 
-                                        {% csrf_token %}
+
+                                    <!-- LESSON TYPE -->
+
+                                    <div class="lesson-type-selector">
+
+                                        <label>
+                                            Lesson Type
+                                        </label>
+
+
+                                        <div class="lesson-type-options">
+
+                                            <label class="lesson-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="is_online"
+                                                    value="true"
+                                                    checked
+                                                >
+
+                                                <span>
+
+                                                    <i class="fa fa-video-camera"></i>
+
+                                                    <strong>
+                                                        Online
+                                                    </strong>
+
+                                                    <small>
+                                                        Google Meet, Zoom, etc.
+                                                    </small>
+
+                                                </span>
+
+                                            </label>
+
+
+                                            <label class="lesson-option">
+
+                                                <input
+                                                    type="radio"
+                                                    name="is_online"
+                                                    value="false"
+                                                >
+
+                                                <span>
+
+                                                    <i class="fa fa-map-marker"></i>
+
+                                                    <strong>
+                                                        Offline
+                                                    </strong>
+
+                                                    <small>
+                                                        Physical lesson
+                                                    </small>
+
+                                                </span>
+
+                                            </label>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- ONLINE FIELD -->
+
+                                    <div
+                                        class="lesson-detail-field"
+                                        id="onlineField"
+                                    >
+
+                                        <label for="meeting_link">
+
+                                            <i class="fa fa-link"></i>
+
+                                            Meeting Link
+
+                                        </label>
 
                                         <input
-                                            type="hidden"
-                                            name="status"
-                                            value="accepted"
+                                            type="url"
+                                            id="meeting_link"
+                                            name="meeting_link"
+                                            placeholder="https://meet.google.com/..."
                                         >
+
+                                        <small>
+                                            Enter your Google Meet, Zoom,
+                                            Microsoft Teams, or other meeting link.
+                                        </small>
+
+                                    </div>
+
+
+                                    <!-- OFFLINE FIELD -->
+
+                                    <div
+                                        class="lesson-detail-field"
+                                        id="locationField"
+                                        style="display:none;"
+                                    >
+
+                                        <label for="location">
+
+                                            <i class="fa fa-map-marker"></i>
+
+                                            Lesson Location
+
+                                        </label>
+
+                                        <input
+                                            type="text"
+                                            id="location"
+                                            name="location"
+                                            placeholder="Enter the agreed lesson location"
+                                        >
+
+                                        <small>
+                                            Only share the location privately
+                                            with the booked student.
+                                        </small>
+
+                                    </div>
+
+
+                                    <!-- ACTIONS -->
+
+                                    <div class="teacher-actions">
 
                                         <button
                                             type="submit"
-                                            class="btn_one"
+                                            class="accept-booking-btn"
                                         >
+
+                                            <i class="fa fa-check"></i>
+
                                             Accept Booking
+
                                         </button>
 
-                                    </form>
 
-
-                                    <!-- CANCEL -->
-
-                                    <form
-                                        method="POST"
-                                        action="{% url 'update_booking_status' booking.id %}"
-                                    >
-
-                                        {% csrf_token %}
-
-                                        <input
-                                            type="hidden"
+                                        <button
+                                            type="submit"
                                             name="status"
                                             value="cancelled"
+                                            class="cancel-booking-btn"
                                         >
 
-                                        <button
-                                            type="submit"
-                                            class="btn_one"
-                                        >
+                                            <i class="fa fa-times"></i>
+
                                             Cancel Booking
+
                                         </button>
 
-                                    </form>
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        {% elif booking.status == 'accepted' %}
+
+                            <div class="teacher-complete-panel">
+
+                                <div>
+
+                                    <span>
+                                        LESSON ACCEPTED
+                                    </span>
+
+                                    <h4>
+                                        Ready to teach?
+                                    </h4>
+
+                                    <p>
+                                        Once the lesson has taken place,
+                                        mark this booking as completed.
+                                    </p>
+
+                                </div>
+
+
+                                <form
+                                    method="POST"
+                                    action="{% url 'update_booking_status' booking.id %}"
+                                >
+
+                                    {% csrf_token %}
+
+                                    <input
+                                        type="hidden"
+                                        name="status"
+                                        value="completed"
+                                    >
+
+                                    <button
+                                        type="submit"
+                                        class="complete-booking-btn"
+                                    >
+
+                                        <i class="fa fa-check-circle"></i>
+
+                                        Mark as Completed
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        {% endif %}
+
+
+                    {% endif %}
+
+
+                    <!-- ======================================
+                         STUDENT INFORMATION
+                    ======================================= -->
+
+                    {% if request.user == booking.student %}
+
+
+                        {% if booking.status == 'pending' %}
+
+                            <div class="student-alert pending-alert">
+
+                                <i class="fa fa-clock-o"></i>
+
+                                <div>
+
+                                    <strong>
+                                        Waiting for tutor response
+                                    </strong>
+
+                                    <p>
+                                        Your booking request has been sent
+                                        to the tutor. You will see the lesson
+                                        details here once the tutor accepts.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                        {% elif booking.status == 'accepted' %}
+
+                            <div class="student-alert accepted-alert">
+
+                                <i class="fa fa-check-circle"></i>
+
+                                <div>
+
+                                    <strong>
+                                        Your booking has been accepted!
+                                    </strong>
+
+                                    <p>
+                                        Your tutor has confirmed this lesson.
+                                        Check the lesson information above
+                                        for your meeting details or location.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                        {% elif booking.status == 'completed' %}
+
+                            <div class="student-alert completed-alert">
+
+                                <i class="fa fa-check-circle"></i>
+
+                                <div>
+
+                                    <strong>
+                                        Lesson Completed
+                                    </strong>
+
+                                    <p>
+                                        This tutoring session has been
+                                        completed successfully.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                        {% elif booking.status == 'cancelled' %}
+
+                            <div class="student-alert cancelled-alert">
+
+                                <i class="fa fa-times-circle"></i>
+
+                                <div>
+
+                                    <strong>
+                                        Booking Cancelled
+                                    </strong>
+
+                                    <p>
+                                        This lesson booking has been cancelled.
+                                    </p>
 
                                 </div>
 
@@ -265,92 +710,77 @@
 
                         {% endif %}
 
-                    {% endif %}
-
-
-                    <!-- ========================= -->
-                    <!-- STUDENT MESSAGE -->
-                    <!-- ========================= -->
-
-                    {% if request.user == booking.student %}
-
-                        {% if booking.status == 'pending' %}
-
-                            <div class="alert alert-warning mt-4">
-
-                                <strong>
-                                    Waiting for tutor response.
-                                </strong>
-
-                                <p class="mb-0 mt-2">
-
-                                    Your booking has been sent to the tutor.
-                                    You will see the status change when the
-                                    tutor accepts or cancels it.
-
-                                </p>
-
-                            </div>
-
-                        {% elif booking.status == 'accepted' %}
-
-                            <div class="alert alert-success mt-4">
-
-                                <strong>
-                                    Booking Accepted!
-                                </strong>
-
-                                <p class="mb-0 mt-2">
-
-                                    Your tutor has accepted this lesson.
-
-                                </p>
-
-                            </div>
-
-                        {% elif booking.status == 'cancelled' %}
-
-                            <div class="alert alert-danger mt-4">
-
-                                <strong>
-                                    Booking Cancelled.
-                                </strong>
-
-                            </div>
-
-                        {% endif %}
 
                     {% endif %}
+                    
+                    {% if booking.status == 'completed' %}
 
+<div class="review-action-box">
 
-                    <!-- ========================= -->
-                    <!-- BACK BUTTON -->
-                    <!-- ========================= -->
+    <div class="review-action-content">
 
-                    <div class="mt-4">
+        <div class="review-star-icon">
+            <i class="fa fa-star"></i>
+        </div>
+
+        <div>
+            <h4>How was your lesson?</h4>
+
+            <p>
+                Share your experience with this tutor
+                and help other students make better choices.
+            </p>
+        </div>
+
+    </div>
+
+    <a
+        href="{% url 'create_review' booking.id %}"
+        class="review-btn"
+    >
+        <i class="fa fa-star"></i>
+        Leave a Review
+    </a>
+
+</div>
+
+{% endif %}
+
+                    <!-- ======================================
+                         BACK BUTTON
+                    ======================================= -->
+
+                    <div class="booking-footer">
 
                         {% if request.user == booking.student %}
 
                             <a
                                 href="{% url 'my_bookings' %}"
-                                class="btn_one"
+                                class="back-booking-btn"
                             >
-                                ← My Bookings
+
+                                <i class="fa fa-arrow-left"></i>
+
+                                My Bookings
+
                             </a>
 
                         {% else %}
 
                             <a
                                 href="{% url 'teacher_dashboard' %}"
-                                class="btn_one"
+                                class="back-booking-btn"
                             >
-                                ← Teacher Dashboard
+
+                                <i class="fa fa-arrow-left"></i>
+
+                                Teacher Dashboard
+
                             </a>
 
                         {% endif %}
 
                     </div>
-
 
                 </div>
 
@@ -363,34 +793,801 @@
 </section>
 
 
+<!-- ======================================
+     JAVASCRIPT
+======================================= -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const onlineRadio = document.querySelector(
+        'input[name="is_online"][value="true"]'
+    );
+
+    const offlineRadio = document.querySelector(
+        'input[name="is_online"][value="false"]'
+    );
+
+    const onlineField = document.getElementById(
+        "onlineField"
+    );
+
+    const locationField = document.getElementById(
+        "locationField"
+    );
+
+    const meetingLink = document.getElementById(
+        "meeting_link"
+    );
+
+    const locationInput = document.getElementById(
+        "location"
+    );
+
+
+    function updateLessonFields() {
+
+        if (onlineRadio && onlineRadio.checked) {
+
+            onlineField.style.display = "block";
+            locationField.style.display = "none";
+
+            meetingLink.required = true;
+            locationInput.required = false;
+
+        }
+
+        else if (offlineRadio && offlineRadio.checked) {
+
+            onlineField.style.display = "none";
+            locationField.style.display = "block";
+
+            meetingLink.required = false;
+            locationInput.required = true;
+
+        }
+
+    }
+
+
+    if (onlineRadio) {
+
+        onlineRadio.addEventListener(
+            "change",
+            updateLessonFields
+        );
+
+    }
+
+
+    if (offlineRadio) {
+
+        offlineRadio.addEventListener(
+            "change",
+            updateLessonFields
+        );
+
+    }
+
+
+    updateLessonFields();
+
+});
+
+</script>
+
+
+<!-- ======================================
+     PROFESSIONAL STYLING
+======================================= -->
+
 <style>
 
-.status {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
+.booking-detail-section {
+    padding: 90px 0;
+    background: #f7f8fc;
 }
 
-.status.pending {
-    background: #fff3cd;
+
+/* PAGE HEADER */
+
+.booking-page-header {
+    margin-bottom: 45px;
+}
+
+.booking-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #5362e9;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.booking-page-header h2 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #10145c;
+    margin-bottom: 12px;
+}
+
+.booking-page-header p {
+    color: #777;
+    margin: 0;
+}
+
+
+/* MAIN CARD */
+
+.booking-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 42px;
+    box-shadow: 0 15px 45px rgba(16, 20, 92, 0.08);
+}
+
+
+/* TOP */
+
+.booking-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.booking-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #9a9a9a;
+    margin-bottom: 8px;
+}
+
+.booking-card-top h3 {
+    margin: 0;
+    color: #10145c;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+/* STATUS */
+
+.booking-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.booking-status span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-pending {
+    background: #fff5d8;
+    color: #9a6b00;
+}
+
+.status-pending span {
+    background: #e0a800;
+}
+
+.status-accepted {
+    background: #e7f8ee;
+    color: #198754;
+}
+
+.status-accepted span {
+    background: #198754;
+}
+
+.status-cancelled {
+    background: #fdeaea;
+    color: #c0392b;
+}
+
+.status-cancelled span {
+    background: #c0392b;
+}
+
+.status-completed {
+    background: #e7f1ff;
+    color: #2167c7;
+}
+
+.status-completed span {
+    background: #2167c7;
+}
+
+
+/* DIVIDER */
+
+.booking-divider {
+    height: 1px;
+    background: #eeeeee;
+    margin: 28px 0;
+}
+
+
+/* SECTION TITLES */
+
+.booking-section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.booking-section-title i {
+    color: #5362e9;
+    font-size: 18px;
+}
+
+.booking-section-title h4 {
+    margin: 0;
+    color: #222;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+/* INFO GRID */
+
+.booking-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.booking-info-box {
+    background: #f8f9fc;
+    border: 1px solid #edf0f5;
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.booking-info-box span {
+    display: block;
+    color: #8a8d98;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.booking-info-box span i {
+    margin-right: 5px;
+}
+
+.booking-info-box strong {
+    color: #242632;
+    font-size: 15px;
+}
+
+
+/* LESSON ACCESS */
+
+.lesson-access-card {
+    margin-top: 30px;
+    padding: 22px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.online-access {
+    background: #eef2ff;
+    border: 1px solid #dce2ff;
+}
+
+.offline-access {
+    background: #f1faf6;
+    border: 1px solid #d9f1e5;
+}
+
+.lesson-access-icon {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #fff;
+    font-size: 19px;
+    color: #5362e9;
+}
+
+.lesson-access-content {
+    flex: 1;
+}
+
+.lesson-access-content span {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #777;
+    margin-bottom: 4px;
+}
+
+.lesson-access-content h4 {
+    margin: 0 0 4px;
+    font-size: 17px;
+    color: #222;
+}
+
+.lesson-access-content p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.join-lesson-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #5362e9;
+    color: #fff !important;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.join-lesson-btn:hover {
+    background: #414fda;
+    transform: translateY(-1px);
+}
+
+
+/* NOTE */
+
+.booking-note {
+    margin-top: 35px;
+    padding-top: 28px;
+    border-top: 1px solid #eee;
+}
+
+.booking-note p {
+    margin: 0;
+    padding: 15px 18px;
+    background: #fafafa;
+    border-radius: 10px;
+    color: #666;
+    line-height: 1.7;
+}
+
+
+/* TEACHER ACTION PANEL */
+
+.teacher-action-panel {
+    margin-top: 35px;
+    padding: 30px;
+    border: 1px solid #e6e8f0;
+    border-radius: 15px;
+    background: #fbfbfd;
+}
+
+.teacher-action-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.teacher-action-heading span,
+.teacher-complete-panel span {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #5362e9;
+    margin-bottom: 6px;
+}
+
+.teacher-action-heading h4,
+.teacher-complete-panel h4 {
+    margin: 0;
+    color: #222;
+    font-size: 20px;
+}
+
+.action-description {
+    margin: 12px 0 25px;
+    color: #777;
+    line-height: 1.7;
+}
+
+
+/* LESSON TYPE */
+
+.lesson-type-selector > label {
+    display: block;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.lesson-type-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.lesson-option {
+    cursor: pointer;
+    margin: 0;
+}
+
+.lesson-option input {
+    position: absolute;
+    opacity: 0;
+}
+
+.lesson-option span {
+    display: block;
+    padding: 17px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    transition: .2s;
+}
+
+.lesson-option input:checked + span {
+    border-color: #5362e9;
+    background: #f1f3ff;
+}
+
+.lesson-option i {
+    color: #5362e9;
+    margin-right: 8px;
+}
+
+.lesson-option strong {
+    color: #222;
+}
+
+.lesson-option small {
+    display: block;
+    margin-top: 5px;
+    margin-left: 27px;
+    color: #888;
+}
+
+
+/* INPUT */
+
+.lesson-detail-field {
+    margin-top: 20px;
+}
+
+.lesson-detail-field label {
+    display: block;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.lesson-detail-field label i {
+    color: #5362e9;
+    margin-right: 6px;
+}
+
+.lesson-detail-field input {
+    width: 100%;
+    height: 52px;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.lesson-detail-field input:focus {
+    border-color: #5362e9;
+    box-shadow: 0 0 0 3px rgba(83, 98, 233, .08);
+}
+
+.lesson-detail-field small {
+    display: block;
+    margin-top: 7px;
+    color: #888;
+}
+
+
+/* TEACHER BUTTONS */
+
+.teacher-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.accept-booking-btn,
+.cancel-booking-btn,
+.complete-booking-btn {
+    border: none;
+    border-radius: 7px;
+    padding: 13px 21px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.accept-booking-btn {
+    background: #5362e9;
+    color: #fff;
+}
+
+.accept-booking-btn:hover {
+    background: #414fda;
+}
+
+.cancel-booking-btn {
+    background: #f3f3f3;
+    color: #555;
+}
+
+.cancel-booking-btn:hover {
+    background: #e9e9e9;
+}
+
+
+/* COMPLETE PANEL */
+
+.teacher-complete-panel {
+    margin-top: 35px;
+    padding: 25px;
+    background: #f1faf6;
+    border: 1px solid #d8f0e4;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.teacher-complete-panel p {
+    margin: 8px 0 0;
+    color: #777;
+}
+
+.complete-booking-btn {
+    background: #198754;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.complete-booking-btn:hover {
+    background: #157347;
+}
+
+
+/* STUDENT ALERTS */
+
+.student-alert {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.student-alert > i {
+    font-size: 21px;
+    margin-top: 2px;
+}
+
+.student-alert strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.student-alert p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.pending-alert {
+    background: #fff8e5;
     color: #856404;
 }
 
-.status.accepted {
-    background: #d4edda;
-    color: #155724;
+.accepted-alert {
+    background: #eaf8ef;
+    color: #198754;
 }
 
-.status.cancelled {
-    background: #f8d7da;
-    color: #721c24;
+.completed-alert {
+    background: #eaf2ff;
+    color: #2167c7;
 }
 
-.status.completed {
-    background: #d1ecf1;
-    color: #0c5460;
+.cancelled-alert {
+    background: #fdeeee;
+    color: #c0392b;
+}
+.review-action-box {
+    margin-top: 30px;
+    padding: 25px 28px;
+    background: linear-gradient(135deg, #f5f7ff, #ffffff);
+    border: 1px solid #e4e8ff;
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.review-action-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.review-star-icon {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #5362e9;
+    color: white;
+    border-radius: 50%;
+
+    font-size: 20px;
+}
+
+.review-action-content h4 {
+    margin: 0 0 6px;
+    color: #10145c;
+    font-size: 19px;
+}
+
+.review-action-content p {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.review-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 13px 23px;
+
+    background: #5362e9;
+    color: #fff !important;
+
+    border-radius: 7px;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.review-btn:hover {
+    background: #414fda;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 650px) {
+
+    .review-action-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .review-btn {
+        width: 100%;
+    }
+
+}
+
+/* FOOTER */
+
+.booking-footer {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+}
+
+.back-booking-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #5362e9;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.back-booking-btn:hover {
+    color: #414fda;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 767px) {
+
+    .booking-detail-section {
+        padding: 55px 15px;
+    }
+
+    .booking-page-header h2 {
+        font-size: 30px;
+    }
+
+    .booking-card {
+        padding: 25px 20px;
+    }
+
+    .booking-card-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .booking-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lesson-access-card {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .join-lesson-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .lesson-type-options {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-actions {
+        flex-direction: column;
+    }
+
+    .accept-booking-btn,
+    .cancel-booking-btn,
+    .complete-booking-btn {
+        width: 100%;
+    }
+
+    .teacher-complete-panel {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
 }
 
 </style>
