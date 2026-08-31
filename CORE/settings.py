@@ -25,7 +25,16 @@ SECRET_KEY = 'django-insecure-1(25_x$d!2p%n=4mhc@9z9yls4-829ronil7kvk=a2fl274@*=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tutorverse-9v6b.onrender.com']
+ALLOWED_HOSTS = ['tutorverse-9v6b.onrender.com', 
+    'tutorverse.com.ng', 
+    'www.tutorverse.com.ng',
+    'localhost', 
+    '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://tutorverse.com.ng',
+    'https://www.tutorverse.com.ng'
+]
 
 
 # Application definition
