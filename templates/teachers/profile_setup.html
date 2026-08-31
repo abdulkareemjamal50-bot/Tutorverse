@@ -7,138 +7,128 @@
 
     <div class="container">
 
-        <!-- PAGE HEADER -->
+        <!-- ==========================================
+             PAGE HEADER
+        =========================================== -->
+
         <div class="profile-header">
+
+            <div class="profile-header-icon">
+                <i class="fa fa-user"></i>
+            </div>
+
             <h1>Complete Your Teacher Profile</h1>
+
             <p>
-                Add your teaching information so students can find you.
+                Build your TutorVerse profile so students can discover
+                you, learn about your expertise, and book your lessons.
             </p>
+
         </div>
 
 
-        <!-- PROFILE FORM -->
+        <!-- ==========================================
+             PROFILE CARD
+        =========================================== -->
+
         <div class="profile-card">
 
             <form method="POST" enctype="multipart/form-data">
 
                 {% csrf_token %}
 
+
+                <!-- ==================================
+                     ERRORS
+                =================================== -->
+
                 {% if form.errors %}
+
                     <div class="form-errors">
-                        <strong>Please correct the errors below.</strong>
-                        {{ form.errors }}
+
+                        <div class="error-title">
+                            <i class="fa fa-exclamation-circle"></i>
+
+                            Please correct the following errors:
+                        </div>
+
+                        {{ form.non_field_errors }}
+
+                        {% for field in form %}
+
+                            {% if field.errors %}
+
+                                <div class="field-error">
+
+                                    <strong>
+                                        {{ field.label }}:
+                                    </strong>
+
+                                    {{ field.errors|striptags }}
+
+                                </div>
+
+                            {% endif %}
+
+                        {% endfor %}
+
                     </div>
+
                 {% endif %}
 
 
-                <!-- SUBJECTS -->
-                <div class="form-group">
-    <label>
-        Subjects you teach
-    </label>
+                <!-- ==================================
+                     SECTION 1
+                     PERSONAL INFORMATION
+                =================================== -->
 
-    <div class="subjects-grid">
-        {{ form.subjects }}
-    </div>
-</div>
+                <div class="profile-section-title">
 
-                <!-- BIO -->
-                <div class="form-group">
-                    <label for="{{ form.bio.id_for_label }}">
-                        About You
-                    </label>
+                    <div class="section-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
 
-                    {{ form.bio }}
+                    <div>
+                        <h3>Personal Information</h3>
 
-                    <small>
-                        Tell students about your teaching experience and style.
-                    </small>
+                        <p>
+                            Tell students who you are.
+                        </p>
+                    </div>
+
                 </div>
 
 
-                <!-- QUALIFICATION -->
-                <div class="form-group">
-                    <label for="{{ form.qualification.id_for_label }}">
-                        Qualification
-                    </label>
+                <!-- FIRST + LAST NAME -->
 
-                    {{ form.qualification }}
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="{{ form.first_name.id_for_label }}">
+                            First Name
+                        </label>
+
+                        {{ form.first_name }}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.last_name.id_for_label }}">
+                            Last Name
+                        </label>
+
+                        {{ form.last_name }}
+
+                    </div>
+
                 </div>
-
-
-                <!-- EXPERIENCE -->
-                <div class="form-group">
-                    <label for="{{ form.experience.id_for_label }}">
-                        Years of Experience
-                    </label>
-
-                    {{ form.experience }}
-                </div>
-
-
-                <!-- HOURLY RATE -->
-                <div class="form-group">
-                    <label for="{{ form.hourly_rate.id_for_label }}">
-                        Hourly Rate
-                    </label>
-
-                    {{ form.hourly_rate }}
-                </div>
-
-
-                <!-- LESSON MODE -->
-                <div class="form-group">
-                    <label for="{{ form.lesson_mode.id_for_label }}">
-                        Lesson Mode
-                    </label>
-
-                    {{ form.lesson_mode }}
-                </div>
-
-
-                <!-- LOCATION -->
-               <div class="form-row">
-
-    <div class="form-group">
-        <label for="{{ form.city.id_for_label }}">
-            City
-        </label>
-
-        {{ form.city }}
-    </div>
-
-    <div class="form-group">
-        <label for="{{ form.state.id_for_label }}">
-            State
-        </label>
-
-        {{ form.state }}
-    </div>
-
-</div>
-
-    <div class="location-box">
-
-        <button
-            type="button"
-            id="locationButton"
-            class="location-btn"
-        >
-            <i class="fa fa-location-arrow"></i>
-            Use My Current Location
-        </button>
-
-        <p id="locationMessage">
-            Allow TutorVerse to detect your location so students can find you nearby.
-        </p>
-
-    </div>
-
-    {{ form.latitude }}
-    {{ form.longitude }}
 
 
                 <!-- PROFILE PICTURE -->
+
                 <div class="form-group">
 
                     <label for="{{ form.profile_picture.id_for_label }}">
@@ -146,85 +136,409 @@
                     </label>
 
                     <div class="upload-box">
+
+                        {% if teacher.profile_picture %}
+
+                            <div class="current-photo">
+
+                                <img
+                                    src="{{ teacher.profile_picture.url }}"
+                                    alt="Current profile picture"
+                                >
+
+                                <div>
+
+                                    <strong>
+                                        Current Profile Picture
+                                    </strong>
+
+                                    <p>
+                                        Upload a new picture below to replace it.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+
                         {{ form.profile_picture }}
 
+                        <p class="upload-help">
+                            Upload a clear and professional photo.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     SECTION 2
+                     TEACHING INFORMATION
+                =================================== -->
+
+                <div class="profile-section-title">
+
+                    <div class="section-icon">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+
+                    <div>
+                        <h3>Teaching Information</h3>
+
                         <p>
-                            Upload a clear photo so students can recognize you.
+                            Help students understand what you teach.
                         </p>
                     </div>
 
                 </div>
-                <!-- IDENTITY VERIFICATION -->
-
-<div class="form-group">
-
-    <label for="{{ form.identity_document_type.id_for_label }}">
-        Identity Document Type
-    </label>
-
-    {{ form.identity_document_type }}
-
-</div>
 
 
-<div class="form-group">
+                <!-- SUBJECTS -->
 
-    <label for="{{ form.identity_document.id_for_label }}">
-        Upload Identity Document
-    </label>
+                <div class="form-group">
 
-    {{ form.identity_document }}
+                    <label>
+                        Subjects You Teach
+                    </label>
 
-    <small class="form-text text-muted">
-        Upload a clear copy of your National ID, Driver's License,
-        International Passport, or Voter's Card.
-    </small>
+                    <div class="subjects-grid">
 
-</div>
-                
-                <!-- INTRODUCTION VIDEO -->
-<div class="form-group">
+                        {{ form.subjects }}
 
-    <label for="{{ form.intro_video.id_for_label }}">
-        Introduction Video
-    </label>
+                    </div>
 
-    <div class="video-upload-box">
+                    <small>
+                        Select all subjects you are qualified to teach.
+                    </small>
 
-        {{ form.intro_video }}
+                </div>
 
-        <div class="video-upload-info">
 
-            <strong>
-                🎥 Introduce Yourself to Students
-            </strong>
+                <!-- BIO -->
 
-            <p>
-                Upload a short video of at least 1 minute
-                introducing yourself and your teaching experience.
-            </p>
+                <div class="form-group">
 
-            <ul>
-                <li>Tell students your name.</li>
-                <li>Explain what subjects you teach.</li>
-                <li>Tell them about your teaching experience.</li>
-                <li>Explain how you can help them.</li>
-            </ul>
+                    <label for="{{ form.bio.id_for_label }}">
+                        About You
+                    </label>
 
-            <small>
-                Recommended: MP4 video, around 1–2 minutes.
-            </small>
+                    {{ form.bio }}
 
-        </div>
+                    <small>
+                        Tell students about your teaching style,
+                        experience and what makes you a great tutor.
+                    </small>
 
-    </div>
+                </div>
 
-</div>
 
-                <!-- SUBMIT -->
-                <button type="submit" class="profile-btn">
-                    Save Profile
-                </button>
+                <!-- QUALIFICATION -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.qualification.id_for_label }}">
+                        Qualification
+                    </label>
+
+                    {{ form.qualification }}
+
+                </div>
+
+
+                <!-- EXPERIENCE + HOURLY RATE -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="{{ form.experience.id_for_label }}">
+                            Years of Experience
+                        </label>
+
+                        {{ form.experience }}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.hourly_rate.id_for_label }}">
+                            Hourly Rate
+                        </label>
+
+                        <div class="rate-input">
+
+                            <span>₦</span>
+
+                            {{ form.hourly_rate }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LESSON MODE -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.lesson_mode.id_for_label }}">
+                        Lesson Mode
+                    </label>
+
+                    {{ form.lesson_mode }}
+
+                    <small>
+                        Choose whether you teach online, offline,
+                        or both.
+                    </small>
+
+                </div>
+
+
+                <!-- ==================================
+                     SECTION 3
+                     LOCATION
+                =================================== -->
+
+                <div class="profile-section-title">
+
+                    <div class="section-icon">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+
+                    <div>
+                        <h3>Teaching Location</h3>
+
+                        <p>
+                            Your location helps nearby students find you.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- CITY + STATE -->
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="{{ form.city.id_for_label }}">
+                            City
+                        </label>
+
+                        {{ form.city }}
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="{{ form.state.id_for_label }}">
+                            State
+                        </label>
+
+                        {{ form.state }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- CURRENT LOCATION -->
+
+                <div class="location-box">
+
+                    <div class="location-icon">
+
+                        <i class="fa fa-location-arrow"></i>
+
+                    </div>
+
+
+                    <div class="location-content">
+
+                        <strong>
+                            Find Your Exact Location
+                        </strong>
+
+                        <p id="locationMessage">
+
+                            Allow TutorVerse to detect your location
+                            so students can find tutors nearby.
+
+                        </p>
+
+
+                        <button
+                            type="button"
+                            id="locationButton"
+                            class="location-btn"
+                        >
+
+                            <i class="fa fa-location-arrow"></i>
+
+                            Use My Current Location
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                {{ form.latitude }}
+                {{ form.longitude }}
+
+
+                <!-- ==================================
+                     SECTION 4
+                     IDENTITY VERIFICATION
+                =================================== -->
+
+                <div class="profile-section-title">
+
+                    <div class="section-icon">
+                        <i class="fa fa-shield"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>Identity Verification</h3>
+
+                        <p>
+                            Verify your identity to build trust with students.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DOCUMENT TYPE -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.identity_document_type.id_for_label }}">
+
+                        Identity Document Type
+
+                    </label>
+
+                    {{ form.identity_document_type }}
+
+                </div>
+
+
+                <!-- DOCUMENT -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.identity_document.id_for_label }}">
+
+                        Upload Identity Document
+
+                    </label>
+
+                    <div class="upload-box">
+
+                        {{ form.identity_document }}
+
+                        <p class="upload-help">
+
+                            Upload a clear copy of your National ID,
+                            Driver's License, International Passport,
+                            or Voter's Card.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     SECTION 5
+                     INTRODUCTION VIDEO
+                =================================== -->
+
+                <div class="profile-section-title">
+
+                    <div class="section-icon">
+                        <i class="fa fa-video-camera"></i>
+                    </div>
+
+                    <div>
+
+                        <h3>Introduction Video</h3>
+
+                        <p>
+                            Introduce yourself to potential students.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="video-upload-box">
+
+                    {{ form.intro_video }}
+
+                    <div class="video-upload-info">
+
+                        <strong>
+                            🎥 Introduce Yourself
+                        </strong>
+
+                        <p>
+                            Upload a short video telling students
+                            about yourself and your teaching experience.
+                        </p>
+
+                        <ul>
+
+                            <li>Tell students your name.</li>
+
+                            <li>Explain what subjects you teach.</li>
+
+                            <li>Talk about your teaching experience.</li>
+
+                            <li>Explain how you can help students.</li>
+
+                        </ul>
+
+                        <small>
+                            Recommended: MP4 video, around 1–2 minutes.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==================================
+                     SAVE PROFILE
+                =================================== -->
+
+                <div class="profile-submit">
+
+                    <button
+                        type="submit"
+                        class="profile-btn"
+                    >
+
+                        <i class="fa fa-check-circle"></i>
+
+                        Save & Update Profile
+
+                    </button>
+
+                </div>
 
             </form>
 
@@ -237,373 +551,899 @@
 
 <style>
 
-/* =========================
-   PROFILE SECTION
-========================= */
+/* ============================================
+   MAIN SECTION
+============================================ */
 
 .profile-section {
-    padding: 80px 0 100px;
-    background: #f8f9ff;
-    min-height: 80vh;
+
+    padding: 90px 0 110px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f7f9ff 0%,
+            #ffffff 100%
+        );
+
+    min-height: 100vh;
+
 }
 
 
-/* =========================
+/* ============================================
    HEADER
-========================= */
+============================================ */
 
 .profile-header {
+
+    max-width: 750px;
+
+    margin: 0 auto 45px;
+
     text-align: center;
-    margin-bottom: 45px;
+
+}
+
+.profile-header-icon {
+
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #eef1ff;
+
+    color: #5361df;
+
+    font-size: 27px;
+
 }
 
 .profile-header h1 {
+
+    margin: 0 0 12px;
+
     color: #07145c;
+
     font-size: 38px;
+
     font-weight: 700;
-    margin-bottom: 12px;
+
 }
 
 .profile-header p {
-    color: #666;
+
+    margin: 0;
+
+    color: #6b7280;
+
     font-size: 16px;
+
+    line-height: 1.7;
+
 }
 
 
-/* =========================
-   CARD
-========================= */
+/* ============================================
+   PROFILE CARD
+============================================ */
 
 .profile-card {
-    max-width: 850px;
+
+    max-width: 900px;
+
     margin: auto;
+
     background: #ffffff;
-    padding: 45px;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+
+    padding: 50px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 15px 50px rgba(7, 20, 92, 0.08);
+
 }
 
-/* =========================
-   INTRODUCTION VIDEO
-========================= */
 
-.video-upload-box {
-    padding: 25px;
-    border: 2px dashed #d8dcf5;
-    border-radius: 8px;
-    background: #fafbff;
+/* ============================================
+   SECTION TITLES
+============================================ */
+
+.profile-section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    margin: 35px 0 28px;
+
+    border-bottom: 1px solid #edf0f7;
+
 }
 
-.video-upload-box input {
-    width: 100%;
-    border: none;
-    padding: 0;
-    background: transparent;
+.profile-section-title:first-of-type {
+
+    margin-top: 0;
+
 }
 
-.video-upload-info {
-    margin-top: 15px;
-}
+.section-icon {
 
-.video-upload-info strong {
-    display: block;
-    color: #07145c;
-    font-size: 16px;
-    margin-bottom: 8px;
-}
+    width: 44px;
+    height: 44px;
 
-.video-upload-info p {
-    margin: 0 0 10px;
-    color: #666;
-    font-size: 14px;
-}
+    flex-shrink: 0;
 
-.video-upload-info ul {
-    margin: 10px 0;
-    padding-left: 20px;
-    color: #666;
-    font-size: 13px;
-}
+    display: flex;
 
-.video-upload-info li {
-    margin-bottom: 5px;
-}
+    align-items: center;
+    justify-content: center;
 
-.video-upload-info small {
-    display: block;
-    margin-top: 10px;
+    border-radius: 10px;
+
+    background: #eef1ff;
+
     color: #5361df;
-    font-weight: 600;
+
 }
-/* =========================
+
+.profile-section-title h3 {
+
+    margin: 0 0 4px;
+
+    color: #07145c;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+}
+
+.profile-section-title p {
+
+    margin: 0;
+
+    color: #888;
+
+    font-size: 13px;
+
+}
+
+
+/* ============================================
    FORM
-========================= */
+============================================ */
 
 .form-group {
-    margin-bottom: 25px;
+
+    margin-bottom: 24px;
+
 }
 
 .form-group label {
+
     display: block;
+
     margin-bottom: 8px;
-    color: #07145c;
+
+    color: #18204d;
+
     font-size: 14px;
+
     font-weight: 600;
+
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
+
     width: 100%;
-    padding: 13px 15px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-    transition: 0.3s;
+
     box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    border: 1px solid #dfe3ed;
+
+    border-radius: 8px;
+
+    background: #fff;
+
+    color: #333;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all .25s ease;
+
 }
 
 .form-group textarea {
-    min-height: 130px;
+
+    min-height: 140px;
+
     resize: vertical;
+
+    line-height: 1.6;
+
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
+
     border-color: #5361df;
-    box-shadow: 0 0 0 3px rgba(83, 97, 223, 0.1);
+
+    box-shadow:
+        0 0 0 3px rgba(83, 97, 223, .10);
+
 }
 
 .form-group small {
+
     display: block;
+
     margin-top: 7px;
-    color: #777;
-    font-size: 13px;
+
+    color: #858585;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
 }
 
 
-/* =========================
-   SUBJECT SELECT
-========================= */
-
-.form-group select[multiple] {
-    min-height: 120px;
-}
-
-
-/* =========================
-   CITY + STATE
-========================= */
+/* ============================================
+   FORM ROW
+============================================ */
 
 .form-row {
+
     display: grid;
+
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+
+    gap: 22px;
+
 }
 
 
-/* =========================
-   IMAGE UPLOAD
-========================= */
+/* ============================================
+   RATE
+============================================ */
+
+.rate-input {
+
+    position: relative;
+
+}
+
+.rate-input span {
+
+    position: absolute;
+
+    left: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #5361df;
+
+    font-weight: 700;
+
+}
+
+.rate-input input {
+
+    padding-left: 32px;
+
+}
+
+
+/* ============================================
+   SUBJECTS
+============================================ */
+
+.subjects-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+}
+
+.subjects-grid label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px 14px;
+
+    margin: 0;
+
+    border: 1px solid #e1e4ed;
+
+    border-radius: 8px;
+
+    background: #fff;
+
+    cursor: pointer;
+
+    transition: all .2s ease;
+
+}
+
+.subjects-grid label:hover {
+
+    border-color: #5361df;
+
+    background: #f7f8ff;
+
+}
+
+.subjects-grid input {
+
+    width: auto;
+
+    accent-color: #5361df;
+
+}
+
+
+/* ============================================
+   LOCATION
+============================================ */
+
+.location-box {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    margin: 5px 0 28px;
+
+    padding: 20px;
+
+    border: 1px solid #dfe3f5;
+
+    border-radius: 10px;
+
+    background: #f8f9ff;
+
+}
+
+.location-icon {
+
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #5361df;
+
+    color: #fff;
+
+}
+
+.location-content strong {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #07145c;
+
+    font-size: 15px;
+
+}
+
+.location-content p {
+
+    margin: 0 0 12px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+.location-btn {
+
+    border: none;
+
+    padding: 10px 17px;
+
+    border-radius: 7px;
+
+    background: #5361df;
+
+    color: #fff;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.location-btn:hover {
+
+    background: #4350c8;
+
+}
+
+.location-btn:disabled {
+
+    opacity: .65;
+
+    cursor: not-allowed;
+
+}
+
+
+/* ============================================
+   UPLOAD BOX
+============================================ */
 
 .upload-box {
+
     padding: 20px;
-    border: 2px dashed #d8dcf5;
-    border-radius: 8px;
+
+    border: 2px dashed #dce1f2;
+
+    border-radius: 10px;
+
     background: #fafbff;
+
 }
 
 .upload-box input {
+
     border: none;
+
     padding: 0;
+
+    background: transparent;
+
 }
 
-.upload-box p {
+.upload-help {
+
     margin: 10px 0 0;
+
     color: #777;
-    font-size: 13px;
+
+    font-size: 12px;
+
 }
 
 
-/* =========================
-   ERROR
-========================= */
+/* ============================================
+   CURRENT PHOTO
+============================================ */
+
+.current-photo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+}
+
+.current-photo img {
+
+    width: 65px;
+    height: 65px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #eef1ff;
+
+}
+
+.current-photo strong {
+
+    display: block;
+
+    color: #07145c;
+
+    font-size: 14px;
+
+}
+
+.current-photo p {
+
+    margin: 4px 0 0;
+
+    color: #888;
+
+    font-size: 12px;
+
+}
+
+
+/* ============================================
+   VIDEO
+============================================ */
+
+.video-upload-box {
+
+    padding: 25px;
+
+    border: 2px dashed #d8dcf5;
+
+    border-radius: 10px;
+
+    background: #fafbff;
+
+}
+
+.video-upload-box input {
+
+    width: 100%;
+
+    border: none;
+
+    padding: 0;
+
+    background: transparent;
+
+}
+
+.video-upload-info {
+
+    margin-top: 18px;
+
+}
+
+.video-upload-info strong {
+
+    display: block;
+
+    color: #07145c;
+
+    font-size: 16px;
+
+    margin-bottom: 7px;
+
+}
+
+.video-upload-info p {
+
+    margin: 0 0 10px;
+
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+.video-upload-info ul {
+
+    margin: 10px 0;
+
+    padding-left: 20px;
+
+    color: #666;
+
+    font-size: 13px;
+
+}
+
+.video-upload-info li {
+
+    margin-bottom: 5px;
+
+}
+
+.video-upload-info small {
+
+    display: block;
+
+    margin-top: 10px;
+
+    color: #5361df;
+
+    font-weight: 600;
+
+}
+
+
+/* ============================================
+   ERRORS
+============================================ */
 
 .form-errors {
-    background: #fff0f0;
-    border: 1px solid #f0b5b5;
+
+    padding: 18px;
+
+    margin-bottom: 30px;
+
+    border: 1px solid #f1b8b8;
+
+    border-radius: 9px;
+
+    background: #fff5f5;
+
     color: #a33;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 25px;
+
+}
+
+.error-title {
+
+    margin-bottom: 10px;
+
+    font-weight: 700;
+
+}
+
+.field-error {
+
+    margin-top: 5px;
+
+    font-size: 13px;
+
 }
 
 
-/* =========================
-   BUTTON
-========================= */
+/* ============================================
+   SUBMIT
+============================================ */
+
+.profile-submit {
+
+    margin-top: 40px;
+
+    padding-top: 30px;
+
+    border-top: 1px solid #edf0f7;
+
+}
 
 .profile-btn {
+
     width: 100%;
-    padding: 14px;
+
+    padding: 15px 20px;
+
     border: none;
-    border-radius: 5px;
+
+    border-radius: 8px;
+
     background: #5361df;
-    color: white;
+
+    color: #fff;
+
     font-size: 15px;
-    font-weight: 600;
+
+    font-weight: 700;
+
     cursor: pointer;
-    transition: 0.3s;
+
+    transition: all .25s ease;
+
 }
 
 .profile-btn:hover {
+
     background: #4350c8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 20px rgba(83, 97, 223, .20);
+
 }
 
 
-/* =========================
+/* ============================================
    MOBILE
-========================= */
+============================================ */
 
 @media (max-width: 768px) {
 
     .profile-section {
-        padding: 50px 20px 70px;
+
+        padding: 55px 15px 75px;
+
     }
 
     .profile-header h1 {
-        font-size: 30px;
+
+        font-size: 29px;
+
     }
 
     .profile-card {
-        padding: 25px;
+
+        padding: 28px 20px;
+
+        border-radius: 13px;
+
     }
 
     .form-row {
+
         grid-template-columns: 1fr;
+
         gap: 0;
+
     }
 
-}
-.subjects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 10px;
-}
+    .subjects-grid {
 
-.subjects-grid label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    cursor: pointer;
-    background: #fff;
-    transition: 0.2s;
-}
+        grid-template-columns: 1fr;
 
-.subjects-grid label:hover {
-    border-color: #5361df;
-    background: #f7f8ff;
-}
+    }
 
-.subjects-grid input {
-    accent-color: #5361df;
-}
+    .profile-section-title {
 
-.location-box {
-    margin-top: -10px;
-    margin-bottom: 25px;
-    padding: 18px;
-    border: 1px solid #e1e4f5;
-    border-radius: 8px;
-    background: #f8f9ff;
-}
+        margin-top: 30px;
 
-.location-btn {
-    border: none;
-    background: #5361df;
-    color: #fff;
-    padding: 11px 18px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-}
+    }
 
-.location-btn:hover {
-    background: #4350c8;
-}
+    .location-box {
 
-.location-box p {
-    margin: 10px 0 0;
-    color: #777;
-    font-size: 13px;
+        flex-direction: column;
+
+    }
+
 }
 
 </style>
 
+
 <script>
 
-document.getElementById('locationButton').addEventListener('click', function () {
+document.addEventListener('DOMContentLoaded', function () {
 
-    const button = this;
-    const message = document.getElementById('locationMessage');
+    const locationButton =
+        document.getElementById('locationButton');
 
-    if (!navigator.geolocation) {
+    const locationMessage =
+        document.getElementById('locationMessage');
 
-        message.textContent =
-            'Location detection is not supported by your browser.';
 
+    if (!locationButton) {
         return;
     }
 
-    button.disabled = true;
-    button.textContent = 'Detecting location...';
 
-    navigator.geolocation.getCurrentPosition(
+    locationButton.addEventListener('click', function () {
 
-        function (position) {
+        if (!navigator.geolocation) {
 
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
+            locationMessage.textContent =
+                'Location detection is not supported by your browser.';
 
-            document.getElementById(
-                '{{ form.latitude.id_for_label }}'
-            ).value = latitude;
-
-            document.getElementById(
-                '{{ form.longitude.id_for_label }}'
-            ).value = longitude;
-
-            message.textContent =
-                '✓ Location detected successfully.';
-
-            button.textContent =
-                '✓ Location Added';
-
-        },
-
-        function (error) {
-
-            button.disabled = false;
-            button.textContent =
-                'Use My Current Location';
-
-            message.textContent =
-                'Unable to detect your location. Please allow location access in your browser.';
+            return;
 
         }
 
-    );
+
+        locationButton.disabled = true;
+
+        locationButton.innerHTML =
+            '<i class="fa fa-spinner fa-spin"></i> Detecting Location...';
+
+
+        navigator.geolocation.getCurrentPosition(
+
+            function (position) {
+
+                const latitude =
+                    position.coords.latitude;
+
+                const longitude =
+                    position.coords.longitude;
+
+
+                const latitudeField =
+                    document.getElementById(
+                        '{{ form.latitude.id_for_label }}'
+                    );
+
+                const longitudeField =
+                    document.getElementById(
+                        '{{ form.longitude.id_for_label }}'
+                    );
+
+
+                if (latitudeField) {
+
+                    latitudeField.value = latitude;
+
+                }
+
+
+                if (longitudeField) {
+
+                    longitudeField.value = longitude;
+
+                }
+
+
+                locationMessage.textContent =
+                    '✓ Your location has been detected successfully.';
+
+
+                locationButton.innerHTML =
+                    '<i class="fa fa-check"></i> Location Added';
+
+
+                locationButton.disabled = false;
+
+            },
+
+
+            function (error) {
+
+                locationButton.disabled = false;
+
+                locationButton.innerHTML =
+                    '<i class="fa fa-location-arrow"></i> Use My Current Location';
+
+
+                locationMessage.textContent =
+                    'Unable to detect your location. Please allow location access in your browser and try again.';
+
+            }
+
+        );
+
+    });
 
 });
 
 </script>
+
 
 {% endblock %}

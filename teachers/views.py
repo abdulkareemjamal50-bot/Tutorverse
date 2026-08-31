@@ -22,10 +22,15 @@ def teacher_profile_setup(request):
         form = TeacherProfileForm(
             request.POST,
             request.FILES,
-            instance=profile
+            instance=profile,
+            user=request.user
         )
 
         if form.is_valid():
+
+            # ==============================
+            # SAVE TEACHER PROFILE
+            # ==============================
 
             profile = form.save(commit=False)
 
@@ -38,12 +43,30 @@ def teacher_profile_setup(request):
 
             form.save_m2m()
 
+
+            # ==============================
+            # SAVE USER NAME
+            # ==============================
+
+            request.user.first_name = form.cleaned_data['first_name']
+
+            request.user.last_name = form.cleaned_data['last_name']
+
+            request.user.save(
+                update_fields=[
+                    'first_name',
+                    'last_name'
+                ]
+            )
+
+
             return redirect('teacher_dashboard')
 
     else:
 
         form = TeacherProfileForm(
-            instance=profile
+            instance=profile,
+            user=request.user
         )
 
     return render(
@@ -54,7 +77,6 @@ def teacher_profile_setup(request):
             'teacher': profile,
         }
     )
-
 
 @login_required
 def teacher_detail(request, teacher_id):
