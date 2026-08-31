@@ -198,13 +198,13 @@
                         </a>
 
 
-                        <a
-                            href="{% url 'conversation' course.teacher.user.id %}"
-                            class="btn_one course-message-btn"
-                        >
-                            <i class="fa fa-comments"></i>
-                            Contact Tutor
-                        </a>
+                      <a
+    href="{% url 'conversation' course.teacher.user.id %}"
+    class="btn_one course-message-btn"
+>
+    <i class="fa fa-comments"></i>
+    <span>Contact Tutor</span>
+</a>
 
                     </div>
 
@@ -513,6 +513,45 @@
 .summary-item strong {
     color: #222;
     text-align: right;
+}
+/* =========================================
+   CONTACT TUTOR BUTTON
+========================================= */
+
+.course-message-btn {
+    background: #5362e9 !important;
+    color: #ffffff !important;
+    border: 1px solid #5362e9 !important;
+    opacity: 1 !important;
+
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    text-decoration: none !important;
+}
+
+.course-message-btn i {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    font-size: 14px;
+}
+
+.course-message-btn span {
+    color: #ffffff !important;
+    opacity: 1 !important;
+}
+
+.course-message-btn:hover {
+    background: #414fda !important;
+    border-color: #414fda !important;
+    color: #ffffff !important;
+}
+
+.course-message-btn:hover i,
+.course-message-btn:hover span {
+    color: #ffffff !important;
 }
 
 
