@@ -356,24 +356,86 @@
 
 
                 <!-- MOBILE AUTH -->
-                <li>
 
-                    <a href="{% url 'login' %}">
-                        Sign In
-                    </a>
+{% if user.is_authenticated %}
 
-                </li>
+    {% if user.teacherprofile %}
 
-                <li>
+        <li>
+            <a href="{% url 'teacher_dashboard' %}">
+                <i class="fa fa-dashboard"></i>
+                Teacher Dashboard
+            </a>
+        </li>
 
-                    <a href="{% url 'register' %}">
-                        Sign Up
-                    </a>
+        <li>
+            <a href="{% url 'teacher_profile_setup' %}">
+                <i class="fa fa-user"></i>
+                My Profile
+            </a>
+        </li>
 
-                </li>
+        <li>
+            <a href="{% url 'teacher_courses' %}">
+                <i class="fa fa-book"></i>
+                My Courses
+            </a>
+        </li>
 
-            </ul>
-            <!-- END MOBILE MENU -->
+        <li>
+            <a href="{% url 'inbox' %}">
+                <i class="fa fa-comments"></i>
+                Messages
+            </a>
+        </li>
+
+    {% else %}
+
+        <li>
+            <a href="{% url 'student_dashboard' %}">
+                <i class="fa fa-dashboard"></i>
+                My Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'student_profile' %}">
+                <i class="fa fa-user"></i>
+                My Profile
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'my_bookings' %}">
+                <i class="fa fa-calendar"></i>
+                My Bookings
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'inbox' %}">
+                <i class="fa fa-comments"></i>
+                Messages
+            </a>
+        </li>
+
+    {% endif %}
+
+{% else %}
+
+    <li>
+        <a href="{% url 'login' %}">
+            Sign In
+        </a>
+    </li>
+
+    <li>
+        <a href="{% url 'register' %}">
+            Sign Up
+        </a>
+    </li>
+
+{% endif %}
 
         </div>
         <!-- END ROW -->
@@ -605,6 +667,79 @@
     border-radius: 50%;
     object-fit: cover;
     display: block;
+}
+/* =========================================
+   TUTORVERSE MOBILE NAVBAR FIX
+========================================= */
+
+@media (max-width: 1199px) {
+
+    #navigation .container-fluid {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    #navigation .row {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    /* LOGO */
+
+    #navigation .col-20 {
+        width: auto;
+        flex: 1;
+    }
+
+    .tutorverse-logo-image {
+        width: 150px;
+        height: auto;
+        display: block;
+    }
+
+    /* HIDE DESKTOP MENU */
+
+    #navigation .col-60 {
+        display: none !important;
+    }
+
+    /* HIDE DESKTOP ACCOUNT */
+
+    #navigation .col-20.d-none.d-xl-block {
+        display: none !important;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 767px) {
+
+    .tutorverse-logo-image {
+        width: 135px;
+    }
+
+    #navigation {
+        min-height: 75px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+    .tutorverse-logo-image {
+        width: 125px;
+    }
+
 }
 </style>
 <script>
